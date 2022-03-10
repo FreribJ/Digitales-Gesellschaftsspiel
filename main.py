@@ -1,19 +1,26 @@
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except ImportError:
+    import FakeRPi.GPIO as GPIO
+
 import time
 
-led = 18
-
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(led, GPIO.OUT)
+
+controll_led = [14, 15, 18]
+
+for i in controll_led:
+    GPIO.setup(i, GPIO.OUT)
 
 try:
     while True:
-        GPIO.output(led, 1)  # 1/0, True/False, GPIO.HIGH/GPIO.LOW accepted
-        time.sleep(5)  # 5 seconds light on
-        GPIO.output(led, False)
-        time.sleep(5)  # 5 seconds light off
+        for i in controll_led:
+            GPIO.output(i, 1)
+            time.sleep(1)
+        for i in controll_led:
+            GPIO.output(i, 0)
+            time.sleep(1)
 
 except KeyboardInterrupt:
     print("Quit")
-    GPIO.output(led, GPIO.LOW)
     GPIO.cleanup()
