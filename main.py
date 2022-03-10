@@ -1,10 +1,16 @@
-import RPi.GPIO as GPIO
+try:
+    import RPi.GPIO as GPIO
+except ImportError:
+    print("test")
+    import FakeRPi.GPIO as GPIO
 import time
 
 led = 23
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(led, GPIO.OUT)
+
+print("hallo")
 
 try:
     while True:
