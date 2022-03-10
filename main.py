@@ -7,6 +7,10 @@ import time
 GPIO.setmode(GPIO.BCM)
 
 controll_led = [14, 15, 18]
+player_led = [23, 24, 25, 8, 7]
+
+controll_button = [16, 20]
+player_button = [26, 19, 13, 6, 5]
 
 for i in controll_led:
     GPIO.setup(i, GPIO.OUT)
