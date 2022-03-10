@@ -1,16 +1,19 @@
-# This is a sample Python script.
+import RPi.GPIO as GPIO
+import time
 
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+led = 23
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(led, GPIO.OUT)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Strg+F8 to toggle the breakpoint.
+try:
+    while True:
+        GPIO.output(led, 1)  # 1/0, True/False, GPIO.HIGH/GPIO.LOW accepted
+        time.sleep(5)  # 5 seconds light on
+        GPIO.output(led, False)
+        time.sleep(5)  # 5 seconds light off
 
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+except KeyboardInterrupt:
+    print("Quit")
+    GPIO.output(led, GPIO.LOW)
+    GPIO.cleanup()
