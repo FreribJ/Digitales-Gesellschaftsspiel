@@ -8,7 +8,7 @@ def rolls(leds, times):
     for t in range(times):
         for i in leds:
             GPIO.output(i, 1)
-            time.sleep(0.2)
+            time.sleep(0.5)
         for i in leds:
             GPIO.output(i, 0)
-            time.sleep(0.2)
+            time.sleep(0.5)
