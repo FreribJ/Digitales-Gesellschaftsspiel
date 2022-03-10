@@ -18,7 +18,7 @@ for i in all_led:
     GPIO.setup(i, GPIO.OUT)
 
 try:
-    rolls(all_led, 5)
+    rolls(all_led, 100)
 
 except KeyboardInterrupt:
     print("Quit")
