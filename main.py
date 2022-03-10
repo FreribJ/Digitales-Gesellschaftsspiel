@@ -1,13 +1,12 @@
-#GPIO Import
+#Other Import
+import time
 import numpy as numpy
 
+#GPIO Import
 try:
     import RPi.GPIO as GPIO
 except ImportError:
     import FakeRPi.GPIO as GPIO
-
-#Other Import
-import time
 
 #Class Import
 from animations import *
