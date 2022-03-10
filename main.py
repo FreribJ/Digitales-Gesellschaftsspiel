@@ -2,7 +2,6 @@ try:
     import RPi.GPIO as GPIO
 except ImportError:
     import FakeRPi.GPIO as GPIO
-
 import time
 
 GPIO.setmode(GPIO.BCM)
