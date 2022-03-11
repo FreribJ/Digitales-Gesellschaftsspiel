@@ -31,8 +31,9 @@ def changePlayer():
     GPIO.add_event_detect(setup.activeButton[actualPlayer], GPIO.BOTH)
 
 def startGame():
-    initializeGame()
-    GPIO.add_event_detect(setup.activeButton[actualPlayer], GPIO.BOTH)
+    initializeGame() #Damit die werte erst beim Start gesetzt werden
+
+    GPIO.add_event_detect(setup.active_button[actualPlayer], GPIO.BOTH)
     while time.time()-startTime <= timeLength:
         if GPIO.event_detected(actualPlayer):
             changePlayer()
