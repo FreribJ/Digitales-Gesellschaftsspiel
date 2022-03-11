@@ -10,7 +10,7 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 #Class Import
-from animations import rolls
+import animations
 import setup
 
 
@@ -20,7 +20,7 @@ setup.initialize()
 
 #Programm-Start:
 try:
-    rolls(setup.all_led, 2)
+    animations.rolls(setup.all_led, 2)
     reaktionstest.start_reaktionstest()
 
     #Ende:
