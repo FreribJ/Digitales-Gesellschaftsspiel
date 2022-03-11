@@ -36,18 +36,16 @@ def playerselection():
     for i in setup.all_button:
         GPIO.remove_event_detect(i)
 
+    #Einstellungen speichern
     setup.active_player = 0
     setup.active_button = []
     setup.active_led = []
+
     for i in range(setup.max_player):
         if playeractive[i]:
             setup.active_button.append(setup.player_button[i])
             setup.active_led.append(setup.player_led[i])
-            setup.active_player +=1
-
-    print(setup.active_led)
-    print(setup.active_button)
-    print(setup.active_player)
+            setup.active_player += 1
 
     animations.all_off()
 
