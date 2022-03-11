@@ -2,6 +2,8 @@
 import time
 import random
 
+import numpy
+
 import setup
 import animations
 
@@ -15,14 +17,11 @@ zeit = [0, 0, 0, 0, 0]
 count_pressed = 0
 
 def callback_zeitspeichern(switch):
-    print("Erkannt!")
     global zeit
     global count_pressed
 
     player = setup.player_button.index(switch)
-    print(player)
-
-    if not zeit[player] == 0:
+    if zeit[player] == 0:
         zeit[player] = time.time()
 
 
@@ -48,6 +47,8 @@ def start_reaktionstest():
 
     animations.rolls(setup.player_led, 1)
 
-    for t in zeit:
-        print(t)
+    minZeit = numpy.minimum(zeit)
+
+    print(minZeit)
+    print(zeit.index(minZeit))
 
