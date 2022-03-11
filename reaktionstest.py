@@ -24,7 +24,7 @@ def initialize_callback():
 
 def remove_callback():
     for i in setup.player_button:
-        GPIO.remove_event_detect(i, GPIO.RISING, callback_zeitspeichern(i), 200)
+        GPIO.remove_event_detect(i, GPIO.RISING, callback_zeitspeichern, 200)
 
 def start_reaktionstest():
     initialize_callback()
