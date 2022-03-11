@@ -21,7 +21,7 @@ def changePlayer():
     global actualPlayer
     GPIO.output(setup.active_led[actualPlayer], 0)
     GPIO.remove_event_detect(setup.activeButton[actualPlayer])
-    actualPlayer = random.randint(0, 4)
+    actualPlayer = random.randint(0, setup.active_player)
     GPIO.output(setup.active_led[actualPlayer], 1)
     GPIO.add_event_detect(setup.activeButton[actualPlayer], GPIO.BOTH)
 
