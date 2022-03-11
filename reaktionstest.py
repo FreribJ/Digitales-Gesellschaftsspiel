@@ -13,14 +13,14 @@ import setup
 #Variablen
 zeit = [0, 0, 0, 0, 0]
 
-def callback_zeitspeichern():
+def callback_function(switch):
     print("knopf: ")
     print(time.time())
     print()
 
 def initialize_callback():
-    for i in setup.player_button:
-        GPIO.add_event_detect(i, GPIO.RISING, callback_zeitspeichern, 200)
+    for switch in setup.player_button:
+        GPIO.add_event_detect(switch, GPIO.FALLING, callback=callback_function)
 
 def remove_callback():
     for i in setup.player_button:
