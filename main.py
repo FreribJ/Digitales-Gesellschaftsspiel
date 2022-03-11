@@ -51,9 +51,13 @@ try:
         if menu_level == 2:
             print("Spielauswahl")
             GPIO.output(setup.control_led[2], 1)
-            time.sleep(5)
+            next_level = selection.game_selection()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[2], 0)
+            if next_level:
+                menu_level = 2
+            else:
+                menu_level = 0
 
     #Ende:
     animations.rolls(setup.all_led, 1)
