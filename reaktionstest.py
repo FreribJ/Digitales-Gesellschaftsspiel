@@ -36,22 +36,22 @@ def remove_callback():
 
 
 def start_reaktionstest():
+    #Vorbereiten
     global zeit
     global count_pressed
     initialize_callback()
     animations.blink(random.randint(2, 7))
     count_pressed = 0
     zeit = [0, 0, 0, 0, 0]
+
+    #Auf Ende Warten
     while count_pressed < len(setup.player_button):
-        print(zeit)
-        print(count_pressed)
         time.sleep(1)
 
-
+    #Gewinner berechnen
     animations.rolls(setup.player_led, 1)
+    time.sleep(0.5)
+    winner = zeit.index(min(zeit))
 
-    minZeit = numpy.minimum(zeit)
-
-    print(minZeit)
-    print(zeit.index(minZeit))
+    GPIO.output(setup.player_led[winner], 1)
 
