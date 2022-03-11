@@ -19,7 +19,7 @@ setup.initialize()
 try:
     #Startanimation:
     print("Started")
-    animations.rolls(setup.all_led, 3)
+    animations.rolls(setup.all_led, 1)
 
     menu_level = 0
     while True:
