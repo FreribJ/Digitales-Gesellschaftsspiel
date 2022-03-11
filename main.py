@@ -1,4 +1,5 @@
-#Other Import
+from helper import animations
+from control import setup
 
 #GPIO Import
 from games import reaktionstest
@@ -7,11 +8,6 @@ try:
     import RPi.GPIO as GPIO
 except ImportError:
     import FakeRPi.GPIO as GPIO
-
-#Class Import
-from helper import animations
-import setup
-
 
 
 #Programm-Initialize:
