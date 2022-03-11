@@ -1,8 +1,7 @@
 #Other Import
-import time
 
 #GPIO Import
-import reaktionstest
+from games import reaktionstest
 
 try:
     import RPi.GPIO as GPIO
@@ -22,10 +21,19 @@ setup.initialize()
 try:
     #Startanimation:
     animations.rolls(setup.all_led, 1)
+
+    #Spielerauswahl:
+
+    #Lebenwahl:
+
+    #Spielauswahl:
+
+    #Spielstart
     while True:
         reaktionstest.start_reaktionstest()
 
     #Ende:
+    animations.rolls(setup.all_led, 1)
     print("Finished")
     GPIO.cleanup()
 

@@ -8,10 +8,12 @@ GPIO.setmode(GPIO.BCM)
 
 control_led = [14, 15, 18]
 player_led = [23, 24, 25, 8, 7]
+#active_led =
 all_led = [14, 15, 18, 23, 24, 25, 8, 7]
 
 control_button = [16, 20]
 player_button = [26, 19, 13, 6, 5]
+#active_button =
 all_button = [16, 20, 26, 19, 13, 6, 5]
 
 def initialize():
