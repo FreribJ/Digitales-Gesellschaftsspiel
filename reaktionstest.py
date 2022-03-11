@@ -40,7 +40,7 @@ def start_reaktionstest():
     global zeit
     global count_pressed
     initialize_callback()
-    animations.blink(random.randint(2, 7))
+    animations.all_blink(1, random.randint(2, 7))
     count_pressed = 0
     zeit = [0, 0, 0, 0, 0]
 
@@ -53,5 +53,5 @@ def start_reaktionstest():
     time.sleep(0.5)
     winner = zeit.index(min(zeit))
 
-    GPIO.output(setup.player_led[winner], 1)
+    animations.one_blink(setup.player_led[winner], 5, 0.3)
 
