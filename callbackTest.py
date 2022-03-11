@@ -17,4 +17,4 @@ GPIO.add_event_detect(13, GPIO.RISING, callback=my_callback)  # add rising edge 
 
 while True:
     time.sleep(2)
-    print("waiting")
+    print(GPIO.input(13))
