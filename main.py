@@ -25,6 +25,7 @@ try:
     while True:
         #Spielerauswahl:
         if menu_level == 0:
+            print("Spielerauswahl")
             GPIO.output(setup.control_led[0], 1)
             if not selection.player_selection():
                 break
@@ -34,6 +35,7 @@ try:
 
         #Lebenwahl:
         if menu_level == 1:
+            print("Lebenauswahl")
             GPIO.output(setup.control_led[1], 1)
             if not selection.player_selection():
                 menu_level = 0
@@ -43,6 +45,7 @@ try:
 
         #Spielauswahl:
         if menu_level == 2:
+            print("Spielauswahl")
             GPIO.output(setup.control_led[2], 1)
             time.sleep(5)
             animations.rolls(setup.player_led, 1)
