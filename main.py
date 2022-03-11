@@ -1,9 +1,6 @@
-import time
-
-import games.reaktionstest
+from games import hotPotato, reaktionstest, AbfolgeMerken, LeuchtdauerMerken
 from helper import animations
 from control import setup, selection
-from games import *
 
 try:
     import RPi.GPIO as GPIO
@@ -67,9 +64,9 @@ try:
                 setup.player_life.append(setup.max_life)
 
             if setup.game_selected == 0:
-                games.reaktionstest.start_reaktionstest()
+                reaktionstest.start_reaktionstest()
             elif setup.game_selected == 1:
-                games.hotPotato.startGame()
+                hotPotato.startGame()
 
             menu_level = 2
 
