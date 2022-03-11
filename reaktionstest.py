@@ -11,10 +11,13 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
-# Variablen
-
+zeit = [0, 0, 0, 0, 0]
+count_pressed = 0
 
 def callback_zeitspeichern(switch):
+    global zeit
+    global count_pressed
+
     player = setup.player_button.index(switch)
     if not zeit[player] == 0:
         zeit[player] = time.time()
@@ -37,8 +40,11 @@ def start_reaktionstest():
     count_pressed = 0
     zeit = [0, 0, 0, 0, 0]
     while count_pressed < len(setup.all_button):
+        print(zeit)
         time.sleep(1)
+
     animations.rolls(setup.player_led, 1)
+
     for t in zeit:
         print(t)
 
