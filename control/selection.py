@@ -1,8 +1,5 @@
-import helper.animations
 from control import setup
 from helper import animations
-from setup import active_led
-from setup import active_button
 
 try:
     import RPi.GPIO as GPIO
@@ -11,11 +8,8 @@ except ImportError:
 
 
 def playerselection():
-    global active_led
-    global active_button
-
     playeractive = [False, False, False, False, False]
-    for i in active_led:
+    for i in setup.active_led:
         playeractive[setup.all_led.index(i)] = True
         GPIO.output(i, 1)
 
