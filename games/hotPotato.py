@@ -9,8 +9,8 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 #Variable Import
-import setup
-import animations
+from control import setup
+from helper import animations
 
 actualPlayer = random.randint(0, 4)
 GPIO.output(actualPlayer, 1)

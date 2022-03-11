@@ -9,7 +9,7 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 #Class Import
-import animations
+from helper import animations
 import setup
 
 

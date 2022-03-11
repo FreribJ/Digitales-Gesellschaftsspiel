@@ -3,7 +3,8 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 import time
-import setup
+from control import setup
+
 
 def rolls(leds, times):
     for t in range(times):

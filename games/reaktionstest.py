@@ -2,10 +2,8 @@
 import time
 import random
 
-import numpy
-
-import setup
-import animations
+from control import setup
+from helper import animations
 
 # GPIO Import
 try:
