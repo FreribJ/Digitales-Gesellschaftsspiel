@@ -11,13 +11,14 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 zeit = []
-
+for i in range(setup.active_player):
+    zeit.append(0)
 
 #Zeiten Speichern
 def callback_zeitspeichern(switch):
     global zeit
 
-    player = setup.player_button.index(switch)
+    player = setup.active_button.index(switch)
     if zeit[player] == 0:
         zeit[player] = time.time()
 
