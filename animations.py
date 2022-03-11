@@ -3,8 +3,7 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 import time
-
-#from main import player_button
+import setup
 
 def rolls(leds, times):
     for t in range(times):
@@ -14,3 +13,10 @@ def rolls(leds, times):
         for i in leds:
             GPIO.output(i, 0)
             time.sleep(0.1)
+
+def blink(time):
+    for i in setup.all_led:
+        GPIO.output(i, 1)
+    time.sleep(time)
+    for i in setup.all_led:
+        GPIO.output(i, 0)
