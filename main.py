@@ -59,13 +59,16 @@ try:
 
         #Spielstart:
         if menu_level == 3:
+            #Leben Resetten
             setup.player_life = []
             for i in range(setup.active_player):
                 setup.player_life.append(setup.max_life)
 
             if setup.game_selected == 0:
+                print("Game -> Reaktionstest")
                 reaktionstest.start_reaktionstest()
             elif setup.game_selected == 1:
+                print("Game -> Hot Potato")
                 hotPotato.startGame()
 
             menu_level = 2
