@@ -10,7 +10,7 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
-zeit = [0, 0, 0, 0, 0]
+zeit = []
 
 
 #Zeiten Speichern
@@ -23,12 +23,12 @@ def callback_zeitspeichern(switch):
 
 #Initialzes Callback
 def initialize_callback():
-    for switch in setup.player_button:
+    for switch in setup.active_button:
         GPIO.add_event_detect(switch, GPIO.RISING, callback_zeitspeichern, 200)
 
 #Removes Callback
 def remove_callback():
-    for i in setup.player_button:
+    for i in setup.active_button:
         GPIO.remove_event_detect(i)
 
 
@@ -37,7 +37,10 @@ def start_reaktionstest():
     global zeit
     initialize_callback()
     animations.all_blink(1, random.randint(2, 7))
-    zeit = [0, 0, 0, 0, 0]
+
+    zeit = []
+    for i in range(setup.active_player):
+        zeit.append(0)
 
     #Auf Ende Warten
     while zeit.count(0) > 0:
