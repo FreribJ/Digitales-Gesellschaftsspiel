@@ -26,7 +26,7 @@ try:
         #Spielerauswahl:
         if menu_level == 0:
             GPIO.output(setup.control_led[0], 1)
-            if not selection.playerselection():
+            if not selection.player_selection():
                 break
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[0], 0)
@@ -35,7 +35,8 @@ try:
         #Lebenwahl:
         if menu_level == 1:
             GPIO.output(setup.control_led[1], 1)
-            time.sleep(5)
+            if not selection.player_selection():
+                menu_level = 0
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[1], 0)
             menu_level = 2
@@ -46,11 +47,6 @@ try:
             time.sleep(5)
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[2], 0)
-
-
-    #Spielstart
-    while True:
-        reaktionstest.start_reaktionstest()
 
     #Ende:
     animations.rolls(setup.all_led, 1)

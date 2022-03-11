@@ -7,7 +7,7 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 
-def playerselection():
+def player_selection():
 
     playeractive = []
     for i in range(setup.max_player):
@@ -53,3 +53,23 @@ def playerselection():
     animations.all_off()
     return True
 
+def life_selection():
+    GPIO.output(setup.player_led[setup.max_life], 1)
+
+    # Event-Detect
+    for i in setup.all_button:
+        GPIO.add_event_detect(i, GPIO.RISING, bouncetime=1000)
+
+    while not (GPIO.event_detected(setup.control_button[0]) or GPIO.event_detected(setup.control_button[1])):
+        for i in setup.player_button:
+            if GPIO.event_detected(i):
+                number = setup.player_button.index(i)
+                GPIO.output(setup.player_led[setup.max_life], 0)
+                setup.max_life = number
+                GPIO.output(setup.player_led[setup.max_life], 1)
+
+    if GPIO.input(setup.control_button[0]):
+        return False
+
+    animations.all_off()
+    return True
