@@ -3,6 +3,7 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(13, GPIO.IN)
 
 def my_callback(channel):
