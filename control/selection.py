@@ -8,7 +8,11 @@ except ImportError:
 
 
 def playerselection():
-    playeractive = [False, False, False, False, False]
+
+    playeractive = []
+    for i in range(setup.max_players):
+        playeractive.append(False)
+
     for i in setup.active_led:
         playeractive[setup.all_led.index(i)] = True
         GPIO.output(i, 1)
