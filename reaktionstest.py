@@ -20,7 +20,7 @@ def callback_zeitspeichern(switch):
 
 def initialize_callback():
     for switch in setup.player_button:
-        GPIO.add_event_detect(switch, GPIO.FALLING, callback=callback_function)
+        GPIO.add_event_detect(switch, GPIO.FALLING, callback=callback_zeitspeichern)
 
 def remove_callback():
     for i in setup.player_button:
