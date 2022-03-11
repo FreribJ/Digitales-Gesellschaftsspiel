@@ -13,6 +13,7 @@ def playerselection():
         playeractive[setup.all_led.index(i)] = True
         GPIO.output(i, 1)
 
+    #Event-Detect
     for i in setup.all_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=1000)
 
@@ -26,6 +27,10 @@ def playerselection():
                 else:
                     playeractive[number] = True
                     GPIO.output(setup.player_led[number], 1)
+
+    #Remove Event-Detect:
+    for i in setup.all_button:
+        GPIO.remove_event_detect(i)
 
     for i in range(5):
         if playeractive[i]:
