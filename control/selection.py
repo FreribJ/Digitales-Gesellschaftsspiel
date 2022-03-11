@@ -70,7 +70,7 @@ def life_selection():
                 setup.max_life = number+1
                 GPIO.output(setup.player_led[setup.max_life-1], 1)
 
-    time.sleep(1)
+    #time.sleep(1)
     if GPIO.input(setup.control_button[0]) == 1:
         return False
 
