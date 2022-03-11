@@ -50,11 +50,11 @@ def player_selection():
             setup.active_led.append(setup.player_led[i])
             setup.active_player += 1
 
-    animations.all_off()
+    animations.array_off(setup.player_led)
     return True
 
 def life_selection():
-    GPIO.output(setup.player_led[setup.max_life], 1)
+    GPIO.output(setup.player_led[setup.max_life-1], 1)
 
     # Event-Detect
     for i in setup.all_button:
@@ -71,5 +71,5 @@ def life_selection():
     if GPIO.input(setup.control_button[0]):
         return False
 
-    animations.all_off()
+    animations.array_off(setup.player_led)
     return True
