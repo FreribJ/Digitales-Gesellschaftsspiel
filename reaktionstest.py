@@ -13,8 +13,8 @@ import setup
 #Variablen
 zeit = [0, 0, 0, 0, 0]
 
-def callback_zeitspeichern(spieler):
-    print("knopf: ", spieler)
+def callback_zeitspeichern():
+    print("knopf: ")
     print(time.time())
     print()
 
