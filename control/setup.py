@@ -12,6 +12,8 @@ active_player = 0
 max_life = 1
 player_life = []
 
+game_selected = 0
+
 control_led = [14, 15, 18]
 player_led = [23, 24, 25, 8, 7]
 active_led = []

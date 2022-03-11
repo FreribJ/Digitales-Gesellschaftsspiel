@@ -27,18 +27,19 @@ try:
         if menu_level == 0:
             print("Spielerauswahl")
             GPIO.output(setup.control_led[0], 1)
-            if not selection.player_selection():
-                break
+            next_level = selection.player_selection()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[0], 0)
-            menu_level = 1
+            if next_level:
+                menu_level = 1
+            else:
+                break
 
         #Lebenwahl:
         if menu_level == 1:
             print("Lebenauswahl")
             GPIO.output(setup.control_led[1], 1)
             next_level = selection.life_selection()
-            print(next_level)
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[1], 0)
             if next_level:
