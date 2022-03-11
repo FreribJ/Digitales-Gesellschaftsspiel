@@ -37,9 +37,9 @@ def playerselection():
         GPIO.remove_event_detect(i)
 
     setup.active_player = 0
-    setup.player_button = []
-    setup.player_led = []
-    for i in range(5):
+    setup.active_button = []
+    setup.active_led = []
+    for i in range(setup.max_player):
         if playeractive[i]:
             setup.active_button.append(setup.player_button[i])
             setup.active_led.append(setup.player_led[i])
