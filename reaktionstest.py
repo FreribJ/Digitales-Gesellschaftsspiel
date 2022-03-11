@@ -23,7 +23,7 @@ def callback_zeitspeichern(switch):
     player = setup.player_button.index(switch)
     if zeit[player] == 0:
         zeit[player] = time.time()
-        count_pressed += 1
+        count_pressed = count_pressed + 1
 
 
 def initialize_callback():
@@ -44,7 +44,9 @@ def start_reaktionstest():
     zeit = [0, 0, 0, 0, 0]
     while count_pressed < len(setup.all_button):
         print(zeit)
+        print(count_pressed)
         time.sleep(1)
+
 
     animations.rolls(setup.player_led, 1)
 
