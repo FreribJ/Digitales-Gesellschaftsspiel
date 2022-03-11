@@ -27,6 +27,7 @@ def remove_callback():
         GPIO.remove_event_detect(i, GPIO.RISING, callback_zeitspeichern(i), 200)
 
 def start_reaktionstest():
+    initialize_callback()
     while True:
         time.sleep(5)
         print("Warte")
