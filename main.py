@@ -1,8 +1,9 @@
 import time
 
+import games.reaktionstest
 from helper import animations
 from control import setup, selection
-from games import reaktionstest
+from games import *
 
 try:
     import RPi.GPIO as GPIO
@@ -27,10 +28,10 @@ try:
         if menu_level == 0:
             print("Spielerauswahl")
             GPIO.output(setup.control_led[0], 1)
-            next_level = selection.player_selection()
+            next_menu = selection.player_selection()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[0], 0)
-            if next_level:
+            if next_menu:
                 menu_level = 1
             else:
                 break
@@ -39,10 +40,10 @@ try:
         if menu_level == 1:
             print("Lebenauswahl")
             GPIO.output(setup.control_led[1], 1)
-            next_level = selection.life_selection()
+            next_menu = selection.life_selection()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[1], 0)
-            if next_level:
+            if next_menu:
                 menu_level = 2
             else:
                 menu_level = 0
@@ -51,13 +52,26 @@ try:
         if menu_level == 2:
             print("Spielauswahl")
             GPIO.output(setup.control_led[2], 1)
-            next_level = selection.game_selection()
+            next_menu = selection.game_selection()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[2], 0)
-            if next_level:
-                menu_level = 2
+            if next_menu:
+                menu_level = 3
             else:
-                menu_level = 0
+                menu_level = 1
+
+        #Spielstart:
+        if menu_level == 3:
+            setup.player_life = []
+            for i in range(setup.active_player):
+                setup.player_life.append(setup.max_life)
+
+            if setup.game_selected == 0:
+                games.reaktionstest.start_reaktionstest()
+            elif setup.game_selected == 1:
+                games.hotPotato.startGame()
+
+            menu_level = 2
 
     #Ende:
     animations.rolls(setup.all_led, 1)
