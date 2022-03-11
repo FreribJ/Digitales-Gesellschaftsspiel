@@ -15,10 +15,13 @@ zeit = [0, 0, 0, 0, 0]
 count_pressed = 0
 
 def callback_zeitspeichern(switch):
+    print("Erkannt!")
     global zeit
     global count_pressed
 
     player = setup.player_button.index(switch)
+    print(player)
+
     if not zeit[player] == 0:
         zeit[player] = time.time()
 
