@@ -30,4 +30,5 @@ def startGame():
     while time.time()-startTime <= timeLength:
         if GPIO.event_detected(actualPlayer):
             changePlayer()
-    animations.blink(5)
+    animations.all_blink(5, 0.3)
+    animations.one_blink(setup.active_led[actualPlayer], 5, 0.3)
