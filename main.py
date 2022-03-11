@@ -37,7 +37,7 @@ try:
         if menu_level == 1:
             print("Lebenauswahl")
             GPIO.output(setup.control_led[1], 1)
-            if not selection.player_selection():
+            if not selection.life_selection():
                 menu_level = 0
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[1], 0)
