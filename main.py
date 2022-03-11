@@ -20,7 +20,7 @@ setup.initialize()
 
 #Programm-Start:
 try:
-    animations.rolls(setup.all_led, 2)
+    animations.rolls(setup.all_led, 1)
     reaktionstest.start_reaktionstest()
 
     #Ende:
