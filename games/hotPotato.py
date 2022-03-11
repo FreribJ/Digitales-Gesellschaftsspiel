@@ -17,6 +17,7 @@ timeLength = 0
 startTime = 0
 
 def initializeGame():
+    global timeLength, startTime
     actualPlayer = random.randint(0, setup.active_player-1)
     GPIO.output(setup.active_led[actualPlayer], 1)
     timeLength = random.uniform(15, 30);
