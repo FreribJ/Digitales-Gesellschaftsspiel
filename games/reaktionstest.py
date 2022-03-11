@@ -1,4 +1,3 @@
-# Other Import
 import time
 import random
 
@@ -42,7 +41,6 @@ def start_reaktionstest():
     #Auf Ende Warten
     while zeit.count(0) > 0:
         time.sleep(1)
-        print(zeit)
 
     #Gewinner/Verlierer berechnen
     animations.rolls(setup.player_led, 1)

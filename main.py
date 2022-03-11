@@ -1,7 +1,5 @@
 from helper import animations
-from control import setup
-
-#GPIO Import
+from control import setup, selection
 from games import reaktionstest
 
 try:
@@ -16,9 +14,11 @@ setup.initialize()
 #Programm-Start:
 try:
     #Startanimation:
+    print("Started")
     animations.rolls(setup.all_led, 1)
 
     #Spielerauswahl:
+    selection.playerselection()
 
     #Lebenwahl:
 
