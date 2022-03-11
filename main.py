@@ -17,12 +17,11 @@ setup.initialize()
 
 #Programm-Start:
 try:
-    menu_level = 0
     #Startanimation:
     print("Started")
     animations.rolls(setup.all_led, 3)
 
-    GPIO.add_event_detect(setup.control_button[0], GPIO.RISING, callback_back, 200)
+    menu_level = 0
     while True:
         #Spielerauswahl:
         if menu_level == 0:
