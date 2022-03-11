@@ -34,9 +34,6 @@ def player_selection():
                     playeractive[number] = True
                     GPIO.output(setup.player_led[number], 1)
 
-    if GPIO.input(setup.control_button[0]):
-        return False
-
     #Remove Event-Detect:
     for i in setup.all_button:
         GPIO.remove_event_detect(i)
@@ -53,6 +50,10 @@ def player_selection():
             setup.active_player += 1
 
     animations.array_off(setup.player_led)
+
+    if GPIO.input(setup.control_button[0]):
+        return False
+
     return True
 
 def life_selection():
@@ -74,8 +75,9 @@ def life_selection():
     for i in setup.all_button:
         GPIO.remove_event_detect(i)
 
-    if GPIO.input(setup.control_button[0]) == 1:
+    animations.array_off(setup.player_led)
+
+    if GPIO.input(setup.control_button[0]):
         return False
 
-    animations.array_off(setup.player_led)
     return True
