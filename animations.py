@@ -43,9 +43,7 @@ def array_on(leds):
 
 def one_blink(led, times, time_sleep):
     for t in range(times):
-        for i in setup.player_led:
-            GPIO.output(i, 1)
+        GPIO.output(led, 1)
         time.sleep(time_sleep)
-        for i in setup.all_led:
-            GPIO.output(i, 0)
+        GPIO.output(led, 0)
         time.sleep(time_sleep)
