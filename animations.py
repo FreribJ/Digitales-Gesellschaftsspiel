@@ -16,12 +16,12 @@ def rolls(leds, times):
 
 def all_blink(times, time_sleep):
     for t in range(times):
+        time.sleep(time_sleep)
         for i in setup.player_led:
             GPIO.output(i, 1)
         time.sleep(time_sleep)
         for i in setup.all_led:
             GPIO.output(i, 0)
-        time.sleep(time_sleep)
 
 def all_off():
     for i in setup.all_led:

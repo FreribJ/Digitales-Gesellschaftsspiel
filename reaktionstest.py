@@ -14,7 +14,6 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 zeit = [0, 0, 0, 0, 0]
-count_pressed = 0
 
 def callback_zeitspeichern(switch):
     global zeit
@@ -37,10 +36,8 @@ def remove_callback():
 def start_reaktionstest():
     #Vorbereiten
     global zeit
-    global count_pressed
     initialize_callback()
     animations.all_blink(1, random.randint(2, 7))
-    count_pressed = 0
     zeit = [0, 0, 0, 0, 0]
 
     #Auf Ende Warten
