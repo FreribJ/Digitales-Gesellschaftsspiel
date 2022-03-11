@@ -25,10 +25,9 @@ def initializeGame():
 
 def changePlayer():
     global actualPlayer
-    print("Does something")
     GPIO.output(setup.active_led[actualPlayer], 0)
     GPIO.remove_event_detect(setup.active_button[actualPlayer])
-    actualPlayer = random.randint(0, setup.active_player-1)
+    actualPlayer = random.randint(0, setup.active_player-1) #-1 da randint sonst einen zu viel macht
     GPIO.output(setup.active_led[actualPlayer], 1)
     GPIO.add_event_detect(setup.active_button[actualPlayer], GPIO.BOTH)
 
@@ -37,7 +36,7 @@ def startGame():
 
     GPIO.add_event_detect(setup.active_button[actualPlayer], GPIO.BOTH)
     while time.time()-startTime <= timeLength:
-        if GPIO.event_detected(setup.active_button[actualPlayer]):
+        if GPIO.event_detected(setup.active_button[actualPlayer]): #Es fehlt das: setup.active_button...
             changePlayer()
     animations.all_blink(5, 0.3)
     animations.one_blink(setup.active_led[actualPlayer], 5, 0.3)
