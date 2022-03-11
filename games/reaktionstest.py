@@ -53,9 +53,9 @@ def start_reaktionstest():
     winner = zeit.index(min(zeit))
     loser = zeit.index(max(zeit))
 
-    GPIO.output(setup.player_led[loser], 1)
-    animations.one_blink(setup.player_led[winner], 7, 0.3)
-    GPIO.output(setup.player_led[loser], 0)
+    GPIO.output(setup.active_led[loser], 1)
+    animations.one_blink(setup.active_led[winner], 7, 0.3)
+    GPIO.output(setup.active_led[loser], 0)
 
     #Ende
     remove_callback()
