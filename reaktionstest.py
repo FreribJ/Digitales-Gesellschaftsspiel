@@ -23,6 +23,7 @@ def callback_zeitspeichern(switch):
     player = setup.player_button.index(switch)
     if zeit[player] == 0:
         zeit[player] = time.time()
+        count_pressed += 1
 
 
 def initialize_callback():
