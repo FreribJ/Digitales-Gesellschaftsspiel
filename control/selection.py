@@ -10,7 +10,7 @@ except ImportError:
 def playerselection():
 
     playeractive = []
-    for i in range(setup.max_players):
+    for i in range(setup.max_player):
         playeractive.append(False)
 
     for i in setup.active_led:
@@ -36,13 +36,16 @@ def playerselection():
     for i in setup.all_button:
         GPIO.remove_event_detect(i)
 
+    setup.active_player = 0
     for i in range(5):
         if playeractive[i]:
             setup.active_button.append(setup.player_button[i])
             setup.active_led.append(setup.player_led[i])
+            setup.active_player +=1
 
     print(setup.active_led)
     print(setup.active_button)
+    print(setup.active_player)
 
     animations.all_off()
 

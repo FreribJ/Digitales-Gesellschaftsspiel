@@ -6,7 +6,8 @@ except ImportError:
 #Setup:
 GPIO.setmode(GPIO.BCM)
 
-max_players = 5
+max_player = 5
+active_player =
 
 control_led = [14, 15, 18]
 player_led = [23, 24, 25, 8, 7]

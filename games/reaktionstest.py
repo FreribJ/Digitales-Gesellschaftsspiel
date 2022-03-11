@@ -12,6 +12,7 @@ except ImportError:
 
 zeit = [0, 0, 0, 0, 0]
 
+
 #Zeiten Speichern
 def callback_zeitspeichern(switch):
     global zeit
