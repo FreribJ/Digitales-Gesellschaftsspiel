@@ -24,35 +24,29 @@ try:
 
     GPIO.add_event_detect(setup.control_button[0], GPIO.RISING, callback_back, 200)
     while True:
-        try:
-            #Spielerauswahl:
-            if menu_level == 0:
-                GPIO.output(setup.control_led[0], 1)
-                selection.playerselection()
-                animations.rolls(setup.player_led, 1)
-                GPIO.output(setup.control_led[0], 0)
-                menu_level = 1
-
-            #Lebenwahl:
-            if menu_level == 1:
-                GPIO.output(setup.control_led[1], 1)
-                time.sleep(2)
-                animations.rolls(setup.player_led, 1)
-                GPIO.output(setup.control_led[1], 0)
-                menu_level = 2
-
-            #Spielauswahl:
-            if menu_level == 2:
-                GPIO.output(setup.control_led[2], 1)
-                time.sleep(2)
-                animations.rolls(setup.player_led, 1)
-                GPIO.output(setup.control_led[2], 0)
-
-        except TabError:
-            if menu_level == 0:
+        #Spielerauswahl:
+        if menu_level == 0:
+            GPIO.output(setup.control_led[0], 1)
+            if not selection.playerselection():
                 break
-            else:
-                menu_level -= 1
+            animations.rolls(setup.player_led, 1)
+            GPIO.output(setup.control_led[0], 0)
+            menu_level = 1
+
+        #Lebenwahl:
+        if menu_level == 1:
+            GPIO.output(setup.control_led[1], 1)
+            time.sleep(5)
+            animations.rolls(setup.player_led, 1)
+            GPIO.output(setup.control_led[1], 0)
+            menu_level = 2
+
+        #Spielauswahl:
+        if menu_level == 2:
+            GPIO.output(setup.control_led[2], 1)
+            time.sleep(5)
+            animations.rolls(setup.player_led, 1)
+            GPIO.output(setup.control_led[2], 0)
 
 
     #Spielstart
