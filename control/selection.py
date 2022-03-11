@@ -64,9 +64,9 @@ def life_selection():
         for i in setup.player_button:
             if GPIO.event_detected(i):
                 number = setup.player_button.index(i)
-                GPIO.output(setup.player_led[setup.max_life], 0)
-                setup.max_life = number
-                GPIO.output(setup.player_led[setup.max_life], 1)
+                GPIO.output(setup.player_led[setup.max_life-1], 0)
+                setup.max_life = number+1
+                GPIO.output(setup.player_led[setup.max_life-1], 1)
 
     if GPIO.input(setup.control_button[0]):
         return False
