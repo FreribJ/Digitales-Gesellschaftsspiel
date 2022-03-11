@@ -56,6 +56,9 @@ def player_selection():
 def life_selection():
     GPIO.output(setup.player_led[setup.max_life-1], 1)
 
+    while True:
+        print(GPIO.input(setup.control_button[0]))
+
     # Event-Detect
     for i in setup.all_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=1000)
