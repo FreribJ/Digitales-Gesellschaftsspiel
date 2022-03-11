@@ -18,11 +18,22 @@ try:
     animations.rolls(setup.all_led, 1)
 
     #Spielerauswahl:
+    GPIO.output(setup.control_led[0], 1)
     selection.playerselection()
+    animations.rolls(setup.all_led, 1)
+    GPIO.output(setup.control_led[0], 0)
 
     #Lebenwahl:
+    GPIO.output(setup.control_led[1], 1)
+
+    animations.rolls(setup.all_led, 1)
+    GPIO.output(setup.control_led[1], 0)
 
     #Spielauswahl:
+    GPIO.output(setup.control_led[2], 1)
+
+    animations.rolls(setup.all_led, 1)
+    GPIO.output(setup.control_led[2], 0)
 
     #Spielstart
     while True:
