@@ -25,6 +25,7 @@ def initializeGame():
 
 def changePlayer():
     global actualPlayer
+    print("Does something")
     GPIO.output(setup.active_led[actualPlayer], 0)
     GPIO.remove_event_detect(setup.active_button[actualPlayer])
     actualPlayer = random.randint(0, setup.active_player-1)
@@ -35,11 +36,8 @@ def startGame():
     initializeGame() #Damit die werte erst beim Start gesetzt werden
 
     GPIO.add_event_detect(setup.active_button[actualPlayer], GPIO.BOTH)
-
-    print(time.time(), "   ", startTime, "  ", timeLength)
-
     while time.time()-startTime <= timeLength:
-        if GPIO.event_detected(actualPlayer):
+        if GPIO.event_detected(setup.active_button[actualPlayer]):
             changePlayer()
     animations.all_blink(5, 0.3)
     animations.one_blink(setup.active_led[actualPlayer], 5, 0.3)
