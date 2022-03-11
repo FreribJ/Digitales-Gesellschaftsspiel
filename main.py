@@ -1,3 +1,5 @@
+import time
+
 from games import hotPotato, reaktionstest, AbfolgeMerken, LeuchtdauerMerken
 from helper import animations
 from control import setup, selection
@@ -64,6 +66,7 @@ try:
             for i in range(setup.active_player):
                 setup.player_life.append(setup.max_life)
 
+            time.sleep(0.7)
             if setup.game_selected == 0:
                 print("Game -> Reaktionstest")
                 reaktionstest.start_reaktionstest()
@@ -71,6 +74,7 @@ try:
                 print("Game -> Hot Potato")
                 hotPotato.startGame()
 
+            animations.rolls(setup.player_led, 1)
             menu_level = 2
 
     #Ende:

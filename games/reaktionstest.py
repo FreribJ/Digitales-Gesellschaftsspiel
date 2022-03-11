@@ -34,7 +34,6 @@ def remove_callback():
 
 
 def start_reaktionstest():
-    print("Spiel: Reaktionstest")
     #Vorbereiten
     global zeit
     initialize_callback()
