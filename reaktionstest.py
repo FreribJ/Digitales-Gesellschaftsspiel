@@ -15,6 +15,7 @@ except ImportError:
 
 zeit = [0, 0, 0, 0, 0]
 
+#Zeiten Speichern
 def callback_zeitspeichern(switch):
     global zeit
 
@@ -45,11 +46,15 @@ def start_reaktionstest():
         time.sleep(1)
         print(zeit)
 
-    #Gewinner berechnen
+    #Gewinner/Verlierer berechnen
     animations.rolls(setup.player_led, 1)
-    time.sleep(0.5)
+
     winner = zeit.index(min(zeit))
-    animations.one_blink(setup.player_led[winner], 5, 0.3)
+    loser = zeit.index(max(zeit))
+
+    GPIO.output(setup.player_led[loser], 1)
+    animations.one_blink(setup.player_led[winner], 7, 0.3)
+    GPIO.output(setup.player_led[loser], 0)
 
     #Ende
     remove_callback()
