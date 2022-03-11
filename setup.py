@@ -18,4 +18,4 @@ def initialize():
     for i in all_led:
         GPIO.setup(i, GPIO.OUT)
     for i in all_button:
-        GPIO.setup(i, GPIO.IN)
+        GPIO.setup(i, GPIO.IN, pull_up_down=GPIO.PUD_UP)

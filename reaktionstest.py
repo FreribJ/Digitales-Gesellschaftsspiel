@@ -13,8 +13,8 @@ import setup
 #Variablen
 zeit = [0, 0, 0, 0, 0]
 
-def callback_function(switch):
-    print("knopf: ")
+def callback_zeitspeichern(switch):
+    print("knopf: ", switch)
     print(time.time())
     print()
 
