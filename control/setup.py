@@ -55,6 +55,7 @@ def subtractLifeFromPlayer(number):
         animations.one_blink(control_led[0], 3, 0.5)
     if player_life[number] >= 4:
         animations.array_on(control_led)
+        time.sleep(1)
     time.sleep(1)
 
     player_life[number] -= 1
