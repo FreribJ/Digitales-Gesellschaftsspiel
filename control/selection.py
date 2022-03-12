@@ -50,7 +50,7 @@ def player_selection():
 
     animations.array_off(setup.player_led)
 
-    time.sleep(0.1)
+    time.sleep(0.02)
     if GPIO.input(setup.control_button[0]):
         return False
 
@@ -78,7 +78,7 @@ def life_selection():
 
     animations.array_off(setup.player_led)
 
-    time.sleep(0.1)
+    time.sleep(0.02)
     if GPIO.input(setup.control_button[0]):
         return False
 
@@ -106,7 +106,7 @@ def game_selection():
 
     animations.array_off(setup.player_led)
 
-    time.sleep(0.1)
+    time.sleep(0.02)
     if GPIO.input(setup.control_button[0]):
         return False
 
