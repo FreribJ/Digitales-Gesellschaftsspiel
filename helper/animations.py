@@ -41,7 +41,7 @@ def array_off(leds):
 
 def array_on(leds):
     for i in leds:
-        GPIO.output(i, 0)
+        GPIO.output(i, 1)
 
 def one_blink(led, times, time_sleep):
     for t in range(times):
