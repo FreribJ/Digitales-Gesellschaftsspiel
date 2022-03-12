@@ -37,25 +37,26 @@ def start_reaktionstest():
     #Vorbereiten
     global zeit
     initialize_callback()
-    animations.all_blink(1, random.randint(2, 7))
 
-    zeit = []
-    for i in range(setup.active_player):
-        zeit.append(0)
+    while setup.areAllPlayerAlive():
+        animations.all_blink(1, random.randint(2, 7))
 
-    #Auf Ende Warten
-    while zeit.count(0) > 0:
-        time.sleep(1)
+        zeit = []
+        for i in range(setup.active_player):
+            zeit.append(0)
 
-    #Gewinner/Verlierer berechnen
-    animations.rolls(setup.player_led, 1)
+        #Auf Ende Warten
+        while zeit.count(0) > 0:
+            time.sleep(1)
 
-    winner = zeit.index(min(zeit))
-    loser = zeit.index(max(zeit))
+        #Gewinner/Verlierer berechnen
+        animations.all_blink(3, 0.3)
 
-    GPIO.output(setup.active_led[loser], 1)
-    animations.one_blink(setup.active_led[winner], 7, 0.3)
-    GPIO.output(setup.active_led[loser], 0)
+        winner = zeit.index(min(zeit))
+        loser = zeit.index(max(zeit))
+
+        animations.one_blink(setup.active_led[winner], 5, 0.2)
+        setup.subtractLifeFromPlayer(loser)
 
     #Ende
     remove_callback()

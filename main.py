@@ -66,7 +66,8 @@ try:
             for i in range(setup.active_player):
                 setup.player_life.append(setup.max_life)
 
-            time.sleep(0.7)
+            #Spielaufruf
+            time.sleep(1)
             if setup.game_selected == 0:
                 print("Game -> Reaktionstest")
                 reaktionstest.start_reaktionstest()
@@ -76,6 +77,8 @@ try:
 
             animations.rolls(setup.player_led, 1)
             menu_level = 2
+
+            #Verlierer zeigen
 
     #Ende:
     animations.rolls(setup.all_led, 1)
