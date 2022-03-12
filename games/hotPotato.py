@@ -38,9 +38,10 @@ def startGame():
     while time.time()-startTime <= timeLength:
         if GPIO.event_detected(setup.active_button[actualPlayer]):
             changePlayer()
-    if setup.areAllPlayerAlive():
-        setup.subtractLifeFromPlayer(actualPlayer)
-        startGame()
 
     for i in setup.active_button:
         GPIO.remove_event_detect(i)
+
+    if setup.areAllPlayerAlive():
+        setup.subtractLifeFromPlayer(actualPlayer)
+        startGame()
