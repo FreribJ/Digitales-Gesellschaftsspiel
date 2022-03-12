@@ -37,31 +37,24 @@ def initialize():
 
 def subtractLifeFromPlayer(number):
     GPIO.output(active_led[number], 1)
+    time.sleep(1)
 
     if player_life[number] == 1:
-        GPIO.output(control_led[2], 2)
-        time.sleep(1)
         animations.one_blink(control_led[2], 3, 0.5)
     if player_life[number] == 2:
-        GPIO.output(control_led[1], 1)
         GPIO.output(control_led[2], 1)
-        time.sleep(1)
         animations.one_blink(control_led[1], 3, 0.5)
     if player_life[number] == 3:
-        GPIO.output(control_led[0], 1)
         GPIO.output(control_led[1], 1)
         GPIO.output(control_led[2], 1)
-        time.sleep(1)
         animations.one_blink(control_led[0], 3, 0.5)
     if player_life[number] >= 4:
         animations.array_on(control_led)
     time.sleep(1)
 
     player_life[number] -= 1
-    GPIO.output(active_led[number], 0)
+    GPIO.output(active_led[number], 1)
     animations.array_off(control_led)
-
-    time.sleep(1)
 
 def areAllPlayerAlive():
     for i in player_life:
