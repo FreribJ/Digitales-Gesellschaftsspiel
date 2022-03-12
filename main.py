@@ -78,8 +78,6 @@ try:
             animations.rolls(setup.player_led, 1)
             menu_level = 2
 
-            #Verlierer zeigen
-
     #Ende:
     animations.rolls(setup.all_led, 1)
     print("Finished")
