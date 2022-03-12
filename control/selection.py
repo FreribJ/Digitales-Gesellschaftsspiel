@@ -35,6 +35,7 @@ def player_selection():
                     GPIO.output(setup.player_led[number], 1)
         if GPIO.event_detected(setup.control_button[0]):
             abbruch = True
+            break
 
     # Remove Event-Detect:
     for i in setup.all_button:
@@ -76,6 +77,7 @@ def life_selection():
                 GPIO.output(setup.player_led[setup.max_life - 1], 1)
         if GPIO.event_detected(setup.control_button[0]):
             abbruch = True
+            break
 
 
     # Remove Event-Detect:
@@ -108,6 +110,7 @@ def game_selection():
                 GPIO.output(setup.player_led[setup.game_selected], 1)
         if GPIO.event_detected(setup.control_button[0]):
             abbruch = True
+            break
 
     # Remove Event-Detect:
     for i in setup.all_button:
