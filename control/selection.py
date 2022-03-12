@@ -22,7 +22,8 @@ def player_selection():
     for i in setup.all_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=1000)
 
-    while not (GPIO.event_detected(setup.control_button[0]) or GPIO.event_detected(setup.control_button[1])):
+    abbruch = False
+    while not GPIO.event_detected(setup.control_button[1]):
         for i in setup.player_button:
             if GPIO.event_detected(i):
                 number = setup.player_button.index(i)
@@ -32,6 +33,8 @@ def player_selection():
                 else:
                     playeractive[number] = True
                     GPIO.output(setup.player_led[number], 1)
+        if GPIO.event_detected(setup.control_button[0]):
+            abbruch = True
 
     # Remove Event-Detect:
     for i in setup.all_button:
@@ -50,8 +53,7 @@ def player_selection():
 
     animations.array_off(setup.player_led)
 
-    time.sleep(0.02)
-    if GPIO.input(setup.control_button[0]):
+    if abbruch:
         return False
 
     return True
@@ -64,13 +66,17 @@ def life_selection():
     for i in setup.all_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=1000)
 
-    while not (GPIO.event_detected(setup.control_button[0]) or GPIO.event_detected(setup.control_button[1])):
+    abbruch = False
+    while not GPIO.event_detected(setup.control_button[1]):
         for i in setup.player_button:
             if GPIO.event_detected(i):
                 number = setup.player_button.index(i)
                 GPIO.output(setup.player_led[setup.max_life - 1], 0)
                 setup.max_life = number + 1
                 GPIO.output(setup.player_led[setup.max_life - 1], 1)
+        if GPIO.event_detected(setup.control_button[0]):
+            abbruch = True
+
 
     # Remove Event-Detect:
     for i in setup.all_button:
@@ -78,8 +84,7 @@ def life_selection():
 
     animations.array_off(setup.player_led)
 
-    time.sleep(0.02)
-    if GPIO.input(setup.control_button[0]):
+    if abbruch:
         return False
 
     return True
@@ -92,13 +97,17 @@ def game_selection():
     for i in setup.all_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=1000)
 
-    while not (GPIO.event_detected(setup.control_button[0]) or GPIO.event_detected(setup.control_button[1])):
+
+    abbruch = False
+    while not GPIO.event_detected(setup.control_button[1]):
         for i in setup.player_button:
             if GPIO.event_detected(i):
                 number = setup.player_button.index(i)
                 GPIO.output(setup.player_led[setup.game_selected], 0)
                 setup.game_selected = number
                 GPIO.output(setup.player_led[setup.game_selected], 1)
+        if GPIO.event_detected(setup.control_button[0]):
+            abbruch = True
 
     # Remove Event-Detect:
     for i in setup.all_button:
@@ -106,8 +115,7 @@ def game_selection():
 
     animations.array_off(setup.player_led)
 
-    time.sleep(0.02)
-    if GPIO.input(setup.control_button[0]):
+    if abbruch:
         return False
 
     return True
