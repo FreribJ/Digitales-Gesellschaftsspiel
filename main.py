@@ -10,7 +10,7 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 def callbackEndGame(switch):
-    for i in len(setup.player_life):
+    for i in range(len(setup.player_life)):
         setup.player_life[i] = 1
 
 #Programm-Initialize:
