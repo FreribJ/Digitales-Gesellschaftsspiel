@@ -42,9 +42,6 @@ def startGame():
     for i in setup.active_button:
         GPIO.remove_event_detect(i)
 
-    animations.all_blink(5, 0.3)
-    animations.one_blink(setup.active_led[actualPlayer], 5, 0.3)
-
     setup.subtractLifeFromPlayer(actualPlayer)
     if setup.areAllPlayerAlive():
         startGame()
