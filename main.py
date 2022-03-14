@@ -9,8 +9,9 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
-def callback_back(switch):
-    raise TabError
+def callbackEndGame(switch):
+    for i in len(setup.player_life):
+        setup.player_life[i] = 1
 
 #Programm-Initialize:
 setup.initialize()
@@ -61,6 +62,9 @@ try:
 
         #Spielstart:
         if menu_level == 3:
+            #Abbruch einstellen
+            GPIO.add_event_detect(setup.control_button[0], GPIO.RISING, callbackEndGame, 200)
+
             #Leben Resetten
             setup.player_life = []
             for i in range(setup.active_player):
@@ -75,6 +79,8 @@ try:
                 print("Game -> Hot Potato")
                 hotPotato.startGame()
 
+            #Ende
+            GPIO.remove_event_detect(setup.control_button[0])
             animations.rolls(setup.player_led, 1)
             menu_level = 2
 
