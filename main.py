@@ -9,6 +9,7 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
+#Sets all lives to 1 for a last round
 def callbackEndGame(switch):
     for i in range(len(setup.player_life)):
         setup.player_life[i] = 1
