@@ -35,31 +35,68 @@ def initialize():
     for i in all_button:
         GPIO.setup(i, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-def subtractLifeFromPlayer(number):
-    GPIO.output(active_led[number], 1)
+def subtractLifeFromPlayer(loser_num):
 
-    if player_life[number] == 1:
+    animations.all_blink(5, 0.3)
+
+    GPIO.output(active_led[loser_num], 1)
+
+    if player_life[loser_num] == 1:
         GPIO.output(control_led[2], 2)
         time.sleep(1)
         animations.one_blink(control_led[2], 3, 0.5)
-    if player_life[number] == 2:
+    if player_life[loser_num] == 2:
         GPIO.output(control_led[1], 1)
         GPIO.output(control_led[2], 1)
         time.sleep(1)
         animations.one_blink(control_led[1], 3, 0.5)
-    if player_life[number] == 3:
+    if player_life[loser_num] == 3:
         GPIO.output(control_led[0], 1)
         GPIO.output(control_led[1], 1)
         GPIO.output(control_led[2], 1)
         time.sleep(1)
         animations.one_blink(control_led[0], 3, 0.5)
-    if player_life[number] >= 4:
+    if player_life[loser_num] >= 4:
         animations.array_on(control_led)
         time.sleep(1)
     time.sleep(1)
 
-    player_life[number] -= 1
-    GPIO.output(active_led[number], 0)
+    player_life[loser_num] -= 1
+    GPIO.output(active_led[loser_num], 0)
+    animations.array_off(control_led)
+
+    time.sleep(1)
+
+#!!!Duplicate as method above!!!
+def subtractLifeFromPlayer(loser_num, winner_num):
+    animations.all_blink(5, 0.3)
+
+    animations.one_blink(active_led[winner_num], 5, 0.2)
+
+    GPIO.output(active_led[loser_num], 1)
+
+    if player_life[loser_num] == 1:
+        GPIO.output(control_led[2], 2)
+        time.sleep(1)
+        animations.one_blink(control_led[2], 3, 0.5)
+    if player_life[loser_num] == 2:
+        GPIO.output(control_led[1], 1)
+        GPIO.output(control_led[2], 1)
+        time.sleep(1)
+        animations.one_blink(control_led[1], 3, 0.5)
+    if player_life[loser_num] == 3:
+        GPIO.output(control_led[0], 1)
+        GPIO.output(control_led[1], 1)
+        GPIO.output(control_led[2], 1)
+        time.sleep(1)
+        animations.one_blink(control_led[0], 3, 0.5)
+    if player_life[loser_num] >= 4:
+        animations.array_on(control_led)
+        time.sleep(1)
+    time.sleep(1)
+
+    player_life[loser_num] -= 1
+    GPIO.output(active_led[loser_num], 0)
     animations.array_off(control_led)
 
     time.sleep(1)

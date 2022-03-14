@@ -50,13 +50,10 @@ def start_reaktionstest():
             time.sleep(1)
 
         #Gewinner/Verlierer berechnen
-        animations.all_blink(3, 0.3)
-
         winner = zeit.index(min(zeit))
         loser = zeit.index(max(zeit))
 
-        animations.one_blink(setup.active_led[winner], 5, 0.2)
-        setup.subtractLifeFromPlayer(loser)
+        setup.subtractLifeFromPlayer(loser, winner)
 
     #Ende
     remove_callback()
