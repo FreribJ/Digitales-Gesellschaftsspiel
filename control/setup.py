@@ -68,7 +68,7 @@ def subtractLifeFromPlayer(loser_num):
     time.sleep(1)
 
 #!!!Duplicate as method above!!!
-def subtractLifeFromPlayer(loser_num, winner_num):
+def subtractLifeFromPlayerWithWinner(loser_num, winner_num):
     animations.all_blink(5, 0.3)
 
     animations.one_blink(active_led[winner_num], 5, 0.2)

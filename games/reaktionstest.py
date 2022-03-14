@@ -53,7 +53,7 @@ def start_reaktionstest():
         winner = zeit.index(min(zeit))
         loser = zeit.index(max(zeit))
 
-        setup.subtractLifeFromPlayer(loser, winner)
+        setup.subtractLifeFromPlayerWithWinner(loser, winner)
 
     #Ende
     remove_callback()
