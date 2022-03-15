@@ -21,10 +21,10 @@ def initializeGame():
     global timeLength, startTime, actualPlayer
     actualPlayer = random.randint(0, setup.active_player - 1)
     GPIO.output(setup.active_led[actualPlayer], 1)
-    timeLength = random.uniform(15, 30);
+    timeLength = random.uniform(15, 30)
     startTime = time.time()
     for i in setup.active_button:
-        GPIO.add_event_detect(i, GPIO.RISING)
+        GPIO.add_event_detect(i, GPIO.RISING, bouncetime=200)
 
 
 def changePlayer():
