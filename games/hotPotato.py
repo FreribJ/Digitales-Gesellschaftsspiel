@@ -60,6 +60,7 @@ def startGame():
     for i in setup.active_button:
         GPIO.remove_event_detect(i)
 
+    print("wrong_button_push", wrong_button_push)
     if not wrong_button_push:
         setup.subtractLifeFromPlayer(actualPlayer)
         print("Zeit abgelaufen")
