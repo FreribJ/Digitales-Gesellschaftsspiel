@@ -5,7 +5,7 @@ except ImportError:
 
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(20, GPIO.input())
+GPIO.setup(20, GPIO.IN)
 
 GPIO.add_event_detect(20, GPIO.RISING, 200)
 
