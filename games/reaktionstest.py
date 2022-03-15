@@ -21,6 +21,7 @@ def callback_zeitspeichern(switch):
     if zeiten[player] == 0:
         zeiten[player] = zeit
     else:
+        print("test")
 
 
 #Initialzes Callback
