@@ -51,7 +51,7 @@ def startGame():
                 wrong_button_push = True
                 wrong_button_push_player = i
         if wrong_button_push:
-            setup.subtractLifeFromPlayer(wrong_button_push_player)
+            setup.subtractLifeFromPlayer(setup.active_button.index(wrong_button_push_player))
             break
 
     for i in setup.active_button:
