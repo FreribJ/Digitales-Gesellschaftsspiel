@@ -46,7 +46,7 @@ def startGame():
         if GPIO.event_detected(setup.active_button[actualPlayer]):
             changePlayer()
         for i in setup.active_button:
-            if GPIO.event_detected(setup.active_button[i]) and not(i == actualPlayer):
+            if GPIO.event_detected(i) and not(i == actualPlayer):
                 setup.subtractLifeFromPlayer(actualPlayer)
                 wrong_button_push = True
                 wrong_button_push_player = i
@@ -57,6 +57,7 @@ def startGame():
     for i in setup.active_button:
         GPIO.remove_event_detect(i)
 
-    setup.subtractLifeFromPlayer(actualPlayer)
+    if not wrong_button_push:
+        setup.subtractLifeFromPlayer(actualPlayer)
     if setup.areAllPlayerAlive():
         startGame()
