@@ -10,17 +10,18 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
-zeit = []
-for i in range(setup.active_player):
-    zeit.append(0)
+zeiten = []
 
 #Zeiten Speichern
 def callback_zeitspeichern(switch):
-    global zeit
+    zeit = time.time()
+    global zeiten
 
     player = setup.active_button.index(switch)
-    if zeit[player] == 0:
-        zeit[player] = time.time()
+    if zeiten[player] == 0:
+        zeiten[player] = zeit
+    else:
+
 
 #Initialzes Callback
 def initialize_callback():
@@ -35,23 +36,25 @@ def remove_callback():
 
 def start_reaktionstest():
     #Vorbereiten
-    global zeit
+    global zeiten
     initialize_callback()
 
     while setup.areAllPlayerAlive():
+        #Warten
         animations.all_blink(1, random.randint(2, 7))
 
-        zeit = []
+        #Start
+        zeiten = []
         for i in range(setup.active_player):
-            zeit.append(0)
+            zeiten.append(0)
 
         #Auf Ende Warten
-        while zeit.count(0) > 0:
+        while zeiten.count(0) > 0:
             time.sleep(1)
 
         #Gewinner/Verlierer berechnen
-        winner = zeit.index(min(zeit))
-        loser = zeit.index(max(zeit))
+        winner = zeiten.index(min(zeiten))
+        loser = zeiten.index(max(zeiten))
 
         setup.subtractLifeFromPlayerWithWinner(loser, winner)
 
