@@ -31,23 +31,20 @@ def changePlayer():
     global actualPlayer
     GPIO.output(setup.active_led[actualPlayer], 0)
     x = random.randint(0, setup.active_player - 1)
-    print("x: ", x)
     while x == actualPlayer:
-        print("in schleife")
         x = random.randint(0, setup.active_player - 1)
-        print("x: ", x)
     actualPlayer = x
     GPIO.output(setup.active_led[actualPlayer], 1)
 
 
 def startGame():
-    print("neue Runde")
     initializeGame()
     wrong_button_push = False
     wrong_button_push_player = 0
 
     while time.time() - startTime <= timeLength:
         if GPIO.event_detected(setup.active_button[actualPlayer]):
+            print("detected")
             changePlayer()
         for i in setup.active_button:
             if GPIO.event_detected(i) and not(setup.active_button.index(i) == actualPlayer):
