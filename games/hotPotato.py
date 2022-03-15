@@ -38,6 +38,7 @@ def changePlayer():
 
 
 def startGame():
+    print("neue Runde")
     initializeGame()
     wrong_button_push = False
     wrong_button_push_player = 0
@@ -47,10 +48,12 @@ def startGame():
             changePlayer()
         for i in setup.active_button:
             if GPIO.event_detected(i) and not(setup.active_button.index(i) == actualPlayer):
+                print("wrong Button")
                 setup.subtractLifeFromPlayer(actualPlayer)
                 wrong_button_push = True
                 wrong_button_push_player = i
         if wrong_button_push:
+            print("wrong Button2")
             setup.subtractLifeFromPlayer(setup.active_button.index(wrong_button_push_player))
             break
 
@@ -59,5 +62,6 @@ def startGame():
 
     if not wrong_button_push:
         setup.subtractLifeFromPlayer(actualPlayer)
+        print("Zeit abgelaufen")
     if setup.areAllPlayerAlive():
         startGame()
