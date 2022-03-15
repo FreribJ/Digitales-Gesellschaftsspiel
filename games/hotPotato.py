@@ -1,14 +1,14 @@
-#Other Import
+# Other Import
 import time
 import random
 
-#GPIO Import
+# GPIO Import
 try:
     import RPi.GPIO as GPIO
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
-#Variable Import
+# Variable Import
 from control import setup
 from helper import animations
 
@@ -16,26 +16,32 @@ actualPlayer = 0
 timeLength = 0
 startTime = 0
 
+
 def initializeGame():
     global timeLength, startTime, actualPlayer
-    actualPlayer = random.randint(0, setup.active_player-1)
+    actualPlayer = random.randint(0, setup.active_player - 1)
     GPIO.output(setup.active_led[actualPlayer], 1)
     timeLength = random.uniform(15, 30);
     startTime = time.time()
+
 
 def changePlayer():
     global actualPlayer
     GPIO.output(setup.active_led[actualPlayer], 0)
     GPIO.remove_event_detect(setup.active_button[actualPlayer])
-    actualPlayer = random.randint(0, setup.active_player-1)
+    x = random.randint(0, setup.active_player - 1)
+    while x == actualPlayer:
+        x = random.randint(0, setup.active_player - 1)
+    actualPlayer = x
     GPIO.output(setup.active_led[actualPlayer], 1)
     GPIO.add_event_detect(setup.active_button[actualPlayer], GPIO.BOTH)
+
 
 def startGame():
     initializeGame()
 
     GPIO.add_event_detect(setup.active_button[actualPlayer], GPIO.BOTH)
-    while time.time()-startTime <= timeLength:
+    while time.time() - startTime <= timeLength:
         if GPIO.event_detected(setup.active_button[actualPlayer]):
             changePlayer()
 
