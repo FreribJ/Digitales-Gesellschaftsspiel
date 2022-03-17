@@ -65,7 +65,7 @@ def start_game():
                     break
 
             if abbruch:
-                setup.subtractLifeFromPlayer(i)
+                setup.subtractLifeFromPlayer(playerPressed)
                 break
 
             time.sleep(0.4)
