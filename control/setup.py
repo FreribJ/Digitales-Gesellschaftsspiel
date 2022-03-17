@@ -35,6 +35,11 @@ def initialize():
     for i in all_button:
         GPIO.setup(i, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
+#Removes Callback
+def remove_callback():
+    for i in active_button:
+        GPIO.remove_event_detect(i)
+
 def subtractLifeFromPlayer(loser_num):
 
     animations.all_blink(5, 0.3)

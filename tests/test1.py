@@ -49,7 +49,7 @@ def waitForPress():
     return "zeit_limit_abgelaufen"
 
 
-def start_game():
+def startGame():
     global reihenfolge
 
     initializeGame()
@@ -81,5 +81,4 @@ def start_game():
 
         reihenfolge = []
 
-    for i in setup.active_button:
-        GPIO.remove_event_detect(i)
+    setup.remove_callback()

@@ -1,9 +1,9 @@
 import time
 
-from games import hotPotato, reaktionstest, AbfolgeMerken, LeuchtdauerMerken
+from games import hotPotato, reaktionstest
 from helper import animations
 from control import setup, selection
-from tests import test1
+from tests import test1, test2
 
 try:
     import RPi.GPIO as GPIO
@@ -76,13 +76,16 @@ try:
             time.sleep(1)
             if setup.game_selected == 0:
                 print("Game -> Reaktionstest")
-                reaktionstest.start_reaktionstest()
+                reaktionstest.startGame()
             elif setup.game_selected == 1:
                 print("Game -> Hot Potato")
                 hotPotato.startGame()
             elif setup.game_selected == 2:
                 print("Game -> test1")
-                test1.start_game()
+                test1.startGame()
+            elif setup.game_selected == 2:
+                print("Game -> test2")
+                test2.startGame()
 
             #Ende
             GPIO.remove_event_detect(setup.control_button[0])

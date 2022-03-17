@@ -20,22 +20,13 @@ def callback_zeitspeichern(switch):
     player = setup.active_button.index(switch)
     if zeiten[player] == 0:
         zeiten[player] = zeit
-    else:
-        print("test")
-
 
 #Initialzes Callback
 def initialize_callback():
     for switch in setup.active_button:
         GPIO.add_event_detect(switch, GPIO.RISING, callback_zeitspeichern, 200)
 
-#Removes Callback
-def remove_callback():
-    for i in setup.active_button:
-        GPIO.remove_event_detect(i)
-
-
-def start_reaktionstest():
+def startGame():
     #Vorbereiten
     global zeiten
     initialize_callback()
@@ -60,5 +51,5 @@ def start_reaktionstest():
         setup.subtractLifeFromPlayerWithWinner(loser, winner)
 
     #Ende
-    remove_callback()
+    setup.remove_callback()
 
