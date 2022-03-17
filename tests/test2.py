@@ -52,10 +52,10 @@ def startGame():
         for i in range(setup.active_player-1):
             p_time = abs(zeiten[i+1] - acutalZeitZuSchaetzen)
             if p_time < closest_time:
-                closest_player = i+1
+                closest_player = i + 1
                 closest_time = p_time
             elif p_time > farest_time:
-                farest_player = i +1
+                farest_player = i + 1
                 farest_time = p_time
 
         setup.subtractLifeFromPlayerWithWinner(farest_player, closest_player)
