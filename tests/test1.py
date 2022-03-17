@@ -42,8 +42,9 @@ def waitForPress():
     while True:
         for i in setup.active_button:
             if GPIO.event_detected(i):
-                animations.one_blink(i, 1, 0.5)
-                return setup.active_button.index(i)
+                player_num = setup.active_button.index(i)
+                animations.one_blink(setup.active_led[player_num], 1, 0.5)
+                return player_num
 
 
 def start_game():
