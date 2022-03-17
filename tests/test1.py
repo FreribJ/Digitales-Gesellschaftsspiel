@@ -66,13 +66,13 @@ def start_game():
                     abbruch = True
                     break
 
-            reihenfolge = []
-
             if abbruch:
                 setup.subtractLifeFromPlayer(i)
                 break
 
             time.sleep(0.5)
+
+        reihenfolge = []
 
     for i in setup.active_button:
         GPIO.remove_event_detect(i)
