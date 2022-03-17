@@ -48,4 +48,5 @@ def one_blink(led, times, time_sleep):
         GPIO.output(led, 1)
         time.sleep(time_sleep)
         GPIO.output(led, 0)
-        time.sleep(time_sleep)
+        if not t == times-1:
+            time.sleep(time_sleep)

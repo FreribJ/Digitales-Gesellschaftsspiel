@@ -56,6 +56,8 @@ def start_game():
             abbruch = False
             nextRound()
 
+            print(reihenfolge)
+
             for i in reihenfolge:
                 playerPressed = waitForPress() #ForHowLong einfügen
                 if playerPressed == i:
@@ -71,3 +73,6 @@ def start_game():
                 break
 
             time.sleep(0.5)
+
+    for i in setup.active_button:
+        GPIO.remove_event_detect(i)
