@@ -43,7 +43,7 @@ def waitForPress():
         for i in setup.active_button:
             if GPIO.event_detected(i):
                 player_num = setup.active_button.index(i)
-                animations.one_blink(setup.active_led[player_num], 1, 0.5)
+                animations.one_blink(setup.active_led[player_num], 1, 0.2)
                 return player_num
 
 
@@ -55,8 +55,6 @@ def start_game():
         while True:
             abbruch = False
             nextRound()
-
-            print(reihenfolge)
 
             for i in reihenfolge:
                 playerPressed = waitForPress() #ForHowLong einfügen
@@ -70,7 +68,7 @@ def start_game():
                 setup.subtractLifeFromPlayer(i)
                 break
 
-            time.sleep(0.5)
+            time.sleep(0.4)
 
         reihenfolge = []
 
