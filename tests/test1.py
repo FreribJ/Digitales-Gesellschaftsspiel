@@ -31,7 +31,7 @@ def nextRound():
             x = random.randint(0, setup.active_player - 1)
         reihenfolge.append(x)
 
-    animations.one_blink(setup.active_led[x], 1, 1)
+    animations.one_blink(setup.active_led[x], 1, 0.5)
 
     # Cleanup:
     for i in setup.active_button:
