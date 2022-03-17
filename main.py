@@ -83,7 +83,7 @@ try:
             elif setup.game_selected == 2:
                 print("Game -> test1")
                 test1.startGame()
-            elif setup.game_selected == 2:
+            elif setup.game_selected == 3:
                 print("Game -> test2")
                 test2.startGame()
 
