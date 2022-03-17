@@ -17,7 +17,7 @@ reihenfolge = []
 #Initialzes Callback
 def initializeGame():
         for switch in setup.active_button:
-            GPIO.add_event_detect(switch, GPIO.RISING, 400)
+            GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
 
 def nextRound():
     global reihenfolge
