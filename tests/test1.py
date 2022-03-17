@@ -33,24 +33,28 @@ def nextRound():
 
     animations.one_blink(setup.active_led[x], 1, 1)
 
-
-def waitForPress():
-    #Cleanup:
+    # Cleanup:
     for i in setup.active_button:
         GPIO.event_detected(i)
 
+
+def waitForPress():
     while True:
         for i in setup.active_button:
             if GPIO.event_detected(i):
+                animations.one_blink(i, 1, 0.5)
                 return setup.active_button.index(i)
 
 
 def start_game():
+    global reihenfolge
+
     initializeGame()
     while setup.areAllPlayerAlive():
         while True:
             abbruch = False
             nextRound()
+
             for i in reihenfolge:
                 playerPressed = waitForPress() #ForHowLong einfügen
                 if playerPressed == i:
@@ -59,8 +63,10 @@ def start_game():
                     abbruch = True
                     break
 
+            reihenfolge = []
+
             if abbruch:
                 setup.subtractLifeFromPlayer(i)
                 break
 
-            time.sleep(1)
+            time.sleep(0.5)
