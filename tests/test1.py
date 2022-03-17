@@ -39,12 +39,14 @@ def nextRound():
 
 
 def waitForPress():
-    while True:
+    starttime = time.time()
+    while time.time()-starttime < 5: #Legt die Anzahl an sekunden Fest die gebraucht werden dürfen
         for i in setup.active_button:
             if GPIO.event_detected(i):
                 player_num = setup.active_button.index(i)
                 animations.one_blink(setup.active_led[player_num], 1, 0.2)
                 return player_num
+    return "zeit_limit_abgelaufen"
 
 
 def start_game():
@@ -53,22 +55,29 @@ def start_game():
     initializeGame()
     while setup.areAllPlayerAlive():
         while True:
-            abbruch = False
+            abbruch = [False]
             nextRound()
 
             for i in reihenfolge:
                 playerPressed = waitForPress() #ForHowLong einfügen
                 if playerPressed == i:
                     continue
+                elif playerPressed == "zeit_limit_abgelaufen":
+                    abbruch = [True, "zeit_limit_abgelaufen", i]
                 else:
-                    abbruch = True
+                    abbruch = [True, "falsch_gedrueckt", playerPressed]
                     break
 
-            if abbruch:
-                setup.subtractLifeFromPlayer(playerPressed)
-                break
+            if abbruch[0]:
+                if abbruch[1] == "zeit_limit_abgelaufen":
+                    setup.subtractLifeFromPlayer(abbruch[2])
+                    break
 
-            time.sleep(0.4)
+                if abbruch[1] == "falsch_gedrueckt":
+                    setup.subtractLifeFromPlayer(abbruch[2])
+                    break
+
+            time.sleep(0.2)
 
         reihenfolge = []
 
