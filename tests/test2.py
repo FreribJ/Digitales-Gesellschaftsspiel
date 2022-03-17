@@ -19,8 +19,6 @@ def callback_zeitspeichern(switch):
     global zeiten
 
     player = setup.active_button.index(switch)
-    print(len(zeiten))
-    print("player: ", player)
     if zeiten[player] == 0:
         zeiten[player] = zeit
 
@@ -30,6 +28,7 @@ def initializeGame():
         GPIO.add_event_detect(switch, GPIO.RISING, callback_zeitspeichern, 200)
 
 def startGame():
+    global zeiten
     initializeGame()
 
     while setup.areAllPlayerAlive():
