@@ -19,6 +19,8 @@ def callback_zeitspeichern(switch):
     global zeiten
 
     player = setup.active_button.index(switch)
+    print(len(zeiten))
+    print("player: ", player)
     if zeiten[player] == 0:
         zeiten[player] = zeit
 
@@ -58,8 +60,6 @@ def startGame():
                 farest_time = p_time
 
         setup.subtractLifeFromPlayerWithWinner(farest_player, closest_player)
-
-
 
     setup.remove_callback()
 
