@@ -10,7 +10,6 @@ except ImportError:
 
 # Variable Import
 from control import setup
-from helper import animations
 
 actualPlayer = 0
 timeLength = 0
