@@ -1,6 +1,6 @@
 import time
 
-from games import hotPotato, reaktionstest
+from games import hotPotato, reaktionstest, pingPong
 from helper import animations
 from control import setup, selection
 from tests import test1, test2
@@ -86,6 +86,9 @@ try:
             elif setup.game_selected == 3:
                 print("Game -> test2")
                 test2.startGame()
+            elif setup.game_selected == 4:
+                print("Game -> PingPong")
+                pingPong.startGame()
 
             #Ende
             GPIO.remove_event_detect(setup.control_button[0])
