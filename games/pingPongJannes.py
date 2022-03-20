@@ -16,10 +16,8 @@ timeToPress = 0
 
 
 def initializeGame():
-    global actualPlayer, timeToPress
-    actualPlayer = random.randint(0, setup.active_player - 1)
+    global timeToPress
     timeToPress = 2
-    GPIO.output(setup.active_led[actualPlayer], 1)
     for i in setup.active_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=200)
 
@@ -43,22 +41,27 @@ def startGame():
 
     while setup.areAllPlayerAlive():
 
-        wrong_button_push = False
-        wrong_button_push_player = 0
-
+        changePlayer()
         while True:
+            wrong_button_push = False
+            wrong_button_push_player = 0
+
+            #Start bzw. Wartezeit
             time.sleep(timeToPress)
 
+            #Auf Falschdruck prüfen
             for i in setup.active_button:
                 if not (setup.active_button.index(i) == actualPlayer):
                     if GPIO.event_detected(i):
                         wrong_button_push = True
                         wrong_button_push_player = i
+                        break
 
             if wrong_button_push:
                 setup.subtractLifeFromPlayer(setup.active_button.index(wrong_button_push_player))
                 break
 
+            #Auf Richtigen knopfdruck prüfen
             if GPIO.event_detected(setup.active_button[actualPlayer]):
                 reduceTime()
                 changePlayer()
