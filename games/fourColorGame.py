@@ -64,6 +64,7 @@ def startGame():
                     continue
                 elif playerPressed == "zeit_limit_abgelaufen":
                     abbruch = [True, "zeit_limit_abgelaufen", i]
+                    break
                 else:
                     abbruch = [True, "falsch_gedrueckt", playerPressed]
                     break

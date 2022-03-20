@@ -1,9 +1,9 @@
 import time
 
-from games import hotPotato, reaktionstest, pingPong, pingPongJannes
+from games import hotPotato, reaktionstest, pingPongJannes, fourColorGame
 from helper import animations
 from control import setup, selection
-from tests import test1, test2
+from tests import test2
 
 try:
     import RPi.GPIO as GPIO
@@ -74,18 +74,23 @@ try:
 
             #Spielaufruf
             time.sleep(1)
+
             if setup.game_selected == 0:
                 print("Game -> Reaktionstest")
                 reaktionstest.startGame()
+
             elif setup.game_selected == 1:
                 print("Game -> Hot Potato")
                 hotPotato.startGame()
+
             elif setup.game_selected == 2:
                 print("Game -> 4-Color-Game")
-                test1.startGame()
+                fourColorGame.startGame()
+
             elif setup.game_selected == 3:
                 print("Game -> Zeit schätzen")
                 test2.startGame()
+
             elif setup.game_selected == 4:
                 print("Game -> PingPong")
                 pingPongJannes.startGame()
