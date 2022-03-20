@@ -14,7 +14,6 @@ from control import setup
 actualPlayer = 0
 timeToPress = 0
 
-
 def initializeGame():
     for i in setup.active_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=200)
@@ -31,7 +30,7 @@ def changePlayer():
 
 def reduceTime():
     global timeToPress
-    timeToPress = timeToPress * 0.95
+    timeToPress = timeToPress * 0.96 #Faktor um die Zeit kanpper wird
     print(timeToPress)
 
 def startGame():
