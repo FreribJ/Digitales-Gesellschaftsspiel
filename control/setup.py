@@ -44,32 +44,22 @@ def subtractLifeFromPlayer(loser_num):
 
     animations.all_blink(5, 0.3)
 
-    GPIO.output(active_led[loser_num], 1)
-
-    if player_life[loser_num] == 1:
-        GPIO.output(control_led[2], 2)
-        time.sleep(1)
-        animations.one_blink(control_led[2], 3, 0.5)
-    if player_life[loser_num] == 2:
-        GPIO.output(control_led[1], 1)
-        GPIO.output(control_led[2], 1)
-        time.sleep(1)
-        animations.one_blink(control_led[1], 3, 0.5)
-    if player_life[loser_num] == 3:
-        GPIO.output(control_led[0], 1)
-        GPIO.output(control_led[1], 1)
-        GPIO.output(control_led[2], 1)
-        time.sleep(1)
-        animations.one_blink(control_led[0], 3, 0.5)
-    if player_life[loser_num] >= 4:
-        animations.array_on(control_led)
-        time.sleep(1)
-    time.sleep(1)
+    substractLifeAnimation(loser_num)
 
     player_life[loser_num] -= 1
-    GPIO.output(active_led[loser_num], 0)
     animations.array_off(control_led)
 
+    time.sleep(1)
+
+def subtractLifeFromPlayerArray(loser_num):
+
+    animations.all_blink(5, 0.3)
+
+    for i in loser_num:
+        substractLifeAnimation(i)
+        player_life[i] -= 1
+
+    animations.array_off(control_led)
     time.sleep(1)
 
 #!!!Duplicate as method above!!!
@@ -78,6 +68,14 @@ def subtractLifeFromPlayerWithWinner(loser_num, winner_num):
 
     animations.one_blink(active_led[winner_num], 5, 0.2)
 
+    substractLifeAnimation(loser_num)
+
+    player_life[loser_num] -= 1
+    animations.array_off(control_led)
+
+    time.sleep(1)
+
+def substractLifeAnimation(loser_num):
     GPIO.output(active_led[loser_num], 1)
 
     if player_life[loser_num] == 1:
@@ -98,13 +96,9 @@ def subtractLifeFromPlayerWithWinner(loser_num, winner_num):
     if player_life[loser_num] >= 4:
         animations.array_on(control_led)
         time.sleep(1)
-    time.sleep(1)
 
-    player_life[loser_num] -= 1
+    time.sleep(1)
     GPIO.output(active_led[loser_num], 0)
-    animations.array_off(control_led)
-
-    time.sleep(1)
 
 def areAllPlayerAlive():
     for i in player_life:

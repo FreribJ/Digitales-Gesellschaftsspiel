@@ -48,7 +48,7 @@ def startGame():
 
         while True:
             wrong_button_push = False
-            wrong_button_push_player = 0
+            wrong_button_push_players = []
 
             #Start bzw. Wartezeit
             time.sleep(timeToPress)
@@ -58,11 +58,11 @@ def startGame():
                 if not (setup.active_button.index(i) == actualPlayer):
                     if GPIO.event_detected(i):
                         wrong_button_push = True
-                        wrong_button_push_player = i
+                        wrong_button_push_players.append(i)
                         break
 
             if wrong_button_push:
-                setup.subtractLifeFromPlayer(setup.active_button.index(wrong_button_push_player))
+                setup.subtractLifeFromPlayerArray(setup.active_button.index(wrong_button_push_players))
                 break
 
             #Auf Richtigen knopfdruck prüfen
