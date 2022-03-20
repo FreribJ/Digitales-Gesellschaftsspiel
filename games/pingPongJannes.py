@@ -59,7 +59,6 @@ def startGame():
                     if GPIO.event_detected(i):
                         wrong_button_push = True
                         wrong_button_push_players.append(setup.active_button.index(i))
-                        break
 
             if wrong_button_push:
                 setup.subtractLifeFromPlayerArray(wrong_button_push_players)
