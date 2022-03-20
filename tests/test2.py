@@ -11,7 +11,7 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 zeiten = []
-zeitZuSchaetzen = 10
+zeitZuSchaetzen = 10 #Zu schätzende Zeit in Sekunden
 
 #Zeiten Speichern
 def callback_zeitspeichern(switch):

@@ -59,7 +59,7 @@ def startGame():
             nextRound()
 
             for i in reihenfolge:
-                playerPressed = waitForPress() #ForHowLong einfügen
+                playerPressed = waitForPress()
                 if playerPressed == i:
                     continue
                 elif playerPressed == "zeit_limit_abgelaufen":
