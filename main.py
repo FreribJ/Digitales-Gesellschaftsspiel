@@ -81,10 +81,10 @@ try:
                 print("Game -> Hot Potato")
                 hotPotato.startGame()
             elif setup.game_selected == 2:
-                print("Game -> test1")
+                print("Game -> 4-Color-Game")
                 test1.startGame()
             elif setup.game_selected == 3:
-                print("Game -> test2")
+                print("Game -> Zeit schätzen")
                 test2.startGame()
             elif setup.game_selected == 4:
                 print("Game -> PingPong")

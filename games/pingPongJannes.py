@@ -16,8 +16,6 @@ timeToPress = 0
 
 
 def initializeGame():
-    global timeToPress
-    timeToPress = 2
     for i in setup.active_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=200)
 
@@ -37,11 +35,17 @@ def reduceTime():
     print(timeToPress)
 
 def startGame():
+    global timeToPress
     initializeGame()
 
     while setup.areAllPlayerAlive():
 
+        for i in setup.active_button:
+            GPIO.event_detected(i)
+
+        timeToPress = 2
         changePlayer()
+
         while True:
             wrong_button_push = False
             wrong_button_push_player = 0
