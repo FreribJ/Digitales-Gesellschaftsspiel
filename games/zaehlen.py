@@ -12,14 +12,12 @@ except ImportError:
 
 ran_num = 0
 nummer = []
-i = 0
 
 #Nummern Speichern
 def callback_zeitspeichern(switch):
-    global nummer, i
-    i=i+1;
+    global nummer
     player = setup.active_button.index(switch)
-    nummer [player] = max(i, ran_num) - min(i, ran_num)
+    nummer[player] = nummer[player] + 1
 
 #Initialzes Callback
 def initialize_callback():
@@ -57,6 +55,9 @@ def startGame():
         print("Player: ", nummer)
 
         #Gewinner/Verlierer berechnen
+        for player in range(setup.active_player):
+            nummer[player] = max(i, ran_num) - min(i, ran_num)
+
         winner = nummer.index(min(nummer))
         loser = nummer.index(max(nummer))
 
