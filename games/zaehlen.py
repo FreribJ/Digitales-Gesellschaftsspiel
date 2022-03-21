@@ -37,7 +37,7 @@ def startGame():
         #Warten
         animations.all_blink(1, random.randint(2, 5))
         # Blinken
-        for t in range(len(ran_num)):
+        for t in range(ran_num):
             animations.player_led(random.randint(0,4),1,random.randint(150, 450))
 
         #Start
