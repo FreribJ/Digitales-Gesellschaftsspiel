@@ -29,26 +29,32 @@ def initialize_callback():
 def startGame():
     #Vorbereiten
     global nummer, ran_num
-    ran_num =  random.randint(9, 21)
     initialize_callback()
 
     while setup.areAllPlayerAlive():
-        nummer = []
         #Warten
         animations.all_blink(1, random.randint(2, 5))
+
+        #Start
+        ran_num =  random.randint(9, 21)
+        time.sleep(1)
+        nummer = []
+        for i in range(setup.active_player):
+            nummer.append(0)
+
         # Blinken
         for t in range(ran_num):
             sleepTime = random.randint(150, 450)
             animations.one_blink(setup.all_led[random.randint(0, setup.max_player-1)], 1, sleepTime/1000)
             time.sleep(sleepTime/1000)
 
-        #Start
-        for i in range(setup.active_player):
-            nummer.append(0)
+
         #Auf Ende Warten
         time.sleep(8)
-        while nummer.count(0) > 0:
-            time.sleep(1)
+
+        #Debug:
+        print("Zahl: ", ran_num)
+        print("Player: ", nummer)
 
         #Gewinner/Verlierer berechnen
         winner = nummer.index(min(nummer))
