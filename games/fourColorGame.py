@@ -40,7 +40,7 @@ def nextRound():
 
 def waitForPress():
     starttime = time.time()
-    while time.time()-starttime < 5: #Legt die Anzahl an sekunden Fest die gebraucht werden dürfen
+    while time.time()-starttime < 5: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
         for i in setup.active_button:
             if GPIO.event_detected(i):
                 player_num = setup.active_button.index(i)
