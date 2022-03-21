@@ -10,8 +10,6 @@ except ImportError:
 #Setup:
 GPIO.setmode(GPIO.BCM)
 
-max_player = 5
-active_player = 0
 
 max_life = 1
 player_life = []
@@ -19,15 +17,18 @@ player_life = []
 game_selected = 0
 
 control_led = [14, 15, 18]
+control_button = [16, 20]
 player_led = [23, 24, 25, 8, 7]
-active_led = []
+player_button = [26, 19, 13, 6, 5]
+max_player = len(player_button)
+
 all_led = [14, 15, 18, 23, 24, 25, 8, 7]
+all_button = [16, 20, 26, 19, 13, 6, 5]
 
 #16 -> Back; 20 -> Next
-control_button = [16, 20]
-player_button = [26, 19, 13, 6, 5]
+active_player = 0
 active_button = []
-all_button = [16, 20, 26, 19, 13, 6, 5]
+active_led = []
 
 def initialize():
     for i in all_led:
