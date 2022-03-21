@@ -37,9 +37,9 @@ def startGame():
         #Warten
         animations.all_blink(1, random.randint(2, 5))
         # Blinken
-        while t < ran_num:
+        for t in range(len(ran_num)):
             animations.player_led(random.randint(0,4),1,random.randint(150, 450))
-            t=t+1
+
         #Start
         for i in range(setup.active_player):
             nummer.append(0)
