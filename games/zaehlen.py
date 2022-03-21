@@ -10,13 +10,13 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
-global ran_num
-
+ran_num = 0
 nummer = []
+i = 0
 
 #Nummern Speichern
 def callback_zeitspeichern(switch):
-    global nummer
+    global nummer, i
     i=i+1;
     player = setup.active_button.index(switch)
     nummer [player] = max(i, ran_num) - min(i, ran_num)
@@ -28,8 +28,8 @@ def initialize_callback():
 
 def startGame():
     #Vorbereiten
+    global nummer, ran_num
     ran_num =  random.randint(9, 21)
-    global nummer
     initialize_callback()
 
     while setup.areAllPlayerAlive():
