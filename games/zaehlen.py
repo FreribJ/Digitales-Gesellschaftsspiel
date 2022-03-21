@@ -56,7 +56,7 @@ def startGame():
 
         #Gewinner/Verlierer berechnen
         for player in range(setup.active_player):
-            nummer[player] = max(i, ran_num) - min(i, ran_num)
+            nummer[player] = max(nummer[player], ran_num) - min(nummer[player], ran_num)
 
         print("Differenz: ", nummer)
 
