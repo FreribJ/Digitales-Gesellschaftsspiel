@@ -1,6 +1,6 @@
 import time
 
-from games import hotPotato, reaktionstest, pingPongJannes, fourColorGame
+from games import hotPotato, reaktionstest, pingPongJannes, fourColorGame, zaehlen
 from helper import animations
 from control import setup, selection
 from tests import test2
@@ -88,8 +88,8 @@ try:
                 fourColorGame.startGame()
 
             elif setup.game_selected == 3:
-                print("Game -> Zeit schätzen")
-                test2.startGame()
+                print("Game -> zaehlen")
+                zaehlen.startGame()
 
             elif setup.game_selected == 4:
                 print("Game -> PingPong")
