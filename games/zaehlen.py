@@ -17,10 +17,8 @@ nummer = []
 #Nummern Speichern
 def callback_zeitspeichern(switch):
     global nummer
-
+    i=i+1;
     player = setup.active_button.index(switch)
-    if nummer[player] == i:
-        nummer[player] = i+1
     nummer [player] = max(i, ran_num) - min(i, ran_num)
 
 #Initialzes Callback
@@ -44,15 +42,15 @@ def startGame():
             t=t+1
         #Start
         for i in range(setup.active_player):
-            zeiten.append(0)
+            nummer.append(0)
         #Auf Ende Warten
         time.sleep(8)
         while nummer.count(0) > 0:
             time.sleep(1)
 
         #Gewinner/Verlierer berechnen
-        winner = zeiten.index(min(nummer))
-        loser = zeiten.index(max(nummer))
+        winner = nummer.index(min(nummer))
+        loser = nummer.index(max(nummer))
 
         setup.subtractLifeFromPlayerWithWinner(loser, winner)
 
