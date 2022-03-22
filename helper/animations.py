@@ -10,10 +10,10 @@ def rolls(leds, times):
     for t in range(times):
         for i in leds:
             GPIO.output(i, 1)
-            time.sleep(0.1)
+            time.sleep(0.05)
         for i in leds:
             GPIO.output(i, 0)
-            time.sleep(0.1)
+            time.sleep(0.05)
 
 def all_blink(times, time_sleep):
     for t in range(times):
