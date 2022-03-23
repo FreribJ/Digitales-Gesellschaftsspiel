@@ -27,7 +27,6 @@ active_button = []
 active_led = []
 
 def initialize():
-    GPIO.cleanup()
     GPIO.setmode(GPIO.BCM)
     for i in all_led:
         GPIO.setup(i, GPIO.OUT)
