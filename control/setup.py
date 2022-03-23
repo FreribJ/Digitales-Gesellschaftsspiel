@@ -12,8 +12,9 @@ player_life = []
 
 game_selected = 0
 
-control_led = [22, 27, 17]
+#4 -> Back; 3 -> Next
 control_button = [3, 4]
+control_led = [22, 27, 17]
 player_led = [14, 18, 24, 8, 12, 20, 26, 13, 5, 9]
 player_button = [15, 23, 25, 7, 16, 21, 19, 6, 11, 10]
 max_player = len(player_button)
@@ -21,7 +22,6 @@ max_player = len(player_button)
 all_led = [22, 27, 17, 14, 18, 24, 8, 12, 20, 26, 13, 5, 9]
 all_button = [3, 4, 15, 23, 25, 7, 16, 21, 19, 6, 11, 10]
 
-#16 -> Back; 20 -> Next
 active_player = 0
 active_button = []
 active_led = []
