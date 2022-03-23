@@ -1,4 +1,5 @@
 # Other Import
+import math
 import random
 import time
 
@@ -13,6 +14,7 @@ from control import setup
 
 actualPlayer = 0
 timeToPress = 0
+timesPressed = 1
 
 def initializeGame():
     for i in setup.active_button:
@@ -29,12 +31,13 @@ def changePlayer():
     GPIO.output(setup.active_led[actualPlayer], 1)
 
 def reduceTime():
-    global timeToPress
-    timeToPress = timeToPress * 0.96 #Faktor um die Zeit kanpper wird
+    global timeToPress, timesPressed
+    timesPressed += 1
+    timeToPress = 2 - 0.35 * math.log(timesPressed) #alte Berechnung: timeToPress * 0.96 #Faktor um die Zeit kanpper wird
     print(timeToPress)
 
 def startGame():
-    global timeToPress
+    global timeToPress, timesPressed
     initializeGame()
 
     while setup.areAllPlayerAlive():
@@ -42,7 +45,7 @@ def startGame():
         for i in setup.active_button:
             GPIO.event_detected(i)
 
-        timeToPress = 2
+        timesPressed = 0
         changePlayer()
 
         while True:
