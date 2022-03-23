@@ -7,10 +7,6 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
-#Setup:
-GPIO.setmode(GPIO.BCM)
-
-
 max_life = 1
 player_life = []
 
@@ -31,6 +27,8 @@ active_button = []
 active_led = []
 
 def initialize():
+    GPIO.cleanup()
+    GPIO.setmode(GPIO.BCM)
     for i in all_led:
         GPIO.setup(i, GPIO.OUT)
     for i in all_button:
