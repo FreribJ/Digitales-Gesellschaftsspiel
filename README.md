@@ -11,3 +11,12 @@ Mit Next und Back kann durch das Menü navigiert werden. Die grünen LEDs zeigen
 
 ## Spielablauf:
 Bei jedem Spiel gibt es einen Verlierer. Nach jeder Runde wird sowohl der Verlierer als auch seine verbleibenden Leben angezeigt (Es werden maximal 3 Leben angezeigt). Wenn ein Spieler keine Leben mehr hat, ist das Spiel vorbei und es kann ein weiteres Spiel begonnen werden.
+
+##Spiele:
+
+1. Reaktionszeit
+2. Hot Potato
+3. Simon Says
+4. Zählen
+5. Ping Pong
+6. Zeit schätzen

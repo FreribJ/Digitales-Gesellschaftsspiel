@@ -94,14 +94,13 @@ try:
 
             elif setup.game_selected == 4:
                 print("Game -> PingPong")
-                pingPong.startGame()
-
-            elif setup.game_selected == 5:
-                print("Game -> PingPong Jannes")
                 pingPongJannes.startGame()
 
+            elif setup.game_selected == 5:
+                print("Game -> Empty")
+
             elif setup.game_selected == 6:
-                print("Game -> test2")
+                print("Game -> Empty")
                 test2.startGame()
 
             elif setup.game_selected == 7:

@@ -35,6 +35,7 @@ def reduceTime():
     timesPressed += 1
     timeToPress = 2 - 0.35 * math.log(timesPressed) #alte Berechnung: timeToPress * 0.96 #Faktor um die Zeit kanpper wird
 
+#originally from jan, but fixed
 def startGame():
     global timeToPress, timesPressed
     initializeGame()
