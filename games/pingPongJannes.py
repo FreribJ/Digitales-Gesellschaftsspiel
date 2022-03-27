@@ -14,7 +14,7 @@ from control import setup
 
 actualPlayer = 0
 timeToPress = 0
-timesPressed = 1
+timesPressed = 0
 
 def initializeGame():
     for i in setup.active_button:
@@ -45,6 +45,7 @@ def startGame():
             GPIO.event_detected(i)
 
         timesPressed = 0
+        reduceTime()
         changePlayer()
 
         while True:
