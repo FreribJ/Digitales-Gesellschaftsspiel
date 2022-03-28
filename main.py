@@ -1,9 +1,8 @@
 import time
 
-from games import hotPotato, reaktionstest, pingPong, pingPongJannes, fourColorGame, zaehlen
+from games import hotPotato, reaktionstest, pingPongJannes, fourColorGame, zaehlen, auslassen
 from helper import animations
 from control import setup, selection
-from tests import test2
 
 try:
     import RPi.GPIO as GPIO
@@ -89,7 +88,7 @@ try:
                 fourColorGame.startGame()
 
             elif setup.game_selected == 3:
-                print("Game -> zaehlen")
+                print("Game -> Zählen")
                 zaehlen.startGame()
 
             elif setup.game_selected == 4:
@@ -97,11 +96,11 @@ try:
                 pingPongJannes.startGame()
 
             elif setup.game_selected == 5:
-                print("Game -> Empty")
+                print("Game -> Zeit schätzen")
 
             elif setup.game_selected == 6:
-                print("Game -> Empty")
-                test2.startGame()
+                print("Game -> Auslassen")
+                auslassen.startGame()
 
             elif setup.game_selected == 7:
                 print("Game -> Empty")
