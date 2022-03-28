@@ -1,4 +1,3 @@
-import random
 import time
 
 from control import setup
@@ -15,14 +14,22 @@ next_player = 0
 counter = 1
 passing_number = 0
 
-
 #Initialzes Callback
 def initializeGame():
-        for switch in setup.active_button:
-            GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
+    for switch in setup.active_button:
+        GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
+
 
 def setNext():
+    def beinhaltetPassingNumber():
+        if counter % passing_number == 0:
+            return True
+        if str(counter).__contains__(str(passing_number)):
+            return True
+        return False
+
     global counter, next_player
+
     counter += 1
 
     while beinhaltetPassingNumber():
@@ -30,20 +37,10 @@ def setNext():
 
     next_player = next_player + counter % setup.active_player - 1
 
-    # Cleanup:
-    for i in setup.active_button:
-        GPIO.event_detected(i)
-
-def beinhaltetPassingNumber():
-    if counter % passing_number == 0:
-        return True
-    if str(counter).__contains__(str(passing_number)):
-        return True
-    return False
 
 def waitForPress():
     starttime = time.time()
-    while time.time()-starttime < 5: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
+    while time.time()-starttime < 10: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
         for i in setup.active_button:
             if GPIO.event_detected(i):
                 player_num = setup.active_button.index(i)
@@ -65,7 +62,7 @@ def startGame():
         while True:
             playerPressed = waitForPress()
             if playerPressed == next_player:
-                continue
+                setNext()
             elif playerPressed == "zeit_limit_abgelaufen":
                 setup.subtractLifeFromPlayer(next_player)
                 break
@@ -73,7 +70,8 @@ def startGame():
                 setup.subtractLifeFromPlayer(playerPressed)
                 break
 
-            setNext()
-
+        # Cleanup:
+        for i in setup.active_button:
+            GPIO.event_detected(i)
 
     setup.remove_callback()
