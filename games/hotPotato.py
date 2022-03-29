@@ -10,6 +10,7 @@ except ImportError:
 
 # Variable Import
 from control import setup
+from helper import sounds
 
 actualPlayer = 0
 timeLength = 0
@@ -20,7 +21,7 @@ def initializeGame():
     global timeLength, startTime, actualPlayer
     actualPlayer = random.randint(0, setup.active_player - 1)
     GPIO.output(setup.active_led[actualPlayer], 1)
-    timeLength = random.uniform(15, 30)
+    timeLength = random.randint(15, 30)
     startTime = time.time()
     for i in setup.active_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=200)
@@ -41,6 +42,7 @@ def startGame():
     wrong_button_push = False
     wrong_button_push_player = 0
 
+    sounds.playSoundAtPosition("bombticking.mp3", 29.9-timeLength)
     while time.time() - startTime <= timeLength:
         if GPIO.event_detected(setup.active_button[actualPlayer]):
             changePlayer()

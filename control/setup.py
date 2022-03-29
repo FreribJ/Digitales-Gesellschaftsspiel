@@ -1,6 +1,6 @@
 import time
 
-from helper import animations
+from helper import animations, sounds
 
 try:
     import RPi.GPIO as GPIO
@@ -28,6 +28,8 @@ player_life = []
 game_selected = 0
 
 def initialize():
+    sounds.initialize()
+
     GPIO.setmode(GPIO.BCM)
     for i in all_led:
         GPIO.setup(i, GPIO.OUT)
@@ -75,6 +77,7 @@ def subtractLifeFromPlayerWithWinner(loser_num, winner_num):
     time.sleep(1)
 
 def substractLifeAnimation(loser_num):
+    sounds.playLoseSound()
     GPIO.output(active_led[loser_num], 1)
 
     if player_life[loser_num] == 1:

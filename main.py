@@ -1,7 +1,7 @@
 import time
 
 from games import hotPotato, reaktionstest, pingPongJannes, fourColorGame, zaehlen, auslassen
-from helper import animations
+from helper import animations, sounds
 from control import setup, selection
 
 try:
@@ -33,6 +33,7 @@ try:
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[0], 0)
             if next_menu:
+                sounds.playMenuSound()
                 menu_level = 1
             else:
                 #Auf Standard Resetten:
@@ -49,6 +50,7 @@ try:
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[1], 0)
             if next_menu:
+                sounds.playMenuSound()
                 menu_level = 2
             else:
                 menu_level = 0
@@ -61,6 +63,7 @@ try:
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[2], 0)
             if next_menu:
+                sounds.playMenuSound()
                 menu_level = 3
             else:
                 menu_level = 1
