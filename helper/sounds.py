@@ -1,6 +1,3 @@
-import time
-import random
-
 from pygame import mixer
 from pygame.mixer import music
 
