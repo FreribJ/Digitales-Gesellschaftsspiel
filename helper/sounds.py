@@ -19,14 +19,6 @@ def playButtonPush():
     music.set_volume(0.5)
     music.play()
 
-#tests:
-def test1():
-    music.load("helper/Sounds/buttonpush.mp3")
-    music.set_volume(0.5)
-
-def test2():
-    music.play()
-
 def playSound(Soundfile):
     music.load("helper/Sounds/" + Soundfile)
     music.set_volume(1)
@@ -42,8 +34,7 @@ def stopSound():
 
 
 #test:
-initialize()
-playButtonPush()
+
 
 #https://soundbible.com/419-Tiny-Button-Push.html
 #https://www.youtube.com/watch?v=T9N0pmLI7Jw
