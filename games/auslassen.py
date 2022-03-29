@@ -60,6 +60,7 @@ def startGame():
         GPIO.output(setup.active_led[next_player], 1)
 
         while True:
+            print("nextPlayer: ", next_player)
             playerPressed = waitForPress()
             if playerPressed == next_player:
                 setNext()
