@@ -1,3 +1,4 @@
+import random
 import time
 
 from control import setup
@@ -10,9 +11,10 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 #Variablen
-next_player = 0
 counter = 1
-passing_number = 0
+next_player = 0
+started_player = 0
+passing_number = 7 #Nummer einstellbar
 
 #Initialzes Callback
 def initializeGame():
@@ -21,7 +23,7 @@ def initializeGame():
 
 
 def setNext():
-    global counter, next_player
+    global counter, next_player, started_player
 
     def beinhaltetPassingNumber():
         if counter % passing_number == 0:
@@ -35,7 +37,7 @@ def setNext():
     while beinhaltetPassingNumber():
         counter += 1
 
-    next_player = (counter-1) % setup.active_player
+    next_player = (counter-1+started_player) % setup.active_player
 
 
 def waitForPress():
@@ -54,10 +56,11 @@ def startGame():
 
     initializeGame()
     while setup.areAllPlayerAlive():
-        next_player = 0
+        started_player = random.randint(0, setup.active_player - 1) #Zufälliger Startspieler
+        next_player = started_player
         counter = 1
-        passing_number = 7 #evtl. durch random.randint(2, 10) ersetzbar-> aber Anzeigen!
-        GPIO.output(setup.active_led[next_player], 1)
+        #passing_number = evtl. durch random.randint(2, 10) ersetzbar-> aber Anzeigen!
+        GPIO.output(setup.active_led[next_player], 1) #Startender Spieler anzeigen
 
         while True:
             playerPressed = waitForPress()

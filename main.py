@@ -35,8 +35,11 @@ try:
             if next_menu:
                 menu_level = 1
             else:
+                #Auf Standard Resetten:
                 setup.active_led = []
                 setup.active_button = []
+                setup.game_selected = 0
+                setup.max_life = 1
 
         #Lebenwahl:
         if menu_level == 1:
