@@ -42,7 +42,7 @@ def startGame():
     wrong_button_push = False
     wrong_button_push_player = 0
 
-    sounds.playSoundAtPosition("bombticking.mp3", 29.9-timeLength)
+    sounds.playSoundAtPosition("bombticking.mp3", 29-timeLength)
     while time.time() - startTime <= timeLength:
         if GPIO.event_detected(setup.active_button[actualPlayer]):
             changePlayer()
