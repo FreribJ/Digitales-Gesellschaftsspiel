@@ -52,7 +52,7 @@ def waitForPress():
 
 
 def startGame():
-    global next_player, passing_number, counter
+    global next_player, passing_number, counter, started_player
 
     initializeGame()
     while setup.areAllPlayerAlive():
