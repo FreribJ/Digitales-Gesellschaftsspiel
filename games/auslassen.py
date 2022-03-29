@@ -35,7 +35,7 @@ def setNext():
     while beinhaltetPassingNumber():
         counter += 1
 
-    next_player = next_player + counter % setup.active_player - 1
+    next_player = counter % setup.active_player - 1
 
 
 def waitForPress():
