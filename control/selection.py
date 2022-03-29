@@ -22,13 +22,11 @@ def player_selection():
     for i in setup.all_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=1000)
 
-    sounds.test1()
-
     abbruch = False
     while not (GPIO.event_detected(setup.control_button[1]) and not sum(playeractive) <= 1): #Wartet auf Next, beachtet aber, dass mindestens ein Spieler ausgewählt wurde
         for i in setup.player_button:
             if GPIO.event_detected(i):
-                sounds.test2()
+                sounds.playButtonPush()
                 number = setup.player_button.index(i)
                 if playeractive[number]:
                     playeractive[number] = False
