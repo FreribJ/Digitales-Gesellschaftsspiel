@@ -30,10 +30,10 @@ try:
             print("Spielerauswahl")
             GPIO.output(setup.control_led[0], 1)
             next_menu = selection.player_selection()
+            sounds.playMenuSound()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[0], 0)
             if next_menu:
-                sounds.playMenuSound()
                 menu_level = 1
             else:
                 #Auf Standard Resetten:
@@ -47,10 +47,10 @@ try:
             print("Lebenauswahl")
             GPIO.output(setup.control_led[1], 1)
             next_menu = selection.life_selection()
+            sounds.playMenuSound()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[1], 0)
             if next_menu:
-                sounds.playMenuSound()
                 menu_level = 2
             else:
                 menu_level = 0
@@ -60,10 +60,10 @@ try:
             print("Spielauswahl")
             GPIO.output(setup.control_led[2], 1)
             next_menu = selection.game_selection()
+            sounds.playMenuSound()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[2], 0)
             if next_menu:
-                sounds.playMenuSound()
                 menu_level = 3
             else:
                 menu_level = 1
