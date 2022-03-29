@@ -22,6 +22,14 @@ def playButtonPush():
     music.set_volume(0.5)
     music.play()
 
+#tests:
+def test1():
+    music.load("helper/Sounds/buttonpush.mp3")
+    music.set_volume(0.5)
+
+def test2():
+    music.play()
+
 def playSound(Soundfile):
     music.load("helper/Sounds/" + Soundfile)
     music.set_volume(1)
