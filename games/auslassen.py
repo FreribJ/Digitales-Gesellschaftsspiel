@@ -21,6 +21,8 @@ def initializeGame():
 
 
 def setNext():
+    global counter, next_player
+
     def beinhaltetPassingNumber():
         if counter % passing_number == 0:
             return True
@@ -28,14 +30,12 @@ def setNext():
             return True
         return False
 
-    global counter, next_player
-
     counter += 1
 
     while beinhaltetPassingNumber():
         counter += 1
 
-    next_player = counter % setup.active_player - 1
+    next_player = (counter-1) % setup.active_player
 
 
 def waitForPress():
@@ -60,7 +60,6 @@ def startGame():
         GPIO.output(setup.active_led[next_player], 1)
 
         while True:
-            print("nextPlayer: ", next_player)
             playerPressed = waitForPress()
             if playerPressed == next_player:
                 setNext()
