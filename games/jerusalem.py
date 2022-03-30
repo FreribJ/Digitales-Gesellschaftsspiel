@@ -16,8 +16,12 @@ selected_led_arr = []
 
 #Initialzes Callback
 def initializeGame():
-        for switch in setup.player_button:
-            GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
+    for switch in setup.player_button:
+        GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
+
+def remove_callback():
+    for i in setup.player_button:
+        GPIO.remove_event_detect(i)
 
 def selectRandom():
     global selected_button_arr, selected_led_arr
