@@ -49,8 +49,8 @@ def waitForAllToPress():
     all_pressed = []
     for i in range(selected_num):
         all_pressed.append(False)
-    for i in range(selected_button_arr): #Resetten der Pins
-        GPIO.event_detected()
+    for i in selected_button_arr: #Resetten der Pins
+        GPIO.event_detected(i)
     starttime = time.time()
     while time.time()-starttime < 10 or all_pressed.count(False) == 0: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
         for i in selected_button_arr:
