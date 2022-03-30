@@ -102,4 +102,4 @@ def startGame():
 
     #Ende
     animations.all_off()
-    setup.remove_callback()
+    remove_callback()
