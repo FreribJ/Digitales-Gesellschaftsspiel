@@ -60,23 +60,31 @@ def waitForAllToPress():
                 all_pressed[player_num] = True
                 print(all_pressed)
 
+def waitForContinue():
+    GPIO.event_detected(setup.control_button[0])
+    while not GPIO.event_detected(setup.control_button[0]):
+        time.sleep(1)
+
 def startGame():
     global selected_num
     initializeGame()
     selected_num = setup.active_player - 1
 
-    while setup.areAllPlayerAlive():
+    while selected_num > 0:
+        if not selected_num == setup.active_player-1:
+            waitForContinue()
+
         #Starten
         selectRandom()
 
-        animations.array_on(selected_led_arr)
         sounds.playSound("jerusalem.mp3")
         time.sleep(random.randint(5, 10)) #ändern
         sounds.stopSound()
+        animations.array_on(selected_led_arr)
 
         #Warten
         waitForAllToPress()
-        print("alle gepresst")
+        animations.all_off()
 
         time.sleep(1)
         selected_num -= 1

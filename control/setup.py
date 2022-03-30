@@ -8,7 +8,7 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 
-#4 -> Back; 3 -> Next
+#3 -> Next; 4 -> Back
 control_button = [3, 4]
 control_led = [22, 27, 17]
 player_led = [14, 18, 24, 8, 12, 20, 26, 13, 5, 9]
