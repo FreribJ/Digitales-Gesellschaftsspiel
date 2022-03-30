@@ -16,11 +16,11 @@ selected_led_arr = []
 
 #Initialzes Callback
 def initializeGame():
-    for switch in setup.player_button:
+    for switch in setup.all_button:
         GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
 
 def remove_callback():
-    for i in setup.player_button:
+    for i in setup.all_button:
         GPIO.remove_event_detect(i)
 
 def selectRandom():
@@ -64,22 +64,24 @@ def waitForAllToPress():
                 all_pressed[player_num] = True
 
 def waitForContinue():
-    GPIO.add_event_detect(setup.control_button[1], GPIO.RISING, bouncetime=400)
     while not GPIO.event_detected(setup.control_button[1]):
         time.sleep(0.5)
         GPIO.output(setup.control_led[1], 1)
         time.sleep(0.5)
         GPIO.output(setup.control_led[1], 0)
-    GPIO.remove_event_detect(setup.control_button[1])
+        if GPIO.event_detected(setup.control_button[0]):
+            return "abbruch"
 
 def startGame():
     global selected_num
+    GPIO.remove_event_detect(setup.control_button[0]) #Für dieses Spiel gibt es eine andere Abbruchbedingung
     initializeGame()
     selected_num = setup.active_player - 1
 
     while selected_num > 0:
         if not selected_num == setup.active_player-1:
-            waitForContinue()
+            if waitForContinue() == "abbruch":
+                break
             animations.all_off()
 
         #Starten
