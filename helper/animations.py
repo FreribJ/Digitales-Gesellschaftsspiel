@@ -31,7 +31,7 @@ def all_off():
 
 def all_on():
     for i in setup.all_led:
-        GPIO.output(i, 0)
+        GPIO.output(i, 1)
 
 
 def array_off(leds):
