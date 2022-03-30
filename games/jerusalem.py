@@ -21,6 +21,8 @@ def initializeGame():
 
 def selectRandom():
     global selected_button_arr, selected_led_arr
+    selected_led_arr = []
+    selected_button_arr = []
     temp_arr = []
     for i in range(selected_num):
         randNum = random.randint(0, 10-1)
@@ -47,13 +49,16 @@ def waitForAllToPress():
     all_pressed = []
     for i in range(selected_num):
         all_pressed.append(False)
+    for i in range(selected_button_arr): #Resetten der Pins
+        GPIO.event_detected()
     starttime = time.time()
     while time.time()-starttime < 10 or all_pressed.count(False) == 0: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
         for i in selected_button_arr:
             if GPIO.event_detected(i):
-                GPIO.output(setup.player_led[setup.player_button.index(i)], 0)
                 player_num = selected_button_arr.index(i)
+                GPIO.output(selected_led_arr[player_num], 0)
                 all_pressed[player_num] = True
+                print(all_pressed)
 
 def startGame():
     global selected_num
@@ -66,16 +71,12 @@ def startGame():
 
         animations.array_on(selected_led_arr)
         sounds.playSound("jerusalem.mp3")
-        time.sleep(random.randint(15, 30))
+        time.sleep(random.randint(5, 10)) #ändern
         sounds.stopSound()
 
         #Warten
         waitForAllToPress()
+        print("alle gepresst")
 
         time.sleep(1)
-
-        #Leben abziehen
-        animations.array_on(setup.active_led)
-        setup.subtractLifeFromPlayer(waitForPress())
-
         selected_num -= 1
