@@ -2,7 +2,7 @@ import time
 import random
 
 from control import setup
-from helper import animations
+from helper import animations, sounds
 
 # GPIO Import
 try:
@@ -40,6 +40,7 @@ def startGame():
         for i in range(setup.active_player):
             zeiten.append(0)
 
+        sounds.playSound("airhorn.mp3")
         #Auf Ende Warten
         while zeiten.count(0) > 0:
             time.sleep(1)

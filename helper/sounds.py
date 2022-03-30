@@ -1,3 +1,5 @@
+import random
+
 from pygame import mixer
 from pygame.mixer import music
 
@@ -19,6 +21,13 @@ def playMenuSound():
 def playButtonPush():
     music.load(soundDir + "buttonpush.mp3")
     music.set_volume(0.5)
+    music.play()
+
+def playPingPong():
+    if random.randint(0, 1) == 1:
+        music.load(soundDir + "pingpong1.mp3")
+    else:
+        music.load(soundDir + "pingpong2.mp3")
     music.play()
 
 def playSound(Soundfile):

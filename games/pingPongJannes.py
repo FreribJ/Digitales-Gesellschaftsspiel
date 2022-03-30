@@ -11,6 +11,7 @@ except ImportError:
 
 # Variable Import
 from control import setup
+from helper import sounds
 
 actualPlayer = 0
 timeToPress = 0
@@ -55,7 +56,7 @@ def startGame():
 
             #Start bzw. Wartezeit
             time.sleep(timeToPress)
-
+            sounds.playPingPong()
             #Auf Falschdruck prüfen
             for i in setup.active_button:
                 if not (setup.active_button.index(i) == actualPlayer):
