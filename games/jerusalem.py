@@ -61,9 +61,12 @@ def waitForAllToPress():
                 print(all_pressed)
 
 def waitForContinue():
-    GPIO.event_detected(setup.control_button[0])
-    while not GPIO.event_detected(setup.control_button[0]):
-        time.sleep(1)
+    GPIO.event_detected(setup.control_button[1])
+    while not GPIO.event_detected(setup.control_button[1]):
+        time.sleep(0.5)
+        GPIO.output(setup.control_led[1], 1)
+        time.sleep(0.5)
+        GPIO.output(setup.control_led[1], 0)
 
 def startGame():
     global selected_num
@@ -78,7 +81,7 @@ def startGame():
         selectRandom()
 
         sounds.playSound("jerusalem.mp3")
-        time.sleep(random.randint(5, 10)) #ändern
+        animations.rings(setup.player_led, random.randint(10, 25), 0.5)
         sounds.stopSound()
         animations.array_on(selected_led_arr)
 
@@ -86,5 +89,4 @@ def startGame():
         waitForAllToPress()
         animations.all_off()
 
-        time.sleep(1)
         selected_num -= 1
