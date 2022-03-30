@@ -1,7 +1,7 @@
 from pygame import mixer
 from pygame.mixer import music
 
-soundDir = "Partyspiel/Sounds/helper/"
+soundDir = "/home/pi/Partyspiel/Sounds/helper/"
 
 def initialize():
     mixer.init()
