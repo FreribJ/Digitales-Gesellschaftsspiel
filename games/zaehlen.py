@@ -42,7 +42,7 @@ def startGame():
 
         # Blinken
         for t in range(ran_num):
-            sleepTime = random.randint(100, 300)
+            sleepTime = random.randint(150, 350)
             animations.one_blink(setup.all_led[random.randint(0, setup.max_player-1)], 1, sleepTime/1000)
             time.sleep(sleepTime/1000)
 
