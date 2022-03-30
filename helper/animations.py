@@ -15,6 +15,16 @@ def rolls(leds, times):
             GPIO.output(i, 0)
             time.sleep(0.05)
 
+def rings(leds, times, time_sleep):
+    arr_len = len(leds)
+    time_sleep = time_sleep / 2
+    for i in range(times):
+        led = leds[i % arr_len]
+        time.sleep(time_sleep)
+        GPIO.output(led, 1)
+        time.sleep(time_sleep)
+        GPIO.output(led, 0)
+
 def all_blink(times, time_sleep):
     for t in range(times):
         for i in setup.player_led:
