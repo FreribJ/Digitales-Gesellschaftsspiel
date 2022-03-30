@@ -21,3 +21,4 @@ Bei jedem Spiel gibt es einen Verlierer. Nach jeder Runde wird sowohl der Verlie
 5. Ping Pong
 6. Zeit schätzen (not yet playable)
 7. Auslassen
+8. Jerusalem
