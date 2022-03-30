@@ -61,8 +61,8 @@ def waitForAllToPress():
                 print(all_pressed)
 
 def waitForContinue():
-    GPIO.event_detected(setup.control_button[1])
-    while not GPIO.event_detected(setup.control_button[1]):
+    GPIO.event_detected(setup.control_button[0])
+    while not GPIO.event_detected(setup.control_button[0]):
         time.sleep(0.5)
         GPIO.output(setup.control_led[1], 1)
         time.sleep(0.5)
