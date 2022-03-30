@@ -1,40 +1,35 @@
 from pygame import mixer
 from pygame.mixer import music
 
+soundDir = "Partyspiel/helper/Sounds/"
+
 def initialize():
     mixer.init()
 
 def playLoseSound():
-    music.load("helper/Sounds/lose.wav")
+    music.load(soundDir + "lose.wav")
     music.set_volume(1)
     music.play()
 
 def playMenuSound():
-    music.load("helper/Sounds/menuSelection.mp3")
+    music.load(soundDir + "menuSelection.mp3")
     music.set_volume(1)
     music.play()
 
 def playButtonPush():
-    music.load("helper/Sounds/buttonpush.mp3")
+    music.load(soundDir + "buttonpush.mp3")
     music.set_volume(0.5)
     music.play()
 
 def playSound(Soundfile):
-    music.load("helper/Sounds/" + Soundfile)
+    music.load(soundDir + Soundfile)
     music.set_volume(1)
     music.play()
 
 def playSoundAtPosition(Soundfile, Startposition):
-    music.load("helper/Sounds/" + Soundfile)
+    music.load(soundDir + Soundfile)
     music.set_volume(1)
     music.play(0, Startposition)
 
 def stopSound():
     music.stop()
-
-
-#test:
-
-
-#https://soundbible.com/419-Tiny-Button-Push.html
-#https://www.youtube.com/watch?v=T9N0pmLI7Jw
