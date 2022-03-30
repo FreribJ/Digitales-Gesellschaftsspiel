@@ -56,7 +56,6 @@ def startGame():
 
             #Start bzw. Wartezeit
             time.sleep(timeToPress)
-            sounds.playPingPong()
             #Auf Falschdruck prüfen
             for i in setup.active_button:
                 if not (setup.active_button.index(i) == actualPlayer):
@@ -70,6 +69,7 @@ def startGame():
 
             #Auf Richtigen knopfdruck prüfen
             if GPIO.event_detected(setup.active_button[actualPlayer]):
+                sounds.playPingPong()
                 reduceTime()
                 changePlayer()
             else:

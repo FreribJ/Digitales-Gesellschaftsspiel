@@ -33,14 +33,17 @@ def startGame():
 
     while setup.areAllPlayerAlive():
         #Warten
-        animations.all_blink(1, random.randint(2, 7))
+        animations.all_on()
+        time.sleep(random.randint(2, 7))
+        sounds.playSound("airhorn.mp3")
+        time.sleep(0.4)
+        animations.all_off()
 
         #Start
         zeiten = []
         for i in range(setup.active_player):
             zeiten.append(0)
 
-        sounds.playSound("airhorn.mp3")
         #Auf Ende Warten
         while zeiten.count(0) > 0:
             time.sleep(1)
