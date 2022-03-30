@@ -76,6 +76,7 @@ def startGame():
     while selected_num > 0:
         if not selected_num == setup.active_player-1:
             waitForContinue()
+            animations.all_off()
 
         #Starten
         selectRandom()
@@ -87,9 +88,12 @@ def startGame():
 
         #Warten
         waitForAllToPress()
-        animations.all_off()
+
+        time.sleep(1)
+        animations.array_on(selected_led_arr)
 
         selected_num -= 1
 
     #Ende
+    animations.all_off()
     setup.remove_callback()
