@@ -46,19 +46,12 @@ def startGame():
             animations.one_blink(setup.all_led[random.randint(0, setup.max_player-1)], 1, sleepTime/1000)
             time.sleep(sleepTime/1000)
 
-        print("Zahl: ", ran_num)
-
         #Auf Ende Warten
         time.sleep(8)
-
-        #Debug:
-        print("Player: ", nummer)
 
         #Gewinner/Verlierer berechnen
         for player in range(setup.active_player):
             nummer[player] = max(nummer[player], ran_num) - min(nummer[player], ran_num)
-
-        print("Differenz: ", nummer)
 
         winner = nummer.index(min(nummer))
         loser = nummer.index(max(nummer))
