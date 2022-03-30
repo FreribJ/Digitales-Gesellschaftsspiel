@@ -11,7 +11,8 @@ except ImportError:
     import FakeRPi.GPIO as GPIO
 
 selected_num = 0
-selected_arr = []
+selected_button_arr = []
+selected_led_arr = []
 
 #Initialzes Callback
 def initializeGame():
@@ -19,7 +20,7 @@ def initializeGame():
             GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
 
 def selectRandom():
-    global selected_arr
+    global selected_button_arr, selected_led_arr
     temp_arr = []
     for i in range(selected_num):
         randNum = random.randint(0, 10-1)
@@ -28,7 +29,8 @@ def selectRandom():
         temp_arr.append(randNum)
     temp_arr.sort()
     for i in temp_arr:
-        selected_arr.append(setup.player_button[i])
+        selected_button_arr.append(setup.player_button[i])
+        selected_led_arr.append(setup.player_led[i])
 
 def waitForPress():
     starttime = time.time()
@@ -47,10 +49,10 @@ def waitForAllToPress():
         all_pressed.append(False)
     starttime = time.time()
     while time.time()-starttime < 10 or all_pressed.count(False) == 0: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
-        for i in selected_arr:
+        for i in selected_button_arr:
             if GPIO.event_detected(i):
-                GPIO.output(i, 0)
-                player_num = selected_arr.index(i)
+                GPIO.output(setup.player_led[setup.player_button.index(i)], 0)
+                player_num = selected_button_arr.index(i)
                 all_pressed[player_num] = True
 
 def startGame():
@@ -62,7 +64,7 @@ def startGame():
         #Starten
         selectRandom()
 
-        animations.array_on(selected_arr)
+        animations.array_on(selected_led_arr)
         sounds.playSound("jerusalem.mp3")
         time.sleep(random.randint(15, 30))
         sounds.stopSound()
