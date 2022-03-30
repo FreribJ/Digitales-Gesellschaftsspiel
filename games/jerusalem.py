@@ -52,7 +52,7 @@ def waitForAllToPress():
     for i in selected_button_arr: #Resetten der Pins
         GPIO.event_detected(i)
     starttime = time.time()
-    while time.time()-starttime < 10 or all_pressed.count(False) == 0: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
+    while time.time()-starttime < 10 and all_pressed.count(False) > 0: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
         for i in selected_button_arr:
             if GPIO.event_detected(i):
                 player_num = selected_button_arr.index(i)
