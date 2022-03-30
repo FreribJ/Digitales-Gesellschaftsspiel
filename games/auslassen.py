@@ -13,6 +13,7 @@ except ImportError:
 #Variablen
 counter = 1
 next_player = 0
+skiped_player = 0
 started_player = 0
 passing_number = 7 #Nummer einstellbar
 
@@ -23,8 +24,8 @@ def initializeGame():
 
 
 def setNext():
-    global counter, next_player, started_player
-
+    global counter, next_player, started_player, skiped_player
+    skiped_player = 0
     def beinhaltetPassingNumber():
         if counter % passing_number == 0:
             return True
@@ -36,13 +37,15 @@ def setNext():
 
     while beinhaltetPassingNumber():
         counter += 1
+        skiped_player += 1
 
     next_player = (counter-1+started_player) % setup.active_player
 
 
 def waitForPress():
     starttime = time.time()
-    while time.time()-starttime < 10: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
+    maxtime = 5 + (skiped_player * 1.5)
+    while time.time()-starttime < maxtime: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
         for i in setup.active_button:
             if GPIO.event_detected(i):
                 player_num = setup.active_button.index(i)
@@ -53,13 +56,14 @@ def waitForPress():
 
 
 def startGame():
-    global next_player, passing_number, counter, started_player
+    global next_player, passing_number, counter, started_player, skiped_player
 
     initializeGame()
     while setup.areAllPlayerAlive():
         started_player = random.randint(0, setup.active_player - 1) #Zufälliger Startspieler
         next_player = started_player
         counter = 1
+        skiped_player = 0
         #passing_number = evtl. durch random.randint(2, 10) ersetzbar-> aber Anzeigen!
         GPIO.output(setup.active_led[next_player], 1) #Startender Spieler anzeigen
 
