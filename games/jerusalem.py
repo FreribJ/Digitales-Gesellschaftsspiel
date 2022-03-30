@@ -15,7 +15,7 @@ selected_arr = []
 
 #Initialzes Callback
 def initializeGame():
-        for switch in setup.all_button:
+        for switch in setup.player_button:
             GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
 
 def selectRandom():
@@ -28,7 +28,7 @@ def selectRandom():
         temp_arr.append(randNum)
     temp_arr.sort()
     for i in temp_arr:
-        selected_arr.append(setup.all_button[i])
+        selected_arr.append(setup.player_button[i])
 
 def waitForPress():
     starttime = time.time()
