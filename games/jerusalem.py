@@ -58,15 +58,15 @@ def waitForAllToPress():
                 player_num = selected_button_arr.index(i)
                 GPIO.output(selected_led_arr[player_num], 0)
                 all_pressed[player_num] = True
-                print(all_pressed)
 
 def waitForContinue():
-    GPIO.event_detected(setup.control_button[0])
-    while not GPIO.event_detected(setup.control_button[0]):
+    GPIO.add_event_detect(setup.control_button[1], GPIO.RISING, bouncetime=400)
+    while not GPIO.event_detected(setup.control_button[1]):
         time.sleep(0.5)
         GPIO.output(setup.control_led[1], 1)
         time.sleep(0.5)
         GPIO.output(setup.control_led[1], 0)
+    GPIO.remove_event_detect(setup.control_button[1])
 
 def startGame():
     global selected_num
@@ -90,3 +90,6 @@ def startGame():
         animations.all_off()
 
         selected_num -= 1
+
+    #Ende
+    setup.remove_callback()
