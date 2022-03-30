@@ -1,6 +1,6 @@
 import time
 
-from games import hotPotato, reaktionstest, pingPongJannes, fourColorGame, zaehlen, auslassen
+from games import hotPotato, reaktionstest, pingPongJannes, fourColorGame, zaehlen, auslassen, jerusalem
 from helper import animations, sounds
 from control import setup, selection
 
@@ -109,7 +109,9 @@ try:
                 auslassen.startGame()
 
             elif setup.game_selected == 7:
-                print("Game -> Empty")
+                print("Game -> Jerusalem")
+                jerusalem.startGame()
+
 
             elif setup.game_selected == 8:
                 print("Game -> Empty")
