@@ -24,6 +24,7 @@ try:
     animations.rolls(setup.all_led, 1)
 
     menu_level = 0
+    exit_check = 0
     while True:
         #Spielerauswahl:
         if menu_level == 0:
@@ -35,12 +36,16 @@ try:
             GPIO.output(setup.control_led[0], 0)
             if next_menu:
                 menu_level = 1
+                exit_check = 0
             else:
                 #Auf Standard Resetten:
                 setup.active_led = []
                 setup.active_button = []
                 setup.game_selected = 0
                 setup.max_life = 1
+                exit_check += 1
+                if exit_check >= 3:
+                    break
 
         #Lebenwahl:
         if menu_level == 1:
