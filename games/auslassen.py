@@ -44,7 +44,7 @@ def setNext():
 
 def waitForPress():
     starttime = time.time()
-    maxtime = 5 + (skiped_player * 1.5)
+    maxtime = 10 + (skiped_player * 2)
     while time.time()-starttime < maxtime: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
         for i in setup.active_button:
             if GPIO.event_detected(i):
