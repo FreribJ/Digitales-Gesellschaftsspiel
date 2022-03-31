@@ -24,7 +24,7 @@ def initializeGame():
     timeLength = random.randint(15, 30)
     startTime = time.time()
     for i in setup.active_button:
-        GPIO.add_event_detect(i, GPIO.RISING, bouncetime=200)
+        GPIO.add_event_detect(i, GPIO.RISING, bouncetime=500)
 
 
 def changePlayer():
@@ -49,6 +49,7 @@ def startGame():
     while time.time() - startTime <= timeLength:
         if GPIO.event_detected(setup.active_button[actualPlayer]):
             changePlayer()
+            break
         for i in setup.active_button:
             if not(i == setup.active_button[actualPlayer]):
                 if GPIO.event_detected(i):
