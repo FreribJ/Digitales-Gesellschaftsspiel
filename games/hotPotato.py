@@ -29,12 +29,15 @@ def initializeGame():
 
 def changePlayer():
     global actualPlayer
+    print("player Changed from: ", actualPlayer)
     GPIO.output(setup.active_led[actualPlayer], 0)
     x = random.randint(0, setup.active_player - 1)
     while x == actualPlayer:
         x = random.randint(0, setup.active_player - 1)
     actualPlayer = x
     GPIO.output(setup.active_led[actualPlayer], 1)
+    print("player Changed to: ", actualPlayer)
+    print("")
 
 
 def startGame():
@@ -56,6 +59,8 @@ def startGame():
             setup.subtractLifeFromPlayer(setup.active_button.index(wrong_button_push_player))
             sounds.stopSound()
             break
+
+    print("Spiel vorbei")
 
     for i in setup.active_button:
         GPIO.remove_event_detect(i)
