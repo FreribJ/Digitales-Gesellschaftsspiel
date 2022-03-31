@@ -49,9 +49,6 @@ def startGame():
     while time.time() - startTime <= timeLength:
         if GPIO.event_detected(setup.active_button[actualPlayer]):
             changePlayer()
-            for i in setup.active_button:
-                GPIO.event_detected(i)
-            continue
         for i in setup.active_button:
             if not(i == setup.active_button[actualPlayer]):
                 if GPIO.event_detected(i):
