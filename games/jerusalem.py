@@ -79,10 +79,6 @@ def startGame():
     selected_num = setup.active_player - 1
 
     while selected_num > 0:
-        if not selected_num == setup.active_player-1:
-            if waitForContinue() == "abbruch":
-                break
-            animations.all_off()
 
         #Starten
         selectRandom()
@@ -100,6 +96,9 @@ def startGame():
 
         selected_num -= 1
 
+        if waitForContinue() == "abbruch":
+            break
+        animations.all_off()
+
     #Ende
-    animations.all_off()
     remove_callback()
