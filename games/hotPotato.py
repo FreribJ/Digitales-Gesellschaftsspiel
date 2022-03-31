@@ -54,6 +54,7 @@ def startGame():
                     break
         if wrong_button_push:
             setup.subtractLifeFromPlayer(setup.active_button.index(wrong_button_push_player))
+            sounds.stopSound()
             break
 
     for i in setup.active_button:
