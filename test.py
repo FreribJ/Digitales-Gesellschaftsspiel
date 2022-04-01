@@ -5,7 +5,7 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
-led = 9
+led = 5
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(11, GPIO.IN)
