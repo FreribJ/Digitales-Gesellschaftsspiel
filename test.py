@@ -11,4 +11,5 @@ GPIO.setup(11, GPIO.IN)
 GPIO.add_event_detect(11, GPIO.RISING)
 
 while True:
-    print("event detected: ", GPIO.event_detected(11))
+    if GPIO.event_detected(11):
+        print("event detected: ")
