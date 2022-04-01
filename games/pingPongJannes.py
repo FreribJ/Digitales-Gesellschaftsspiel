@@ -47,7 +47,7 @@ def startGame():
 
 
         for i in setup.active_button:
-            if GPIO.event_detected(i):
+            GPIO.event_detected(i)
 
 
         timesPressed = 0
