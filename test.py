@@ -15,3 +15,6 @@ while True:
     GPIO.output(5, 1)
     if GPIO.event_detected(11):
         print("event detected: ")
+    GPIO.output(5, 0)
+    if GPIO.event_detected(11):
+        print("event detected: ")
