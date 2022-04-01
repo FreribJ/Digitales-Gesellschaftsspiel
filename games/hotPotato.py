@@ -48,6 +48,7 @@ def startGame():
             print("Event erkannt für: ", actualPlayer)
             changePlayer()
             print("Player changed zu: ", actualPlayer)
+            time.sleep(0.1)
         for i in setup.active_button:
             if not(i == setup.active_button[actualPlayer]):
                 if GPIO.event_detected(i):
@@ -58,8 +59,6 @@ def startGame():
             setup.subtractLifeFromPlayer(setup.active_button.index(wrong_button_push_player))
             sounds.stopSound()
             break
-
-    print("Spiel vorbei")
 
     for i in setup.active_button:
         GPIO.remove_event_detect(i)
