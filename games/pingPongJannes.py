@@ -43,8 +43,10 @@ def startGame():
 
     while setup.areAllPlayerAlive():
 
-        for i in setup.active_button:
-            GPIO.event_detected(i)
+        while True:
+            for i in setup.active_button:
+                if GPIO.event_detected(i):
+                    print(i)
 
         timesPressed = 0
         reduceTime()
