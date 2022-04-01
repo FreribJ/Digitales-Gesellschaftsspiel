@@ -41,12 +41,14 @@ def startGame():
     global timeToPress, timesPressed
     initializeGame()
 
+    print(setup.active_button)
+
     while setup.areAllPlayerAlive():
 
 
         for i in setup.active_button:
             if GPIO.event_detected(i):
-                print(i)
+
 
         timesPressed = 0
         reduceTime()
@@ -69,7 +71,7 @@ def startGame():
                 setup.subtractLifeFromPlayerArray(wrong_button_push_players)
                 break
 
-            print("vorher erkannt: ", GPIO.event_detected(actualPlayer))
+            print("vorher erkannt: ", GPIO.event_detected(setup.active_button[actualPlayer]))
 
             #Auf Richtigen knopfdruck prüfen
             if GPIO.event_detected(setup.active_button[actualPlayer]):
