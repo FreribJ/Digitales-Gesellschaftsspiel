@@ -29,15 +29,12 @@ def initializeGame():
 
 def changePlayer():
     global actualPlayer
-    print("player Changed from: ", actualPlayer)
     GPIO.output(setup.active_led[actualPlayer], 0)
     x = random.randint(0, setup.active_player - 1)
     while x == actualPlayer:
         x = random.randint(0, setup.active_player - 1)
     actualPlayer = x
     GPIO.output(setup.active_led[actualPlayer], 1)
-    print("player Changed to: ", actualPlayer)
-    print("")
 
 
 def startGame():
@@ -48,7 +45,9 @@ def startGame():
     sounds.playSoundAtPosition("bombticking.mp3", 30.6-timeLength)
     while time.time() - startTime <= timeLength:
         if GPIO.event_detected(setup.active_button[actualPlayer]):
+            print("Event erkannt für: ", actualPlayer)
             changePlayer()
+            print("Player changed zu: ", actualPlayer)
         for i in setup.active_button:
             if not(i == setup.active_button[actualPlayer]):
                 if GPIO.event_detected(i):
