@@ -13,4 +13,3 @@ GPIO.add_event_detect(11, GPIO.RISING)
 while True:
     print("status: ", GPIO.input(11))
     print("event detected: ", GPIO.event_detected(11))
-    time.sleep(0.1)
