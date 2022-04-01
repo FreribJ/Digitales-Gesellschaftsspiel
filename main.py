@@ -76,7 +76,7 @@ try:
         #Spielstart:
         if menu_level == 3:
             #Abbruch einstellen
-            GPIO.add_event_detect(setup.control_button[0], GPIO.RISING, callbackEndGame, 200)
+            GPIO.add_event_detect(setup.control_button[0], GPIO.FALLING, callbackEndGame, 200)
 
             #Leben Resetten
             setup.player_life = []

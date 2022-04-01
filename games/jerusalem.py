@@ -17,7 +17,10 @@ selected_led_arr = []
 #Initialzes Callback
 def initializeGame():
     for switch in setup.all_button:
-        GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
+        if not switch == setup.control_button[0]:
+            GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
+        else:
+            GPIO.add_event_detect(switch, GPIO.FALLING, bouncetime=400)
 
 def remove_callback():
     for i in setup.all_button:
