@@ -69,6 +69,8 @@ def startGame():
                 setup.subtractLifeFromPlayerArray(wrong_button_push_players)
                 break
 
+            print("vorher erkannt: ", GPIO.event_detected(actualPlayer))
+
             #Auf Richtigen knopfdruck prüfen
             if GPIO.event_detected(setup.active_button[actualPlayer]):
                 print("Erkannt: ", actualPlayer)
