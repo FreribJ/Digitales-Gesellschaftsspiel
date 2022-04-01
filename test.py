@@ -9,7 +9,7 @@ GPIO.setmode(GPIO.BCM)
 GPIO.setup(11, GPIO.IN)
 GPIO.setup(5, GPIO.OUT)
 
-GPIO.add_event_detect(11, GPIO.RISING, bouncetime=200)
+GPIO.add_event_detect(11, GPIO.BOTH, bouncetime=200)
 
 while True:
     GPIO.output(5, 1)
