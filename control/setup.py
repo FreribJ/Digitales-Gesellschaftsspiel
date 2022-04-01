@@ -39,6 +39,7 @@ def initialize():
 #Removes Callback
 def remove_callback():
     for i in active_button:
+        print(i, ": ")
         GPIO.remove_event_detect(i)
 
 def subtractLifeFromPlayer(loser_num):
