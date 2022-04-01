@@ -71,6 +71,7 @@ def startGame():
 
             #Auf Richtigen knopfdruck prüfen
             if GPIO.event_detected(setup.active_button[actualPlayer]):
+                print("Erkannt")
                 sounds.playPingPong()
                 reduceTime()
                 changePlayer()
