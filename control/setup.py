@@ -34,10 +34,7 @@ def initialize():
     for i in all_led:
         GPIO.setup(i, GPIO.OUT)
     for i in all_button:
-        if not i == control_button[0]: #Da dieser Channel einen physischen Pull-Up hat
-            GPIO.setup(i, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-        else:
-            GPIO.setup(i, GPIO.IN, pull_up_down=GPIO.PUD_OFF)
+        GPIO.setup(i, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 #Removes Callback
 def remove_callback():
