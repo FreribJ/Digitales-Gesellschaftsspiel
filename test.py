@@ -8,7 +8,7 @@ except ImportError:
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(11, GPIO.IN)
 
-GPIO.add_event_detect(11, GPIO.RISING)
+GPIO.add_event_detect(11, GPIO.RISING, bouncetime=200)
 
 while True:
     if GPIO.event_detected(11):
