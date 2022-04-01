@@ -21,7 +21,6 @@ def initializeGame():
     for i in setup.active_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=200)
 
-
 def changePlayer():
     global actualPlayer
     GPIO.output(setup.active_led[actualPlayer], 0)
@@ -41,14 +40,9 @@ def startGame():
     global timeToPress, timesPressed
     initializeGame()
 
-    print(setup.active_button)
-
     while setup.areAllPlayerAlive():
-
-
         for i in setup.active_button:
             GPIO.event_detected(i)
-
 
         timesPressed = 0
         reduceTime()

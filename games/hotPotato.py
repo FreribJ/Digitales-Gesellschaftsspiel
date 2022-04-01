@@ -45,9 +45,7 @@ def startGame():
     sounds.playSoundAtPosition("bombticking.mp3", 30.6-timeLength)
     while time.time() - startTime <= timeLength:
         if GPIO.event_detected(setup.active_button[actualPlayer]):
-            print("Event erkannt für: ", actualPlayer)
             changePlayer()
-            print("Player changed zu: ", actualPlayer)
         for i in setup.active_button:
             if not(i == setup.active_button[actualPlayer]):
                 if GPIO.event_detected(i):
