@@ -48,7 +48,6 @@ def startGame():
             print("Event erkannt für: ", actualPlayer)
             changePlayer()
             print("Player changed zu: ", actualPlayer)
-            time.sleep(1)
         for i in setup.active_button:
             if not(i == setup.active_button[actualPlayer]):
                 if GPIO.event_detected(i):
