@@ -34,7 +34,6 @@ def initialize():
     for i in all_led:
         GPIO.setup(i, GPIO.OUT)
     for i in all_button:
-        print(i, ": ")
         GPIO.setup(i, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 #Removes Callback
