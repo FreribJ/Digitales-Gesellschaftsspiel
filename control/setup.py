@@ -16,7 +16,7 @@ player_button = [11, 10, 15, 23, 25, 7, 16, 21, 19, 6]
 max_player = len(player_button)
 
 all_led = [22, 27, 17, 5, 9, 14, 18, 24, 8, 12, 20, 26, 13]
-all_button = [2, 4, 11, 10, 15, 23, 25, 7, 16, 21, 19, 6]
+all_button = [4, 11, 10, 15, 23, 25, 7, 16, 21, 19, 6]
 
 active_player = 0
 active_button = []
