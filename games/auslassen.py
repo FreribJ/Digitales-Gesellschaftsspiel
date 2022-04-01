@@ -20,7 +20,7 @@ passing_number = 7 #Nummer einstellbar
 #Initialzes Callback
 def initializeGame():
     for switch in setup.active_button:
-        GPIO.add_event_detect(switch, GPIO.FALLING, bouncetime=800)
+        GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=800)
 
 
 def setNext():
