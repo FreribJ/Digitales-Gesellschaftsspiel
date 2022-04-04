@@ -1,4 +1,4 @@
-# Partyspiel
+# Digitales Gesellschaftsspiel
 
 ## Menü:
 Mit Next und Back kann durch das Menü navigiert werden. Die grünen LEDs zeigen das aktuelle Menü an.
