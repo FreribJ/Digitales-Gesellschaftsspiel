@@ -10,17 +10,11 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
-ran_num = 0
-nummer = []
 
 # Variablen
 
 #Initialzes Callback
+def initialize_callback():
     for switch in setup.active_button:
         GPIO.add_event_detect(switch, GPIO.RISING, callback_zeitspeichern, 200)
 
-#Nummern Speichern
-def callback_zeitspeichern(switch):
-    global nummer
-    player = setup.active_button.index(switch)
-    nummer[player] = nummer[player] + 1
