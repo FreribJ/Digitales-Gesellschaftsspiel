@@ -82,4 +82,6 @@ def startGame():
         for i in setup.active_button:
             GPIO.event_detected(i)
 
+        setup.waitForContinue()
+
     setup.remove_callback()

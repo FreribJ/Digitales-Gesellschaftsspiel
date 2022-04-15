@@ -53,6 +53,7 @@ def startGame():
         loser = zeiten.index(max(zeiten))
 
         setup.subtractLifeFromPlayerWithWinner(loser, winner)
+        setup.waitForContinue()
 
     #Ende
     setup.remove_callback()

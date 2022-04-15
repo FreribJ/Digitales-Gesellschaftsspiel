@@ -83,4 +83,6 @@ def startGame():
 
         reihenfolge = []
 
+        setup.waitForContinue()
+
     setup.remove_callback()

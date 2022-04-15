@@ -1,4 +1,5 @@
 # Other Import
+import math
 import random
 import time
 
@@ -10,18 +11,15 @@ except ImportError:
 
 # Variable Import
 from control import setup
+from helper import sounds
 
 actualPlayer = 0
 timeToPress = 0
+timesPressed = 0
 
 def initializeGame():
-    global actualPlayer, timeToPress
-    actualPlayer = random.randint(0, setup.active_player - 1)
-    timeToPress = 2
-    GPIO.output(setup.active_led[actualPlayer], 1)
     for i in setup.active_button:
         GPIO.add_event_detect(i, GPIO.RISING, bouncetime=200)
-
 
 def changePlayer():
     global actualPlayer
@@ -32,32 +30,50 @@ def changePlayer():
     actualPlayer = x
     GPIO.output(setup.active_led[actualPlayer], 1)
 
+def reduceTime():
+    global timeToPress, timesPressed
+    timesPressed += 1
+    timeToPress = 2 - 0.35 * math.log(timesPressed) #alte Berechnung: timeToPress * 0.96 #Faktor um die Zeit kanpper wird
 
+#originally from jan, but fixed
 def startGame():
+    global timeToPress, timesPressed
+    initializeGame()
+
     while setup.areAllPlayerAlive():
+        for i in setup.active_button:
+            GPIO.event_detected(i)
 
-        initializeGame()
-        start_time = time.time()
-        time_over = False
+        timesPressed = 0
+        reduceTime()
+        changePlayer()
 
-        while not time_over:
-            if start_time + timeToPress > time.time():
-                time_over = True
-                break
-            if GPIO.event_detected(setup.active_button[actualPlayer]):
-                changePlayer()
-                break
+        while True:
+            wrong_button_push = False
+            wrong_button_push_players = []
+
+            #Start bzw. Wartezeit
+            time.sleep(timeToPress)
+            #Auf Falschdruck prüfen
             for i in setup.active_button:
                 if not (setup.active_button.index(i) == actualPlayer):
                     if GPIO.event_detected(i):
                         wrong_button_push = True
-                        wrong_button_push_player = i
+                        wrong_button_push_players.append(setup.active_button.index(i))
+
             if wrong_button_push:
-                setup.subtractLifeFromPlayer(setup.active_button.index(wrong_button_push_player))
+                setup.subtractLifeFromPlayerArray(wrong_button_push_players)
                 break
 
-        if time_over:
-            setup.subtractLifeFromPlayer(actualPlayer)
+            #Auf Richtigen knopfdruck prüfen
+            if GPIO.event_detected(setup.active_button[actualPlayer]):
+                sounds.playPingPong()
+                reduceTime()
+                changePlayer()
+            else:
+                setup.subtractLifeFromPlayer(actualPlayer)
+                break
 
-        for i in setup.active_button:
-            GPIO.remove_event_detect(i)
+
+    for i in setup.active_button:
+        GPIO.remove_event_detect(i)

@@ -62,5 +62,6 @@ def startGame():
 
     if not wrong_button_push:
         setup.subtractLifeFromPlayer(actualPlayer)
+    setup.waitForContinue()
     if setup.areAllPlayerAlive():
         startGame()
