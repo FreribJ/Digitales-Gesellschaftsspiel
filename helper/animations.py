@@ -60,3 +60,13 @@ def one_blink(led, times, time_sleep):
         GPIO.output(led, 0)
         if not t == times-1:
             time.sleep(time_sleep)
+
+def array_blink(leds, times, time_sleep):
+    for t in range(times):
+        for i in leds:
+            GPIO.output(i, 1)
+        time.sleep(time_sleep)
+        for i in leds:
+            GPIO.output(i, 0)
+        if not t == times-1:
+            time.sleep(time_sleep)

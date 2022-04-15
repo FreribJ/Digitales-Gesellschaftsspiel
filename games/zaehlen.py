@@ -22,7 +22,7 @@ def callback_zeitspeichern(switch):
 #Initialzes Callback
 def initialize_callback():
     for switch in setup.active_button:
-        GPIO.add_event_detect(switch, GPIO.RISING, callback_zeitspeichern, 200)
+        GPIO.add_event_detect(switch, GPIO.RISING, callback_zeitspeichern, 150)
 
 def startGame():
     #Vorbereiten
@@ -48,6 +48,9 @@ def startGame():
 
         #Auf Ende Warten
         time.sleep(8)
+
+        print("Vorgegeben: ", ran_num)
+        print("gemacht: ", nummer)
 
         #Gewinner/Verlierer berechnen
         for player in range(setup.active_player):

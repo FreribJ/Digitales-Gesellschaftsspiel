@@ -81,8 +81,7 @@ def subtractLifeFromPlayerArrayWithWinnerArray(loser_num, winner_num):
 
     animations.all_blink(5, 0.3)
 
-    for i in winner_num:
-        animations.one_blink(active_led[i], 5, 0.2)
+    animations.array_blink(winner_num, 5, 0.2)
     for i in loser_num:
         substractLifeAnimation(i)
         player_life[i] -= 1
