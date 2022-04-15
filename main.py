@@ -1,6 +1,6 @@
 import time
 
-from games import hotPotato, reaktionstest, pingPongJannes, fourColorGame, zaehlen, auslassen, jerusalem
+from games import hotPotato, reaktionstest, pingPongJannes, fourColorGame, zaehlen, auslassen, jerusalem, zeitSchätzen
 from helper import animations, sounds
 from control import setup, selection
 
@@ -108,6 +108,7 @@ try:
 
             elif setup.game_selected == 5:
                 print("Game -> Zeit schätzen")
+                zeitSchätzen.startGame()
 
             elif setup.game_selected == 6:
                 print("Game -> Auslassen")
