@@ -17,12 +17,6 @@ skiped_player = 0
 started_player = 0
 passing_number = 7 #Nummer einstellbar
 
-#Initialzes Callback
-def initializeGame():
-    for switch in setup.active_button:
-        GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=800)
-
-
 def setNext():
     global counter, next_player, started_player, skiped_player
     skiped_player = 0
@@ -58,7 +52,7 @@ def waitForPress():
 def startGame():
     global next_player, passing_number, counter, started_player, skiped_player
 
-    initializeGame()
+    setup.add_eventDetect(400)
     while setup.areAllPlayerAlive():
         started_player = random.randint(0, setup.active_player - 1) #Zufälliger Startspieler
         next_player = started_player
@@ -78,11 +72,10 @@ def startGame():
                 setup.subtractLifeFromPlayer(playerPressed)
                 break
 
-        # Cleanup:
-        for i in setup.active_button:
-            GPIO.event_detected(i)
-
         if setup.areAllPlayerAlive():
             setup.waitForContinue()
 
-    setup.remove_callback()
+        # Cleanup:
+        setup.reset_eventDetect()
+
+    setup.remove_eventDetect()

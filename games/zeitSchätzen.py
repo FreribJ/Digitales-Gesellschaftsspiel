@@ -67,5 +67,5 @@ def startGame():
         if setup.areAllPlayerAlive():
             setup.waitForContinue()
 
-    setup.remove_callback()
+    setup.remove_eventDetect()
 

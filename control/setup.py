@@ -39,9 +39,17 @@ def initialize():
         GPIO.setup(i, GPIO.IN, pull_up_down=GPIO.PUD_OFF)
 
 #Removes Callback
-def remove_callback():
+def remove_eventDetect():
     for i in active_button:
         GPIO.remove_event_detect(i)
+
+def reset_eventDetect():
+    for i in active_button:
+        GPIO.event_detected(i)
+
+def add_eventDetect(bouncetime_ms):
+    for i in active_button:
+        GPIO.add_event_detect(i, GPIO.RISING, bouncetime=bouncetime_ms)
 
 def subtractLifeFromPlayer(loser_num):
 

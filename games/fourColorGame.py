@@ -14,11 +14,6 @@ except ImportError:
 reihenfolge = []
 
 
-#Initialzes Callback
-def initializeGame():
-        for switch in setup.active_button:
-            GPIO.add_event_detect(switch, GPIO.RISING, bouncetime=400)
-
 def nextRound():
     global reihenfolge
     len_reihenfolge = len(reihenfolge)
@@ -53,7 +48,7 @@ def waitForPress():
 def startGame():
     global reihenfolge
 
-    initializeGame()
+    setup.add_eventDetect(400)
     while setup.areAllPlayerAlive():
         while True:
             abbruch = [False]
@@ -86,4 +81,6 @@ def startGame():
         if setup.areAllPlayerAlive():
             setup.waitForContinue()
 
-    setup.remove_callback()
+        setup.reset_eventDetect()
+
+    setup.remove_eventDetect()

@@ -23,8 +23,7 @@ def initializeGame():
     GPIO.output(setup.active_led[actualPlayer], 1)
     timeLength = random.randint(15, 30)
     startTime = time.time()
-    for i in setup.active_button:
-        GPIO.add_event_detect(i, GPIO.RISING, bouncetime=500)
+    setup.add_eventDetect(200)
 
 
 def changePlayer():
@@ -57,8 +56,7 @@ def startGame():
             sounds.stopSound()
             break
 
-    for i in setup.active_button:
-        GPIO.remove_event_detect(i)
+    setup.remove_eventDetect()
 
     if not wrong_button_push:
         setup.subtractLifeFromPlayer(actualPlayer)
