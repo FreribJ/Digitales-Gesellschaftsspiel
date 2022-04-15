@@ -53,10 +53,18 @@ def startGame():
         for player in range(setup.active_player):
             nummer[player] = max(nummer[player], ran_num) - min(nummer[player], ran_num)
 
-        winner = nummer.index(min(nummer))
-        loser = nummer.index(max(nummer))
+        minimum = min(nummer)
+        maximum = max(nummer)
+        winner = []
+        loser = []
+        for player in range(setup.active_player):
+            if nummer[player] == maximum:
+                loser.append(player)
+            elif nummer[player] == minimum:
+                winner.append(player)
 
-        setup.subtractLifeFromPlayerWithWinner(loser, winner)
+        setup.subtractLifeFromPlayerArrayWithWinnerArray(loser, winner)
+
         if setup.areAllPlayerAlive():
             setup.waitForContinue()
 

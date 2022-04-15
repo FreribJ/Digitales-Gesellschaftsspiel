@@ -1,3 +1,2 @@
-import random
-
-print(random.randint(1,2))
+test = [1, 2, 2, 3]
+print(min(test)  )
