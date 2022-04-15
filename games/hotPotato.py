@@ -63,4 +63,5 @@ def startGame():
 
     if setup.areAllPlayerAlive():
         setup.waitForContinue()
+    if setup.areAllPlayerAlive():
         startGame()
