@@ -7,6 +7,8 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
+#Setting:
+WAIT_FOR_CONTINUE = True
 
 #3 -> Back; 4 -> Next
 control_button = [3, 4]
@@ -101,6 +103,25 @@ def substractLifeAnimation(loser_num):
 
     time.sleep(1)
     GPIO.output(active_led[loser_num], 0)
+
+def waitForContinue():
+    if WAIT_FOR_CONTINUE:
+        GPIO.add_event_detect(0, GPIO.FALLING, bouncetime=200)
+        GPIO.add_event_detect(1, GPIO.RISING, bouncetime=200)
+
+        while not GPIO.event_detected(control_button[1]):
+            time.sleep(0.5)
+            GPIO.output(control_led[1], 1)
+            time.sleep(0.5)
+            GPIO.output(control_led[1], 0)
+            if GPIO.event_detected(control_button[0]):
+                for i in range(len(player_life)):
+                    player_life[i] = 0
+                break
+
+        GPIO.remove_event_detect(control_button[0])
+        GPIO.remove_event_detect(control_button[1])
+
 
 def areAllPlayerAlive():
     for i in player_life:
