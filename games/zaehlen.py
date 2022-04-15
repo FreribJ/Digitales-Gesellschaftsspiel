@@ -47,18 +47,23 @@ def startGame():
 
         #Gewinner/Verlierer berechnen
         for player in range(setup.active_player):
-            nummer[player] = max(nummer[player], ran_num) - min(nummer[player], ran_num)
+            nummer[player] = abs(nummer[player] - ran_num)
 
         minimum = min(nummer)
         maximum = max(nummer)
         winner = []
         loser = []
         for player in range(setup.active_player):
-            if nummer[player] == maximum:
-                loser.append(player)
-            elif nummer[player] == minimum:
+            if nummer[player] == minimum:
                 winner.append(player)
+            elif nummer[player] == maximum:
+                loser.append(player)
 
+        print("nummer: ", nummer)
+        print("minimum: ", minimum)
+        print("maximum: ", maximum)
+        print("winner: ", winner)
+        print("loser: ", loser)
         setup.subtractLifeFromPlayerArrayWithWinnerArray(loser, winner)
 
         if setup.areAllPlayerAlive():
