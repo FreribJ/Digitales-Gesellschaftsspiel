@@ -19,10 +19,15 @@ def callback_hochzaehlen(switch):
     player = setup.active_button.index(switch)
     nummer[player] = nummer[player] + 1
 
+#Initialzes Callback
+def initialize_callback():
+    for switch in setup.active_button:
+        GPIO.add_event_detect(switch, GPIO.RISING, callback_hochzaehlen, 150)
+
 def startGame():
     #Vorbereiten
     global nummer, ran_num
-    setup.add_eventDetect(250)
+    initialize_callback()
 
     while setup.areAllPlayerAlive():
         #Warten
@@ -45,7 +50,6 @@ def startGame():
         #Auf Ende Warten
         time.sleep(6)
 
-        print("nummer vorher: ", nummer)
         #Gewinner/Verlierer berechnen
         for player in range(setup.active_player):
             nummer[player] = abs(nummer[player] - ran_num)
@@ -60,11 +64,6 @@ def startGame():
             elif nummer[player] == maximum:
                 loser.append(player)
 
-        print("nummer: ", nummer)
-        print("minimum: ", minimum)
-        print("maximum: ", maximum)
-        print("winner: ", winner)
-        print("loser: ", loser)
         setup.subtractLifeFromPlayerArrayWithWinnerArray(loser, winner)
 
         if setup.areAllPlayerAlive():
