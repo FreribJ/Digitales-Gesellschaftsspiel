@@ -68,7 +68,9 @@ def startGame():
                 setup.subtractLifeFromPlayer(actualPlayer)
                 break
 
-        setup.waitForContinue()
+        if setup.areAllPlayerAlive():
+            setup.waitForContinue()
+            time.sleep(2)
         setup.reset_eventDetect()
 
 
