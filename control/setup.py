@@ -106,8 +106,8 @@ def substractLifeAnimation(loser_num):
 
 def waitForContinue():
     if WAIT_FOR_CONTINUE:
-        GPIO.add_event_detect(0, GPIO.FALLING, bouncetime=200)
-        GPIO.add_event_detect(1, GPIO.RISING, bouncetime=200)
+        GPIO.add_event_detect(control_button[0], GPIO.FALLING, bouncetime=200)
+        GPIO.add_event_detect(control_button[1], GPIO.RISING, bouncetime=200)
 
         while not GPIO.event_detected(control_button[1]):
             time.sleep(0.5)
