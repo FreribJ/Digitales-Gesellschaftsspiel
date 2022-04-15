@@ -14,15 +14,17 @@ ran_num = 0
 nummer = []
 
 #Nummern Speichern
-def callback_zeitspeichern(switch):
-    global nummer
+def callback_hochzaehlen(switch):
     player = setup.active_button.index(switch)
+    animations.one_blink(switch, 1, 0.2)
+    global nummer
     nummer[player] = nummer[player] + 1
+
 
 #Initialzes Callback
 def initialize_callback():
     for switch in setup.active_button:
-        GPIO.add_event_detect(switch, GPIO.RISING, callback_zeitspeichern, 150)
+        GPIO.add_event_detect(switch, GPIO.RISING, callback_hochzaehlen, 200)
 
 def startGame():
     #Vorbereiten
