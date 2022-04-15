@@ -34,9 +34,9 @@ def startGame():
         animations.all_blink(1, random.randint(2, 5))
 
         #Start
+        nummer = []
         ran_num = random.randint(9, 21)
         time.sleep(1)
-        nummer = []
         for i in range(setup.active_player):
             nummer.append(0)
 
@@ -47,7 +47,7 @@ def startGame():
             time.sleep(sleepTime/1000)
 
         #Auf Ende Warten
-        time.sleep(8)
+        time.sleep(6)
 
         print("Vorgegeben: ", ran_num)
         print("gemacht: ", nummer)
