@@ -45,6 +45,7 @@ def startGame():
         #Auf Ende Warten
         time.sleep(6)
 
+        print("nummer vorher: ", nummer)
         #Gewinner/Verlierer berechnen
         for player in range(setup.active_player):
             nummer[player] = abs(nummer[player] - ran_num)
