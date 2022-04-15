@@ -34,7 +34,7 @@ def startGame():
     while setup.areAllPlayerAlive():
         #Setup
         zeitZuSchaetzen = random.randint(2, min(10, setup.max_player))
-        animations.one_blink(setup.all_led[zeitZuSchaetzen-1], 1, 2)
+        animations.one_blink(setup.player_led[zeitZuSchaetzen-1], 1, 2)
         time.sleep(1)
 
         # Start
