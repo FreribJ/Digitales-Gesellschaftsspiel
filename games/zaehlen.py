@@ -37,6 +37,7 @@ def startGame():
         nummer = []
         for i in range(setup.active_player):
             nummer.append(0)
+
         ran_num = random.randint(9, 21)
         time.sleep(1)
 
