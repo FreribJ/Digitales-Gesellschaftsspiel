@@ -74,6 +74,8 @@ def startGame():
                 setup.subtractLifeFromPlayer(actualPlayer)
                 break
 
+        setup.waitForContinue()
+
 
     for i in setup.active_button:
         GPIO.remove_event_detect(i)

@@ -64,7 +64,8 @@ def startGame():
                 farest_time = p_time
 
         setup.subtractLifeFromPlayerWithWinner(farest_player, closest_player)
-        setup.waitForContinue()
+        if setup.areAllPlayerAlive():
+            setup.waitForContinue()
 
     setup.remove_callback()
 

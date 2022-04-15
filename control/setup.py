@@ -109,6 +109,7 @@ def waitForContinue():
         GPIO.add_event_detect(control_button[0], GPIO.FALLING, bouncetime=200)
         GPIO.add_event_detect(control_button[1], GPIO.RISING, bouncetime=200)
 
+        print("Warten auf Antwort...")
         while not GPIO.event_detected(control_button[1]):
             time.sleep(0.5)
             GPIO.output(control_led[1], 1)
