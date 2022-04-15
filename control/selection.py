@@ -21,9 +21,9 @@ def player_selection():
     # Event-Detect
     for i in setup.all_button:
         if not i == setup.control_button[0]:
-            GPIO.add_event_detect(i, GPIO.RISING, bouncetime=1000)
+            GPIO.add_event_detect(i, GPIO.RISING, bouncetime=300)
         else:
-            GPIO.add_event_detect(i, GPIO.FALLING, bouncetime=1000)
+            GPIO.add_event_detect(i, GPIO.FALLING, bouncetime=300)
 
     abbruch = False
     while not (GPIO.event_detected(setup.control_button[1]) and not sum(playeractive) <= 1): #Wartet auf Next, beachtet aber, dass mindestens ein Spieler ausgewählt wurde
@@ -70,9 +70,9 @@ def life_selection():
     # Event-Detect
     for i in setup.all_button:
         if not i == setup.control_button[0]:
-            GPIO.add_event_detect(i, GPIO.RISING, bouncetime=1000)
+            GPIO.add_event_detect(i, GPIO.RISING, bouncetime=300)
         else:
-            GPIO.add_event_detect(i, GPIO.FALLING, bouncetime=1000)
+            GPIO.add_event_detect(i, GPIO.FALLING, bouncetime=300)
 
     abbruch = False
     while not GPIO.event_detected(setup.control_button[1]):
@@ -106,9 +106,9 @@ def game_selection():
     # Event-Detect
     for i in setup.all_button:
         if not i == setup.control_button[0]:
-            GPIO.add_event_detect(i, GPIO.RISING, bouncetime=1000)
+            GPIO.add_event_detect(i, GPIO.RISING, bouncetime=300)
         else:
-            GPIO.add_event_detect(i, GPIO.FALLING, bouncetime=1000)
+            GPIO.add_event_detect(i, GPIO.FALLING, bouncetime=300)
 
     abbruch = False
     while not GPIO.event_detected(setup.control_button[1]):
