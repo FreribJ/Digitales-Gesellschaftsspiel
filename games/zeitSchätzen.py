@@ -1,8 +1,8 @@
-import time
 import random
+import time
 
 from control import setup
-from helper import animations, sounds
+from helper import animations
 
 # GPIO Import
 try:
@@ -10,24 +10,55 @@ try:
 except ImportError:
     import FakeRPi.GPIO as GPIO
 
+zeiten = []
+zeitZuSchaetzen = 10 #Zu schätzende Zeit in Sekunden
 
-# Variablen
+#Zeiten Speichern
+def callback_zeitspeichern(switch):
+    zeit = time.time()
+    global zeiten
+
+    player = setup.active_button.index(switch)
+    if zeiten[player] == 0:
+        zeiten[player] = zeit
 
 #Initialzes Callback
-def initialize_callback():
+def initializeGame():
     for switch in setup.active_button:
         GPIO.add_event_detect(switch, GPIO.RISING, callback_zeitspeichern, 200)
 
-# Pseudocode:
-# Kurze Erklärung wie das Spiel funktionieren soll: Nach der Spieler- und Lebensauswahl beginnen die Spielrunden. Die LEDs leuchten eine zufällige Anzahl an Sekunden (Wahrscheinlich am besten zwischen 5 und 20 Sekunden oder sowas)
-# Nachdem die LEDs wieder aus sind, können die Spieler schätzen wie lange die LEDs wohl geleuchtet haben und ihren Guess in Sekunden durch Knopfdruck hochzählen. 1 Kmopfdruck = 1 Sekunde. Am Ende verlieren Die die am weitesten
-# von der Tatsächlichen Zahl entfernt waren ein Leben.
-# Ich habe aber wirklich gar keinen Plan mehr von Python
+def startGame():
+    global zeiten
+    initializeGame()
 
-def initializeGame():
-#Initialisierung der einzelnen Spieler
-GPIO.output(setup.active_led, alle initialisierten Spieler)
+    while setup.areAllPlayerAlive():
+        # Start
+        animations.all_blink(1, 2)
 
-#Irgendwas was die LEDs eine Zufällige Zeit lang leuchten lässt
-def randomDuration():
-   random.randint(5, 20)
+        zeiten = []
+        for i in range(setup.active_player):
+            zeiten.append(0)
+
+        acutalZeitZuSchaetzen = time.time() + zeitZuSchaetzen
+
+        # Auf Ende Warten
+        while zeiten.count(0) > 0:
+            time.sleep(1)
+
+        closest_time = abs(zeiten[0] - acutalZeitZuSchaetzen)
+        closest_player = 0
+        farest_time = abs(zeiten[0] - acutalZeitZuSchaetzen)
+        farest_player = 0
+        for i in range(setup.active_player-1):
+            p_time = abs(zeiten[i+1] - acutalZeitZuSchaetzen)
+            if p_time < closest_time:
+                closest_player = i + 1
+                closest_time = p_time
+            elif p_time > farest_time:
+                farest_player = i + 1
+                farest_time = p_time
+
+        setup.subtractLifeFromPlayerWithWinner(farest_player, closest_player)
+
+    setup.remove_callback()
+
