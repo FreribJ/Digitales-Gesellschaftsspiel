@@ -1,6 +1,6 @@
 import time
 
-from games import hotPotato, reaktionstest, pingPongJannes, fourColorGame, zaehlen, auslassen, jerusalem, zeitSchätzen
+from games import hotPotato, reaktionstest, pingPong, fourColorGame, zaehlen, auslassen, jerusalem, zeitSchätzen
 from helper import animations, sounds
 from control import setup, selection
 
@@ -8,11 +8,6 @@ try:
     import RPi.GPIO as GPIO
 except ImportError:
     import FakeRPi.GPIO as GPIO
-
-#Sets all lives to 1 for a last round
-def callbackEndGame(switch):
-    for i in range(len(setup.player_life)):
-        setup.player_life[i] = 1
 
 #Programm-Initialize:
 setup.initialize()
@@ -75,9 +70,6 @@ try:
 
         #Spielstart:
         if menu_level == 3:
-            #Abbruch einstellen
-            GPIO.add_event_detect(setup.control_button[0], GPIO.FALLING, callbackEndGame, 200)
-
             #Leben Resetten
             setup.player_life = []
             for i in range(setup.active_player):
@@ -104,7 +96,7 @@ try:
 
             elif setup.game_selected == 4:
                 print("Game -> PingPong")
-                pingPongJannes.startGame()
+                pingPong.startGame()
 
             elif setup.game_selected == 5:
                 print("Game -> Zeit schätzen")
@@ -118,7 +110,6 @@ try:
                 print("Game -> Jerusalem")
                 jerusalem.startGame()
 
-
             elif setup.game_selected == 8:
                 print("Game -> Empty")
 
@@ -126,7 +117,6 @@ try:
                 print("Game -> Empty")
 
             #Ende
-            GPIO.remove_event_detect(setup.control_button[0])
             animations.rolls(setup.player_led, 1)
             menu_level = 2
 
