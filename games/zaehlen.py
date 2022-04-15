@@ -35,10 +35,10 @@ def startGame():
 
         #Start
         nummer = []
-        ran_num = random.randint(9, 21)
-        time.sleep(1)
         for i in range(setup.active_player):
             nummer.append(0)
+        ran_num = random.randint(9, 21)
+        time.sleep(1)
 
         # Blinken
         for t in range(ran_num):
