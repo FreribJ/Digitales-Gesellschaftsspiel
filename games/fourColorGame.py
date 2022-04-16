@@ -29,8 +29,7 @@ def nextRound():
     animations.one_blink(setup.active_led[x], 3, 0.1)
 
     # Cleanup:
-    for i in setup.active_button:
-        GPIO.event_detected(i)
+    setup.reset_eventDetect()
 
 
 def waitForPress():
@@ -80,7 +79,5 @@ def startGame():
 
         if setup.areAllPlayerAlive():
             setup.waitForContinue()
-
-        setup.reset_eventDetect()
 
     setup.remove_eventDetect()
