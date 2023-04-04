@@ -29,7 +29,6 @@ def player_selection():
     while not (GPIO.event_detected(setup.control_button[1]) and not sum(playeractive) <= 1): #Wartet auf Next, beachtet aber, dass mindestens ein Spieler ausgewählt wurde
         for i in setup.player_button:
             if GPIO.event_detected(i):
-                sounds.playButtonPush()
                 number = setup.player_button.index(i)
                 if playeractive[number]:
                     playeractive[number] = False
@@ -78,7 +77,6 @@ def life_selection():
     while not GPIO.event_detected(setup.control_button[1]):
         for i in setup.player_button:
             if GPIO.event_detected(i):
-                sounds.playButtonPush()
                 number = setup.player_button.index(i)
                 GPIO.output(setup.player_led[setup.max_life - 1], 0)
                 setup.max_life = number + 1
@@ -114,7 +112,6 @@ def game_selection():
     while not GPIO.event_detected(setup.control_button[1]):
         for i in setup.player_button:
             if GPIO.event_detected(i):
-                sounds.playButtonPush()
                 number = setup.player_button.index(i)
                 GPIO.output(setup.player_led[setup.game_selected], 0)
                 setup.game_selected = number

@@ -47,7 +47,6 @@ def waitForPress():
         for i in setup.active_button:
             if GPIO.event_detected(i):
                 player_num = setup.active_button.index(i)
-                sounds.playButtonPush()
                 animations.one_blink(setup.active_led[player_num], 1, 0.2)
                 return player_num
     return "zeit_limit_abgelaufen"

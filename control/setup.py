@@ -114,7 +114,6 @@ def subtractLifeFromPlayerWithWinner(loser_num, winner_num):
     time.sleep(1)
 
 def substractLifeAnimation(loser_num):
-    sounds.playLoseSound()
     GPIO.output(active_led[loser_num], 1)
 
     if player_life[loser_num] == 1:

@@ -35,7 +35,6 @@ def startGame():
         #Warten
         animations.array_on(setup.active_led)
         time.sleep(random.randint(2, 7))
-        sounds.playSound("airhorn.mp3")
         time.sleep(0.4)
         animations.array_off(setup.active_led)
 
