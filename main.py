@@ -1,7 +1,7 @@
 import time
 
 from games import hotPotato, reaktionstest, pingPong, fourColorGame, zaehlen, auslassen, jerusalem, zeitSchätzen
-from helper import animations, sounds
+from helper import animations
 from control import setup, selection
 
 try:
@@ -26,7 +26,6 @@ try:
             print("Spielerauswahl")
             GPIO.output(setup.control_led[0], 1)
             next_menu = selection.player_selection()
-            sounds.playMenuSound()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[0], 0)
             if next_menu:
@@ -47,7 +46,6 @@ try:
             print("Lebenauswahl")
             GPIO.output(setup.control_led[1], 1)
             next_menu = selection.life_selection()
-            sounds.playMenuSound()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[1], 0)
             if next_menu:
@@ -60,7 +58,6 @@ try:
             print("Spielauswahl")
             GPIO.output(setup.control_led[2], 1)
             next_menu = selection.game_selection()
-            sounds.playMenuSound()
             animations.rolls(setup.player_led, 1)
             GPIO.output(setup.control_led[2], 0)
             if next_menu:
