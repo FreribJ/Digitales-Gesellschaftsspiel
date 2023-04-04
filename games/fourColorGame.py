@@ -2,7 +2,7 @@ import random
 import time
 
 from control import setup
-from helper import animations, sounds
+from helper import animations
 
 # GPIO Import
 try:

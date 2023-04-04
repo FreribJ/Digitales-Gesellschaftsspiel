@@ -1,7 +1,7 @@
 import time
 
 from control import setup
-from helper import animations, sounds
+from helper import animations
 
 try:
     import RPi.GPIO as GPIO

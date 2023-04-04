@@ -1,6 +1,6 @@
 import time
 
-from helper import animations, sounds
+from helper import animations
 
 try:
     import RPi.GPIO as GPIO
@@ -30,7 +30,6 @@ player_life = []
 game_selected = 0
 
 def initialize():
-    sounds.initialize()
 
     GPIO.setmode(GPIO.BCM)
     for i in all_led:
