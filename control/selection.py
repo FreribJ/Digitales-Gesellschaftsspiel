@@ -29,6 +29,7 @@ def player_selection():
     while not (GPIO.event_detected(setup.control_button[1]) and not sum(playeractive) <= 1): #Wartet auf Next, beachtet aber, dass mindestens ein Spieler ausgewählt wurde
         for i in setup.player_button:
             if GPIO.event_detected(i):
+                print(i)
                 number = setup.player_button.index(i)
                 if playeractive[number]:
                     playeractive[number] = False
