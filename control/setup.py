@@ -15,7 +15,7 @@ WAIT_FOR_CONTINUE = True
 #all_button = [3, 4, 11, 10, 15, 23, 25, 7, 16, 21, 19, 6]
 
 ##For Banana Pi M2 Zero:
-all_button = [23, 31, 0, 0, 0, 10, 0, 0, 0, 0, 19, 0]
+all_button = [23, 31, 31, 31, 31, 10, 22, 26, 36, 40, 19, 31]
 all_led = [23, 31, 11, 29, 21, 8, 12, 18, 24, 32, 38, 37, 33]
 
 #First -> Back; Second -> Next
