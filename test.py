@@ -18,6 +18,8 @@ for i in range(40):
     except:
         print()
 
+print(zumtesten)
+
 while True:
     for i in range(len(zumtesten)):
         if GPIO.event_detected(zumtesten[i]):
