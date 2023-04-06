@@ -11,10 +11,10 @@ zumtesten = []
 
 for i in range(40):
     try:
-        GPIO.setup(i, GPIO.IN)
-        GPIO.add_event_detect(i, GPIO.RISING, bouncetime=300)
-        zumtesten.append(i)
-        print("OUTPUT PIN: ", i)
+        GPIO.setup(i+1, GPIO.IN)
+        GPIO.add_event_detect(i+1, GPIO.RISING, bouncetime=300)
+        zumtesten.append(i+1)
+        print("OUTPUT PIN: ", i+1)
     except:
         print()
 
