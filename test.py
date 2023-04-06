@@ -22,6 +22,7 @@ print(zumtesten)
 
 while True:
     for i in range(len(zumtesten)):
-        if GPIO.input(zumtesten[i]):
+        if GPIO.event_detected(zumtesten[i]):
             print("Es ist: ", zumtesten[i])
+            time.sleep(0.01)
     time.sleep(1)
