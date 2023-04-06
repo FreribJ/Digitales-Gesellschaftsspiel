@@ -12,7 +12,7 @@ zumtesten = []
 for i in range(40):
     try:
         GPIO.setup(i, GPIO.IN)
-        GPIO.add_event_detect(i, GPIO.RISING, bouncetime=300)
+        #GPIO.add_event_detect(i, GPIO.RISING, bouncetime=300)
         zumtesten.append(i)
         print("OUTPUT PIN: ", i)
     except:
@@ -22,6 +22,6 @@ print(zumtesten)
 
 while True:
     for i in range(len(zumtesten)):
-        if GPIO.event_detected(zumtesten[i]):
+        if GPIO.input(zumtesten[i]):
             print("Es ist: ", zumtesten[i])
     time.sleep(1)
