@@ -26,3 +26,4 @@ while True:
             print("Es ist: ", zumtesten[i])
         time.sleep(0.1)
     time.sleep(1)
+    print("Test")
