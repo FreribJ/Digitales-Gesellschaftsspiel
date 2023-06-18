@@ -19,6 +19,9 @@ if device == "raspberrypi3":
 elif device == "bananapi":
     all_led = [22, 27, 17, 5, 9, 14, 18, 24, 8, 12, 20, 26, 13]
     all_button = [3, 4, 11, 10, 15, 23, 25, 7, 16, 21, 19, 6]
+elif device == "pizero":
+    all_led = [5, 7, 15, 19, 10, 16, 22, 26, 36, 40 ]
+    all_button = [3, 4, 11, 10, 15, 23, 25, 7, 16, 21, 19, 6]
 
 
 #First -> Back; Second -> Next
@@ -39,7 +42,7 @@ game_selected = 0
 
 def initialize():
 
-    GPIO.setmode(GPIO.BOARD)
+    GPIO.setmode(GPIO.BCM)
     for i in all_led:
         GPIO.setup(i, GPIO.OUT)
     for i in all_button:
