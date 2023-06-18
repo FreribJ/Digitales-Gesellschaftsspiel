@@ -11,7 +11,7 @@ except ImportError:
 WAIT_FOR_CONTINUE = True
 
 #Pin-Setup:
-device = "raspberrypi3"
+device = "bananapi"
 
 if device == "raspberrypi3":
     all_led = [15, 13, 11, 29, 21, 8, 12, 18, 24, 32, 38, 37, 33]
