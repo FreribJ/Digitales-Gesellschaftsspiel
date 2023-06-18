@@ -10,15 +10,23 @@ except ImportError:
 #Setting:
 WAIT_FOR_CONTINUE = True
 
-#3 -> Back; 4 -> Next
-control_button = [3, 4]
-control_led = [22, 27, 17]
-player_led = [5, 9, 14, 18, 24, 8, 12, 20, 26, 13]
-player_button = [11, 10, 15, 23, 25, 7, 16, 21, 19, 6]
-max_player = len(player_button)
+#Pin-Setup:
+device = "pizero"
 
-all_led = [22, 27, 17, 5, 9, 14, 18, 24, 8, 12, 20, 26, 13]
-all_button = [3, 4, 11, 10, 15, 23, 25, 7, 16, 21, 19, 6]
+if device == "raspberrypi3":
+    all_led = [15, 13, 11, 29, 21, 8, 12, 18, 24, 32, 38, 37, 33]
+    all_button = [23, 31, 5, 35, 16, 10, 22, 26, 36, 40, 19, 7]
+elif device == "pizero":
+    all_led = [22, 27, 17, 5, 9, 14, 18, 24, 8, 12, 20, 26, 13]
+    all_button = [3, 4, 11, 10, 15, 23, 25, 7, 16, 21, 19, 6]
+
+
+#First -> Back; Second -> Next
+control_button = [all_button[0], all_button[1]]
+control_led = [all_led[0], all_led[1], all_led[2]]
+player_led = [all_led[3], all_led[4], all_led[5], all_led[6], all_led[7], all_led[8], all_led[9], all_led[10], all_led[11], all_led[12]]
+player_button = [all_button[2], all_button[3], all_button[4], all_button[5], all_button[6], all_button[7], all_button[8], all_button[9], all_button[10], all_button[11]]
+max_player = len(player_button)
 
 active_player = 0
 active_button = []
