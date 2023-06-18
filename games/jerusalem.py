@@ -85,9 +85,7 @@ def startGame():
         #Starten
         selectRandom()
 
-        sounds.playSound("jerusalem.mp3")
         animations.rings(setup.player_led, random.randint(10, 25), 0.5)
-        sounds.stopSound()
         animations.array_on(selected_led_arr)
 
         #Warten
