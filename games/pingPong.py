@@ -4,10 +4,7 @@ import random
 import time
 
 # GPIO Import
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
-    import FakeRPi.GPIO as GPIO
+from control.setup import pi, event_detector
 
 # Variable Import
 from control import setup
@@ -19,12 +16,12 @@ timesPressed = 0
 
 def changePlayer():
     global actualPlayer
-    GPIO.output(setup.active_led[actualPlayer], 0)
+    pi.write(setup.active_led[actualPlayer], 0)
     x = random.randint(0, setup.active_player - 1)
     while x == actualPlayer:
         x = random.randint(0, setup.active_player - 1)
     actualPlayer = x
-    GPIO.output(setup.active_led[actualPlayer], 1)
+    pi.write(setup.active_led[actualPlayer], 1)
 
 def reduceTime():
     global timeToPress, timesPressed
@@ -51,7 +48,7 @@ def startGame():
             #Auf Falschdruck prüfen
             for i in setup.active_button:
                 if not (setup.active_button.index(i) == actualPlayer):
-                    if GPIO.event_detected(i):
+                    if event_detector.event_detected(i):
                         wrong_button_push = True
                         wrong_button_push_players.append(setup.active_button.index(i))
 
@@ -60,7 +57,7 @@ def startGame():
                 break
 
             #Auf Richtigen knopfdruck prüfen
-            if GPIO.event_detected(setup.active_button[actualPlayer]):
+            if event_detector.event_detected(setup.active_button[actualPlayer]):
                 sounds.playPingPong()
                 reduceTime()
                 changePlayer()

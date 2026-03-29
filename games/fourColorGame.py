@@ -5,10 +5,7 @@ from control import setup
 from helper import animations, sounds
 
 # GPIO Import
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
-    import FakeRPi.GPIO as GPIO
+from control.setup import pi, event_detector
 
 #Variablen
 reihenfolge = []
@@ -36,7 +33,7 @@ def waitForPress():
     starttime = time.time()
     while time.time()-starttime < 5: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
         for i in setup.active_button:
-            if GPIO.event_detected(i):
+            if event_detector.event_detected(i):
                 player_num = setup.active_button.index(i)
                 sounds.playButtonPush()
                 animations.one_blink(setup.active_led[player_num], 1, 0.2)

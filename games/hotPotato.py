@@ -3,10 +3,7 @@ import time
 import random
 
 # GPIO Import
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
-    import FakeRPi.GPIO as GPIO
+from control.setup import pi, event_detector
 
 # Variable Import
 from control import setup
@@ -20,7 +17,7 @@ startTime = 0
 def initializeGame():
     global timeLength, startTime, actualPlayer
     actualPlayer = random.randint(0, setup.active_player - 1)
-    GPIO.output(setup.active_led[actualPlayer], 1)
+    pi.write(setup.active_led[actualPlayer], 1)
     timeLength = random.randint(15, 30)
     startTime = time.time()
     setup.add_eventDetect(200)
@@ -28,12 +25,12 @@ def initializeGame():
 
 def changePlayer():
     global actualPlayer
-    GPIO.output(setup.active_led[actualPlayer], 0)
+    pi.write(setup.active_led[actualPlayer], 0)
     x = random.randint(0, setup.active_player - 1)
     while x == actualPlayer:
         x = random.randint(0, setup.active_player - 1)
     actualPlayer = x
-    GPIO.output(setup.active_led[actualPlayer], 1)
+    pi.write(setup.active_led[actualPlayer], 1)
 
 
 def startGame():
@@ -43,11 +40,11 @@ def startGame():
 
     sounds.playSoundAtPosition("bombticking.mp3", 30.6-timeLength)
     while time.time() - startTime <= timeLength:
-        if GPIO.event_detected(setup.active_button[actualPlayer]):
+        if event_detector.event_detected(setup.active_button[actualPlayer]):
             changePlayer()
         for i in setup.active_button:
             if not(i == setup.active_button[actualPlayer]):
-                if GPIO.event_detected(i):
+                if event_detector.event_detected(i):
                     wrong_button_push = True
                     wrong_button_push_player = i
                     break

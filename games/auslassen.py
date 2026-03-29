@@ -5,10 +5,7 @@ from control import setup
 from helper import animations, sounds
 
 # GPIO Import
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
-    import FakeRPi.GPIO as GPIO
+from control.setup import pi, event_detector
 
 #Variablen
 counter = 1
@@ -41,7 +38,7 @@ def waitForPress():
     maxtime = 10 + (skiped_player * 2)
     while time.time()-starttime < maxtime: #Legt die Anzahl an Sekunden Fest die gebraucht werden dürfen
         for i in setup.active_button:
-            if GPIO.event_detected(i):
+            if event_detector.event_detected(i):
                 player_num = setup.active_button.index(i)
                 sounds.playButtonPush()
                 animations.one_blink(setup.active_led[player_num], 1, 0.2)
@@ -59,7 +56,7 @@ def startGame():
         counter = 1
         skiped_player = 0
         #passing_number = evtl. durch random.randint(2, 10) ersetzbar-> aber Anzeigen!
-        GPIO.output(setup.active_led[next_player], 1) #Startender Spieler anzeigen
+        pi.write(setup.active_led[next_player], 1) #Startender Spieler anzeigen
 
         while True:
             playerPressed = waitForPress()

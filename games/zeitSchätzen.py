@@ -5,10 +5,7 @@ from control import setup
 from helper import animations
 
 # GPIO Import
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
-    import FakeRPi.GPIO as GPIO
+from control.setup import pi, event_detector
 
 zeiten = []
 zeitZuSchaetzen = 10 #Zu schätzende Zeit in Sekunden
@@ -25,7 +22,7 @@ def callback_zeitspeichern(switch):
 #Initialzes Callback
 def initializeGame():
     for switch in setup.active_button:
-        GPIO.add_event_detect(switch, GPIO.RISING, callback_zeitspeichern, 200)
+        event_detector.add_event_detect(switch, 31, callback_zeitspeichern, 200) # 31 = RISING
 
 def startGame():
     global zeiten

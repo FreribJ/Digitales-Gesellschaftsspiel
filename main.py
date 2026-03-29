@@ -4,10 +4,7 @@ from games import hotPotato, reaktionstest, pingPong, fourColorGame, zaehlen, au
 from helper import animations, sounds
 from control import setup, selection
 
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
-    import FakeRPi.GPIO as GPIO
+from control.setup import pi
 
 #Programm-Initialize:
 setup.initialize()
@@ -24,11 +21,11 @@ try:
         #Spielerauswahl:
         if menu_level == 0:
             print("Spielerauswahl")
-            GPIO.output(setup.control_led[0], 1)
+            pi.write(setup.control_led[0], 1)
             next_menu = selection.player_selection()
             sounds.playMenuSound()
             animations.rolls(setup.player_led, 1)
-            GPIO.output(setup.control_led[0], 0)
+            pi.write(setup.control_led[0], 0)
             if next_menu:
                 menu_level = 1
                 exit_check = 0
@@ -45,11 +42,11 @@ try:
         #Lebenwahl:
         if menu_level == 1:
             print("Lebenauswahl")
-            GPIO.output(setup.control_led[1], 1)
+            pi.write(setup.control_led[1], 1)
             next_menu = selection.life_selection()
             sounds.playMenuSound()
             animations.rolls(setup.player_led, 1)
-            GPIO.output(setup.control_led[1], 0)
+            pi.write(setup.control_led[1], 0)
             if next_menu:
                 menu_level = 2
             else:
@@ -58,11 +55,11 @@ try:
         #Spielauswahl:
         if menu_level == 2:
             print("Spielauswahl")
-            GPIO.output(setup.control_led[2], 1)
+            pi.write(setup.control_led[2], 1)
             next_menu = selection.game_selection()
             sounds.playMenuSound()
             animations.rolls(setup.player_led, 1)
-            GPIO.output(setup.control_led[2], 0)
+            pi.write(setup.control_led[2], 0)
             if next_menu:
                 menu_level = 3
             else:
@@ -122,10 +119,10 @@ try:
 
     #Ende:
     animations.rolls(setup.all_led, 1)
-    GPIO.cleanup()
+    pi.stop()
     time.sleep(1)
     print("Finished")
 
 except KeyboardInterrupt:
     print("Quit")
-    GPIO.cleanup()
+    pi.stop()

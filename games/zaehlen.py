@@ -5,10 +5,7 @@ from control import setup
 from helper import animations
 
 # GPIO Import
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
-    import FakeRPi.GPIO as GPIO
+from control.setup import pi, event_detector
 
 ran_num = 0
 nummer = []
@@ -22,7 +19,7 @@ def callback_hochzaehlen(switch):
 #Initialzes Callback
 def initialize_callback():
     for switch in setup.active_button:
-        GPIO.add_event_detect(switch, GPIO.RISING, callback_hochzaehlen, 150)
+        event_detector.add_event_detect(switch, 31, callback_hochzaehlen, 150) # 31 = RISING
 
 def startGame():
     #Vorbereiten

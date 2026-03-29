@@ -1,11 +1,54 @@
 import time
 
+import pigpio
+import threading
+
 from helper import animations, sounds
 
-try:
-    import RPi.GPIO as GPIO
-except ImportError:
-    import FakeRPi.GPIO as GPIO
+# Initialize pigpio
+pi = pigpio.pi()
+
+# Helper for RPi.GPIO-style event detection
+class EventDetector:
+    def __init__(self, pi):
+        self.pi = pi
+        self.events = {}
+        self.callbacks = {}
+
+    def add_event_detect(self, gpio, edge, callback=None, bouncetime=200):
+        # bouncetime is in ms, pigpio debounce is in microseconds
+        self.pi.set_glitch_filter(gpio, bouncetime * 1000)
+        
+        if edge == 31: # RISING
+            pigpio_edge = pigpio.RISING_EDGE
+        elif edge == 32: # FALLING
+            pigpio_edge = pigpio.FALLING_EDGE
+        else: # BOTH
+            pigpio_edge = pigpio.EITHER_EDGE
+            
+        self.events[gpio] = False
+        def internal_callback(g, level, tick):
+            self.events[g] = True
+            if callback:
+                callback(g)
+            
+        self.callbacks[gpio] = self.pi.callback(gpio, pigpio_edge, internal_callback)
+
+    def remove_event_detect(self, gpio):
+        if gpio in self.callbacks:
+            self.callbacks[gpio].cancel()
+            del self.callbacks[gpio]
+        if gpio in self.events:
+            del self.events[gpio]
+
+    def event_detected(self, gpio):
+        if gpio in self.events:
+            detected = self.events[gpio]
+            self.events[gpio] = False
+            return detected
+        return False
+
+event_detector = EventDetector(pi)
 
 #Setting:
 WAIT_FOR_CONTINUE = True
@@ -40,24 +83,24 @@ game_selected = 0
 def initialize():
     sounds.initialize()
 
-    GPIO.setmode(GPIO.BCM)
     for i in all_led:
-        GPIO.setup(i, GPIO.OUT)
+        pi.set_mode(i, pigpio.OUTPUT)
     for i in all_button:
-        GPIO.setup(i, GPIO.IN, pull_up_down=GPIO.PUD_OFF)
+        pi.set_mode(i, pigpio.INPUT)
+        pi.set_pull_up_down(i, pigpio.PUD_OFF)
 
 #Removes Callback
 def remove_eventDetect():
     for i in active_button:
-        GPIO.remove_event_detect(i)
+        event_detector.remove_event_detect(i)
 
 def reset_eventDetect():
     for i in active_button:
-        GPIO.event_detected(i)
+        event_detector.event_detected(i)
 
 def add_eventDetect(bouncetime_ms):
     for i in active_button:
-        GPIO.add_event_detect(i, GPIO.RISING, bouncetime=bouncetime_ms)
+        event_detector.add_event_detect(i, 31, bouncetime=bouncetime_ms) # 31 = GPIO.RISING
 
 def subtractLifeFromPlayer(loser_num):
 
@@ -124,21 +167,21 @@ def subtractLifeFromPlayerWithWinner(loser_num, winner_num):
 
 def substractLifeAnimation(loser_num):
     sounds.playLoseSound()
-    GPIO.output(active_led[loser_num], 1)
+    pi.write(active_led[loser_num], 1)
 
     if player_life[loser_num] == 1:
-        GPIO.output(control_led[2], 2)
+        pi.write(control_led[2], 1) # Note: the original code had 2 here, which might have been a typo for 1 in GPIO.output
         time.sleep(1)
         animations.one_blink(control_led[2], 3, 0.5)
     if player_life[loser_num] == 2:
-        GPIO.output(control_led[1], 1)
-        GPIO.output(control_led[2], 1)
+        pi.write(control_led[1], 1)
+        pi.write(control_led[2], 1)
         time.sleep(1)
         animations.one_blink(control_led[1], 3, 0.5)
     if player_life[loser_num] == 3:
-        GPIO.output(control_led[0], 1)
-        GPIO.output(control_led[1], 1)
-        GPIO.output(control_led[2], 1)
+        pi.write(control_led[0], 1)
+        pi.write(control_led[1], 1)
+        pi.write(control_led[2], 1)
         time.sleep(1)
         animations.one_blink(control_led[0], 3, 0.5)
     if player_life[loser_num] >= 4:
@@ -146,25 +189,25 @@ def substractLifeAnimation(loser_num):
         time.sleep(1)
 
     time.sleep(1)
-    GPIO.output(active_led[loser_num], 0)
+    pi.write(active_led[loser_num], 0)
 
 def waitForContinue():
     if WAIT_FOR_CONTINUE:
-        GPIO.add_event_detect(control_button[0], GPIO.FALLING, bouncetime=200)
-        GPIO.add_event_detect(control_button[1], GPIO.RISING, bouncetime=200)
+        event_detector.add_event_detect(control_button[0], 32, bouncetime=200) # 32 = GPIO.FALLING
+        event_detector.add_event_detect(control_button[1], 31, bouncetime=200) # 31 = GPIO.RISING
 
-        while not GPIO.event_detected(control_button[1]):
+        while not event_detector.event_detected(control_button[1]):
             time.sleep(0.5)
-            GPIO.output(control_led[1], 1)
+            pi.write(control_led[1], 1)
             time.sleep(0.5)
-            GPIO.output(control_led[1], 0)
-            if GPIO.event_detected(control_button[0]):
+            pi.write(control_led[1], 0)
+            if event_detector.event_detected(control_button[0]):
                 for i in range(len(player_life)):
                     player_life[i] = 0
                 break
 
-        GPIO.remove_event_detect(control_button[0])
-        GPIO.remove_event_detect(control_button[1])
+        event_detector.remove_event_detect(control_button[0])
+        event_detector.remove_event_detect(control_button[1])
 
 
 def areAllPlayerAlive():
