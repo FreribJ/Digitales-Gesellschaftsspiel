@@ -2,7 +2,7 @@ import time
 import random
 
 from control import setup
-from control.setup import pi, event_detector
+from control.gpio_base import pi, event_detector
 from helper import animations, sounds
 
 selected_num = 0

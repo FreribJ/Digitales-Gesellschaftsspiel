@@ -5,7 +5,7 @@ from control import setup
 from helper import animations
 
 # GPIO Import
-from control.setup import pi, event_detector
+from control.gpio_base import pi, event_detector
 
 ran_num = 0
 nummer = []

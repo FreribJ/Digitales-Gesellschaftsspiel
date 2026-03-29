@@ -3,7 +3,7 @@ import time
 import random
 
 # GPIO Import
-from control.setup import pi, event_detector
+from control.gpio_base import pi, event_detector
 
 # Variable Import
 from control import setup
