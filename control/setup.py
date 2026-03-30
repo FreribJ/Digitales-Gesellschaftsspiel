@@ -5,7 +5,6 @@ import threading
 
 from helper import animations, sounds
 
-import pigpio
 # Initialize pigpio
 pi = pigpio.pi()
 

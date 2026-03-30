@@ -4,6 +4,8 @@ from control import setup
 from control.setup import pi, event_detector
 from helper import animations, sounds
 
+import pigpio
+
 
 def player_selection():
     playeractive = []
