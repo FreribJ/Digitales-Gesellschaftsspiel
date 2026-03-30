@@ -18,28 +18,20 @@ def player_selection():
 
     def player_selected_callback(gpio, level, tick):
         print("callback:", gpio, level, tick)
-        if level == 0:
-            playeractive[setup.player_button.index(gpio)] = False
-            pi.write(setup.player_led[setup.player_button.index(gpio)], 0)
-        else:
-            playeractive[setup.player_button.index(gpio)] = True
-            pi.write(setup.player_led[setup.player_button.index(gpio)], 1)
+        prior = playeractive[setup.player_button.index(gpio)]
+
+        playeractive[setup.player_button.index(gpio)] = not prior
+        pi.write(setup.player_led[setup.player_button.index(gpio)], not prior)
+
 
     # Event-Detect
     for i in setup.all_button:
-        pi.callback(i, pigpio.EITHER_EDGE, player_selected_callback)
+        pi.callback(i, pigpio.RISING, player_selected_callback)
 
     abbruch = False
-    event_detector.add_event_detect(setup.control_button[0], 32, bouncetime=300)
-    while not event_detector.event_detected(setup.control_button[1]):
-        for i in setup.player_button:
-            if event_detector.event_detected(i):
-                sounds.playButtonPush()
-                playeractive[setup.player_button.index(i)] = True
-                pi.write(setup.player_led[setup.player_button.index(i)], 1)
-        if event_detector.event_detected(setup.control_button[0]):
-            abbruch = True
-            break
+    # event_detector.add_event_detect(setup.control_button[0], 32, bouncetime=300)
+    while True:
+        time.sleep(1)
 
     # Einstellungen speichern
     setup.active_player = 0
