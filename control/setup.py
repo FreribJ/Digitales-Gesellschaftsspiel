@@ -81,7 +81,7 @@ player_life = []
 game_selected = 0
 
 def initialize():
-    sounds.initialize()
+    # sounds.initialize()
 
     for i in all_led:
         pi.set_mode(i, pigpio.OUTPUT)
