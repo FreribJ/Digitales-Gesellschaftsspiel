@@ -14,32 +14,30 @@ def player_selection():
         playeractive[setup.player_led.index(i)] = True
         pi.write(i, 1)
 
+    def player_selected_callback(gpio, level, tick):
+        print("callback:", gpio, level, tick)
+        if level == 0:
+            playeractive[setup.player_button.index(gpio)] = False
+            pi.write(setup.player_led[setup.player_button.index(gpio)], 0)
+        else:
+            playeractive[setup.player_button.index(gpio)] = True
+            pi.write(setup.player_led[setup.player_button.index(gpio)], 1)
+
     # Event-Detect
     for i in setup.all_button:
-        if not i == setup.control_button[0]:
-            event_detector.add_event_detect(i, 31, bouncetime=300) # 31 = RISING
-        else:
-            event_detector.add_event_detect(i, 32, bouncetime=300) # 32 = FALLING
+        pi.add_callback(i, player_selected_callback)
 
     abbruch = False
-    while not (event_detector.event_detected(setup.control_button[1]) and not sum(playeractive) <= 1): #Wartet auf Next, beachtet aber, dass mindestens ein Spieler ausgewählt wurde
+    event_detector.add_event_detect(setup.control_button[0], 32, bouncetime=300)
+    while not event_detector.event_detected(setup.control_button[1]):
         for i in setup.player_button:
             if event_detector.event_detected(i):
                 sounds.playButtonPush()
-                number = setup.player_button.index(i)
-                if playeractive[number]:
-                    playeractive[number] = False
-                    pi.write(setup.player_led[number], 0)
-                else:
-                    playeractive[number] = True
-                    pi.write(setup.player_led[number], 1)
+                playeractive[setup.player_button.index(i)] = True
+                pi.write(setup.player_led[setup.player_button.index(i)], 1)
         if event_detector.event_detected(setup.control_button[0]):
             abbruch = True
             break
-
-    # Remove Event-Detect:
-    for i in setup.all_button:
-        event_detector.remove_event_detect(i)
 
     # Einstellungen speichern
     setup.active_player = 0
