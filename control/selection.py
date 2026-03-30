@@ -26,7 +26,7 @@ def player_selection():
 
     # Event-Detect
     for i in setup.all_button:
-        pi.callback(i, pigpio.RISING, player_selected_callback)
+        pi.callback(i, pigpio.RISING_EDGE, player_selected_callback)
 
     abbruch = False
     # event_detector.add_event_detect(setup.control_button[0], 32, bouncetime=300)
