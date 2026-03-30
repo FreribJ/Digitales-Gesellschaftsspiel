@@ -17,7 +17,7 @@ class EventDetector:
 
     def add_event_detect(self, gpio, edge, callback=None, bouncetime=200):
         # bouncetime is in ms, pigpio debounce is in microseconds
-        self.pi.set_glitch_filter(gpio, bouncetime * 1000)
+        # self.pi.set_glitch_filter(gpio, bouncetime)
         
         if edge == 31: # RISING
             pigpio_edge = pigpio.RISING_EDGE
